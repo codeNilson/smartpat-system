@@ -1,43 +1,21 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.smartpat</groupId>
-    <artifactId>smartpat-system</artifactId>
+    <groupId>io.github.codenilson</groupId>
+    <artifactId>smartpat</artifactId>
     <version>0.1</version>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
     </properties>
     <dependencies>
 
         <!-- GOOGLE SHEETS -->
         <dependency>
-            <groupId>com.google.api-client</groupId>
-            <artifactId>google-api-client</artifactId>
-            <version>2.7.2</version>
-            <exclusions>
-                <exclusion>
-                    <artifactId>commons-codec</artifactId>
-                    <groupId>commons-codec</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>httpcore</artifactId>
-                    <groupId>org.apache.httpcomponents</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>google-http-client-gson</artifactId>
-                    <groupId>com.google.http-client</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>google-http-client</artifactId>
-                    <groupId>com.google.http-client</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>guava</artifactId>
-                    <groupId>com.google.guava</groupId>
-                </exclusion>
-            </exclusions>
+            <groupId>io.github.codenilson</groupId>
+            <artifactId>gsapi_core</artifactId>
+            <version>2.0.0</version>
         </dependency>
 
 
@@ -53,8 +31,7 @@
             <artifactId>javafx-fxml</artifactId>
             <version>23</version>
         </dependency>
-
-
+        <!--  -->
 
     </dependencies>
 
@@ -78,7 +55,7 @@
                         <!-- Usage: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>com.smartpat.App</mainClass>
+                            <mainClass>io.github.codenilson.smartpat.App</mainClass>
                         </configuration>
                     </execution>
                 </executions>

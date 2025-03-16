@@ -9,7 +9,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.geometry.Insets?>
 
-<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smartpat.controllers.PrimaryController">
+<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.codenilson.smartpat.controllers.PrimaryController">
    <children>
       <Label text="Primary View" />
       <Button fx:id="primaryButton" onAction="#switchToSecondary" text="Switch to Secondary View" />

@@ -1,4 +1,4 @@
-package com.smartpat;
+package io.github.codenilson.smartpat;
 
 import java.io.IOException;
 
