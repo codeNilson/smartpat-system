@@ -1,0 +1,32 @@
+.logo {
+    -fx-image: url('https://i.imgur.com/YF4ZuHi.png');
+}
+
+.header .header-title {
+    -fx-background-color: #f15a22;
+    -fx-padding: 10 20 10 20;
+}
+
+.header .header-title .header-label {
+    -fx-text-fill: #ffffff;
+    -fx-font-weight: bold;
+}
+
+.quit-button {
+    -fx-background-color: #f15a22;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 1.5em;
+    -fx-font-weight: bold;
+    -fx-padding: 10 20 10 20;
+}
+
+.menu {
+    -fx-background-color: #1f8e76;
+}
+
+.menu .menu-item {
+    -fx-text-fill: #ffffff;
+    -fx-font-weight: bold;
+    -fx-font-size: 1.5em;
+    /* -fx-padding: 10 20 10 20; */
+}

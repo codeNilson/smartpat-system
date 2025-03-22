@@ -1,14 +1,24 @@
 package io.github.codenilson.smartpat.controllers;
 
-import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-import io.github.codenilson.smartpat.App;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 
-public class PrimaryController {
+public class PrimaryController implements Initializable {
 
     @FXML
-    private void switchToSecondary() throws IOException {
-        // App.setRoot("gui/secondary");
+    private Button btnQuit;
+
+    @FXML
+    public void onBtnQuitClicked() {
+       Platform.exit();
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
     }
 }
