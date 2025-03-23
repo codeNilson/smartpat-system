@@ -1,0 +1,49 @@
+.root {
+    -fx-primary-color: #f15a22;
+    -fx-secondary-color: #1f8e76;
+    -fx-detail-color: #00a0dc;
+    -fx-main-background-color: #ffe6cb;
+    -fx-tipografy-color-1: #325565;
+    -fx-tipografy-color-2: #414042;
+}
+
+.logo {
+    -fx-image: url('https://i.imgur.com/YF4ZuHi.png');
+}
+
+.header .header-title {
+    -fx-background-color: -fx-primary-color;
+}
+
+.header .header-title .header-label {
+    -fx-text-fill: #ffffff;
+    -fx-font-weight: bold;
+}
+
+.quit-button {
+    -fx-background-color: -fx-primary-color;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 1.5em;
+    -fx-font-weight: bold;
+}
+
+.menu {
+    -fx-background-color: -fx-secondary-color;
+}
+
+.menu-item {
+    -fx-text-fill: #ffffff;
+    -fx-font-weight: bold;
+    -fx-font-size: 1.5em;
+}
+
+.grid-button {
+    -fx-background-color: -fx-detail-color;
+    -fx-text-fill: #ffffff;
+}
+
+.window-title {
+    -fx-text-fill: -fx-tipografy-color-1;
+    -fx-font-size: 2em;
+    -fx-font-weight: bold;
+}

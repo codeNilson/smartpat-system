@@ -11,7 +11,7 @@
     </properties>
     <dependencies>
 
-        <!-- GOOGLE SHEETS -->
+
         <dependency>
             <groupId>io.github.codenilson</groupId>
             <artifactId>gsapi_core</artifactId>
@@ -31,7 +31,8 @@
             <artifactId>javafx-fxml</artifactId>
             <version>23</version>
         </dependency>
-        <!--  -->
+        <!--   -->
+
 
     </dependencies>
 
