@@ -20,12 +20,13 @@ public class App extends Application {
         Scene scene = new Scene(root);
         scene.getStylesheets().add(App.class.getResource("styles/style.css").toExternalForm());
         stage.setScene(scene);
+        stage.setResizable(false);
 
-        Platform.runLater(() -> {
-            stage.sizeToScene();
-            stage.setMinWidth(stage.getWidth());
-            stage.setMinHeight(stage.getHeight()); 
-        });
+        // Platform.runLater(() -> {
+        //     stage.sizeToScene();
+        //     stage.setMinWidth(stage.getWidth());
+        //     stage.setMinHeight(stage.getHeight()); 
+        // });
         stage.show();
     }
 
