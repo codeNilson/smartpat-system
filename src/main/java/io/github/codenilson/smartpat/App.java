@@ -22,11 +22,6 @@ public class App extends Application {
         stage.setScene(scene);
         stage.setResizable(false);
 
-        // Platform.runLater(() -> {
-        //     stage.sizeToScene();
-        //     stage.setMinWidth(stage.getWidth());
-        //     stage.setMinHeight(stage.getHeight()); 
-        // });
         stage.show();
     }
 
