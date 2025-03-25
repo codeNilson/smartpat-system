@@ -21,7 +21,8 @@
             <ImageView fitHeight="116.0" fitWidth="153.0" pickOnBounds="true" preserveRatio="true" styleClass="logo">
                <viewport>
                   <Rectangle2D />
-               </viewport></ImageView>
+               </viewport>
+            </ImageView>
             <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="header-title" HBox.hgrow="ALWAYS">
                <children>
                   <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="header-label" text="SMART PAT - Gestão Patrimonial" HBox.hgrow="ALWAYS">
@@ -37,7 +38,8 @@
                         <Button fx:id="btnQuit" cancelButton="true" mnemonicParsing="false" onAction="#onBtnQuitClicked" styleClass="quit-button" text="SAIR">
                            <padding>
                               <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
-                           </padding></Button>
+                           </padding>
+                        </Button>
                      </children>
                   </HBox>
                </children>
@@ -107,27 +109,75 @@
                   <Button mnemonicParsing="false" prefHeight="250.0" prefWidth="300.0" styleClass="grid-button">
                      <cursor>
                         <Cursor fx:constant="HAND" />
-                     </cursor></Button>
-                                    <Button mnemonicParsing="false" prefHeight="250.0" prefWidth="300.0" styleClass="grid-button">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor></Button>
-                                    <Button mnemonicParsing="false" prefHeight="250.0" prefWidth="300.0" styleClass="grid-button">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor></Button>
-                                    <Button mnemonicParsing="false" prefHeight="250.0" prefWidth="300.0" styleClass="grid-button">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor></Button>
-                                    <Button mnemonicParsing="false" prefHeight="250.0" prefWidth="300.0" styleClass="grid-button">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor></Button>
+                     </cursor>
+                     <graphic>
+                        <ImageView fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../assets/cadeira.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
                   <Button mnemonicParsing="false" prefHeight="250.0" prefWidth="300.0" styleClass="grid-button">
                      <cursor>
                         <Cursor fx:constant="HAND" />
-                     </cursor></Button>
+                     </cursor>
+                     <graphic>
+                        <ImageView fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../assets/mesa.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button mnemonicParsing="false" prefHeight="250.0" prefWidth="300.0" styleClass="grid-button">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <graphic>
+                        <ImageView fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../assets/cadeira.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button mnemonicParsing="false" prefHeight="250.0" prefWidth="300.0" styleClass="grid-button">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <graphic>
+                        <ImageView fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../assets/mesa.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button mnemonicParsing="false" prefHeight="250.0" prefWidth="300.0" styleClass="grid-button">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <graphic>
+                        <ImageView fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../assets/cadeira.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button mnemonicParsing="false" prefHeight="250.0" prefWidth="300.0" styleClass="grid-button">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <graphic>
+                        <ImageView fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../assets/mesa.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
                </children>
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

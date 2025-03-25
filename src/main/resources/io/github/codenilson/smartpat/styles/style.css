@@ -44,8 +44,6 @@
 
 .grid-button:hover {
     -fx-background-color: -fx-primary-color;
-    /* -fx-scale-x: 1.1;
-    -fx-scale-y: 1.1; */
 }
 
 .window-title {

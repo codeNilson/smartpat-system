@@ -27,23 +27,20 @@ public class PrimaryController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         for (Node node : primaryRootPane.lookupAll(".grid-button")) {
-            if (node instanceof Button) {
-                Button button = (Button) node;
-                applyScaleAnimation(button);
-            }
+            applyScaleAnimation(node);
         }
     }
 
-    public static void applyScaleAnimation(Button button) {
-        ScaleTransition st = new ScaleTransition(Duration.millis(200), button);
+    public static void applyScaleAnimation(Node node) {
+        ScaleTransition st = new ScaleTransition(Duration.millis(200), node);
         st.setToX(1.1);
         st.setToY(1.1);
 
-        ScaleTransition stReverse = new ScaleTransition(Duration.millis(200), button);
+        ScaleTransition stReverse = new ScaleTransition(Duration.millis(200), node);
         stReverse.setToX(1);
         stReverse.setToY(1);
 
-        button.setOnMouseEntered(e -> st.playFromStart());
-        button.setOnMouseExited(e -> stReverse.playFromStart());
+        node.setOnMouseEntered(e -> st.playFromStart());
+        node.setOnMouseExited(e -> stReverse.playFromStart());
     }
 }
