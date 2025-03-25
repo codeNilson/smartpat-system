@@ -9,12 +9,20 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 
 public class PrimaryController implements Initializable {
 
     @FXML
-    private Node primaryRootPane;
+    private BorderPane primaryRootPane;
+
+    @FXML
+    private Button btnSearch;
+
+    @FXML
+    private Button btnAdd;
 
     @FXML
     private Button btnQuit;
@@ -29,6 +37,9 @@ public class PrimaryController implements Initializable {
         for (Node node : primaryRootPane.lookupAll(".grid-button")) {
             applyScaleAnimation(node);
         }
+
+        btnSearch.setOnAction(e -> changeItems("search"));
+
     }
 
     public static void applyScaleAnimation(Node node) {
@@ -42,5 +53,14 @@ public class PrimaryController implements Initializable {
 
         node.setOnMouseEntered(e -> st.playFromStart());
         node.setOnMouseExited(e -> stReverse.playFromStart());
+    }
+
+    public void changeItems(String category) {
+        try {
+            Pane itemsPane = ItemsController.loadView(category);
+            primaryRootPane.setCenter(itemsPane);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

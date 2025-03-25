@@ -52,7 +52,7 @@
          <children>
             <HBox alignment="CENTER_LEFT">
                <children>
-                  <Button graphicTextGap="5.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="menu-item" text="Pesquisar">
+                  <Button fx:id="btnSearch" graphicTextGap="5.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="menu-item" text="Pesquisar">
                      <graphic>
                         <ImageView fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" smooth="false">
                            <image>
@@ -65,7 +65,7 @@
             </HBox>
             <HBox alignment="CENTER">
                <children>
-                  <Button graphicTextGap="5.0" mnemonicParsing="false" styleClass="menu-item" text="Cadastrar">
+                  <Button fx:id="btnAdd" graphicTextGap="5.0" mnemonicParsing="false" styleClass="menu-item" text="Cadastrar">
                      <graphic>
                         <ImageView fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                            <image>
