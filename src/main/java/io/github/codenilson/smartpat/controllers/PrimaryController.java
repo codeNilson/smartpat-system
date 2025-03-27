@@ -28,6 +28,9 @@ public class PrimaryController implements Initializable {
     private Button btnQuit;
 
     @FXML
+    private Button btnReport;
+
+    @FXML
     public void onBtnQuitClicked() {
         Platform.exit();
     }
@@ -63,4 +66,5 @@ public class PrimaryController implements Initializable {
             e.printStackTrace();
         }
     }
+
 }

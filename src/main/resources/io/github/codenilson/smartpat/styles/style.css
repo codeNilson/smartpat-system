@@ -27,27 +27,13 @@
     -fx-font-weight: bold;
 }
 
-.menu {
+.sidebar {
     -fx-background-color: -fx-secondary-color;
 }
 
-.menu-item {
+.sidebar-item {
     -fx-text-fill: #ffffff;
     -fx-font-weight: bold;
-    -fx-font-size: 1.5em;
-}
-
-.grid-button {
-    -fx-background-color: -fx-detail-color;
-    -fx-text-fill: #ffffff;
-}
-
-.grid-button:hover {
-    -fx-background-color: -fx-primary-color;
-}
-
-.window-title {
-    -fx-text-fill: -fx-tipografy-color-1;
-    -fx-font-size: 2em;
-    -fx-font-weight: bold;
+    -fx-font-size: 1.4em;
+    -fx-background-color: -fx-secondary-color;
 }

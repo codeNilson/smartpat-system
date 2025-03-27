@@ -2,7 +2,6 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.geometry.Rectangle2D?>
-<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
@@ -10,11 +9,10 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="primaryRootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.codenilson.smartpat.controllers.PrimaryController">
+<BorderPane fx:id="primaryRootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="300.0" minWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.codenilson.smartpat.controllers.PrimaryController">
    <top>
       <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="header" BorderPane.alignment="CENTER">
          <children>
@@ -48,158 +46,47 @@
       </HBox>
    </top>
    <left>
-      <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="147.0" spacing="20.0" styleClass="menu" BorderPane.alignment="CENTER_LEFT">
+      <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="147.0" spacing="20.0" styleClass="sidebar" BorderPane.alignment="CENTER_LEFT">
          <children>
-            <HBox alignment="CENTER_LEFT">
-               <children>
-                  <Button fx:id="btnSearch" graphicTextGap="5.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="menu-item" text="Pesquisar">
-                     <graphic>
-                        <ImageView fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" smooth="false">
-                           <image>
-                              <Image url="@../styles/icons/iconmonstr-magnifier-lined-240.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER">
-               <children>
-                  <Button fx:id="btnAdd" graphicTextGap="5.0" mnemonicParsing="false" styleClass="menu-item" text="Cadastrar">
-                     <graphic>
-                        <ImageView fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../styles/icons/save.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER">
-               <children>
-                  <Button graphicTextGap="5.0" mnemonicParsing="false" styleClass="menu-item" text="Relatórios">
-                     <graphic>
-                        <ImageView fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../styles/icons/relatorios.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-               </children>
-            </HBox>
+            <Button fx:id="btnSearch" graphicTextGap="5.0" mnemonicParsing="false" styleClass="sidebar-item" text="Pesquisar">
+               <graphic>
+                  <ImageView fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" smooth="false">
+                     <image>
+                        <Image url="@../styles/icons/iconmonstr-magnifier-lined-240.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="btnAdd" graphicTextGap="5.0" mnemonicParsing="false" styleClass="sidebar-item" text="Cadastrar">
+               <graphic>
+                  <ImageView fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../styles/icons/save.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="btnReport" graphicTextGap="5.0" mnemonicParsing="false" styleClass="sidebar-item" text="Relatórios">
+               <graphic>
+                  <ImageView fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../styles/icons/relatorios.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
          </children>
       </VBox>
    </left>
-   <center>
-      <VBox style="-fx-background-color: #ffe6cb;" BorderPane.alignment="CENTER">
-         <children>
-            <HBox alignment="CENTER">
-               <children>
-                  <Label styleClass="window-title" text="Categorias">
-                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </padding>
-                  </Label>
-               </children>
-            </HBox>
-            <TilePane alignment="CENTER" hgap="20.0" prefColumns="3" prefHeight="200.0" prefWidth="200.0" vgap="20.0">
-               <children>
-                  <Button mnemonicParsing="false" prefHeight="250.0" prefWidth="300.0" styleClass="grid-button">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                     <graphic>
-                        <ImageView fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../assets/cadeira.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-                  <Button mnemonicParsing="false" prefHeight="250.0" prefWidth="300.0" styleClass="grid-button">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                     <graphic>
-                        <ImageView fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../assets/mesa.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-                  <Button mnemonicParsing="false" prefHeight="250.0" prefWidth="300.0" styleClass="grid-button">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                     <graphic>
-                        <ImageView fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../assets/cadeira.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-                  <Button mnemonicParsing="false" prefHeight="250.0" prefWidth="300.0" styleClass="grid-button">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                     <graphic>
-                        <ImageView fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../assets/mesa.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-                  <Button mnemonicParsing="false" prefHeight="250.0" prefWidth="300.0" styleClass="grid-button">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                     <graphic>
-                        <ImageView fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../assets/cadeira.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-                  <Button mnemonicParsing="false" prefHeight="250.0" prefWidth="300.0" styleClass="grid-button">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                     <graphic>
-                        <ImageView fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../assets/mesa.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-               </children>
-               <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </padding>
-            </TilePane>
-         </children>
-      </VBox>
-   </center>
    <bottom>
-      <HBox fx:id="footer" prefHeight="28.0" prefWidth="1280.0" BorderPane.alignment="CENTER">
+      <HBox prefHeight="25.0" BorderPane.alignment="CENTER">
          <children>
-            <Pane prefHeight="200.0" prefWidth="147.0" style="-fx-background-color: -fx-secondary-color;">
-               <children>
-                  <Button layoutX="37.0" layoutY="-6.0" mnemonicParsing="false" styleClass="menu-item" text="SOBRE" />
-               </children>
-            </Pane>
-            <Pane prefHeight="200.0" prefWidth="50.0" style="-fx-background-color: -fx-detail-color;" />
-            <Pane prefHeight="200.0" prefWidth="400.0" style="-fx-background-color: -fx-primary-color;" />
-            <Pane prefHeight="200.0" prefWidth="50.0" style="-fx-background-color: -fx-secondary-color;" />
-            <Pane prefHeight="200.0" prefWidth="250.0" style="-fx-background-color: -fx-primary-color;" />
-            <Pane prefHeight="200.0" prefWidth="350.0" style="-fx-background-color: -fx-secondary-color;" HBox.hgrow="ALWAYS" />
-            <Pane prefHeight="200.0" prefWidth="10.0" style="-fx-background-color: -fx-detail-color;" HBox.hgrow="ALWAYS" />
+            <Button mnemonicParsing="false" prefWidth="147.0" styleClass="sidebar-item" text="Sobre" />
+            <Pane maxWidth="400.0" style="-fx-background-color: -fx-primary-color;" HBox.hgrow="SOMETIMES" />
+            <Pane maxWidth="400.0" minWidth="50.0" style="-fx-background-color: -fx-detail-color;" HBox.hgrow="SOMETIMES" />
+            <Pane style="-fx-background-color: -fx-primary-color;" HBox.hgrow="SOMETIMES" />
+            <Pane maxWidth="400.0" style="-fx-background-color: -fx-secondary-color;" HBox.hgrow="SOMETIMES" />
+            <Pane minWidth="50.0" style="-fx-background-color: -fx-detail-color;" HBox.hgrow="NEVER" />
          </children>
       </HBox>
    </bottom>
