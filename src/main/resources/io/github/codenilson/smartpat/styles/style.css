@@ -36,4 +36,26 @@
     -fx-font-weight: bold;
     -fx-font-size: 1.4em;
     -fx-background-color: -fx-secondary-color;
+    -fx-background-radius: 0px;
+}
+
+.main > * {
+    -fx-background-color: -fx-main-background-color;
+}
+
+.main .main-title {
+    -fx-text-fill: -fx-tipografy-color-1;
+    -fx-font-size: 2em;
+    -fx-font-weight: bold;
+}
+
+.categories-container {
+    -fx-background-color: -fx-main-background-color;
+}
+
+.categories .category {
+    -fx-background-color: -fx-detail-color;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 1.5em;
+    -fx-font-weight: bold;
 }
