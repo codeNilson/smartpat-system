@@ -14,7 +14,7 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
 
-        Parent root = loadFXML("gui/primary");
+        Parent root = loadFXML("gui/main");
         Scene scene = new Scene(root);
         scene.getStylesheets().add(App.class.getResource("styles/style.css").toExternalForm());
         stage.setScene(scene);
@@ -31,7 +31,7 @@ public class App extends Application {
         launch(args);
     }
 
-    private Parent loadFXML(String fxml) throws IOException {
+    public static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
     }
