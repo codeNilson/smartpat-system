@@ -11,6 +11,8 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.TilePane;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class PrimaryController implements Initializable {
@@ -31,16 +33,21 @@ public class PrimaryController implements Initializable {
     private Button btnReport;
 
     @FXML
+    private TilePane categoriesPane;
+
+    @FXML
     public void onBtnQuitClicked() {
         Platform.exit();
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        for (Node node : primaryRootPane.lookupAll(".grid-button")) {
+        for (Node node : primaryRootPane.lookupAll(".category")) {
             applyScaleAnimation(node);
         }
 
+
+        // testing
         btnSearch.setOnAction(e -> changeItems("search"));
 
     }

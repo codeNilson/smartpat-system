@@ -39,7 +39,7 @@
     -fx-background-radius: 0px;
 }
 
-.main > * {
+.main {
     -fx-background-color: -fx-main-background-color;
 }
 
@@ -47,10 +47,6 @@
     -fx-text-fill: -fx-tipografy-color-1;
     -fx-font-size: 2em;
     -fx-font-weight: bold;
-}
-
-.categories-container {
-    -fx-background-color: -fx-main-background-color;
 }
 
 .categories .category {
@@ -62,4 +58,12 @@
 
 .scroll-pane .viewport {
     -fx-background-color: green;
+}
+
+.category {
+    -fx-background-color: -fx-detail-color;
+}
+
+.category:hover {
+    -fx-background-color: -fx-primary-color;
 }
