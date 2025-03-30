@@ -41,6 +41,9 @@
                      </children>
                   </HBox>
                </children>
+               <padding>
+                  <Insets left="30.0" right="30.0" />
+               </padding>
             </HBox>
          </children>
       </HBox>
