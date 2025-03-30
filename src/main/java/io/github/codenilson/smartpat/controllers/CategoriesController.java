@@ -4,10 +4,13 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import javafx.animation.ScaleTransition;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.layout.TilePane;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class CategoriesController implements Initializable {
@@ -15,11 +18,29 @@ public class CategoriesController implements Initializable {
     @FXML
     private Parent root;
 
+    @FXML
+    private TilePane categoriesContainer;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         for (Node node : root.lookupAll(".category")) {
             applyScaleAnimation(node);
         }
+
+        Platform.runLater(() -> {
+            Stage stage = (Stage) root.getScene().getWindow();
+            stage.widthProperty().addListener((obs, oldVal, newVal) -> {
+                if (stage.isMaximized()) {
+                    categoriesContainer.setPrefTileHeight(300);
+                    categoriesContainer.setPrefTileWidth(300);
+                } else {
+                    categoriesContainer.setPrefTileHeight(200);
+                    categoriesContainer.setPrefTileWidth(200);
+                }
+            });
+        });
+
     }
 
     public static void applyScaleAnimation(Node node) {

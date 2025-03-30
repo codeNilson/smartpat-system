@@ -19,9 +19,9 @@
                </VBox.margin></Label>
             <VBox alignment="CENTER" fillWidth="false" VBox.vgrow="ALWAYS">
                <children>
-                  <TilePane alignment="CENTER" prefColumns="3" prefTileHeight="200.0" prefTileWidth="200.0" VBox.vgrow="NEVER">
+                  <TilePane fx:id="categoriesContainer" alignment="CENTER" prefColumns="3" prefTileHeight="200.0" prefTileWidth="200.0" VBox.vgrow="NEVER">
                      <children>
-                        <HBox accessibleRole="BUTTON">
+                        <HBox accessibleRole="BUTTON" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
                            <children>
                               <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="category" HBox.hgrow="ALWAYS">
                            <graphic>
@@ -39,7 +39,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                         </HBox>
-                        <HBox accessibleRole="BUTTON">
+                        <HBox accessibleRole="BUTTON" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
                            <children>
                               <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="category" HBox.hgrow="ALWAYS">
                            <graphic>
@@ -57,7 +57,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                         </HBox>
-                        <HBox accessibleRole="BUTTON">
+                        <HBox accessibleRole="BUTTON" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
                            <children>
                               <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="category" HBox.hgrow="ALWAYS">
                            <graphic>
@@ -75,7 +75,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                         </HBox>
-                        <HBox accessibleRole="BUTTON">
+                        <HBox accessibleRole="BUTTON" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
                            <children>
                               <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="category" HBox.hgrow="ALWAYS">
                            <graphic>
@@ -93,7 +93,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                         </HBox>
-                        <HBox accessibleRole="BUTTON">
+                        <HBox accessibleRole="BUTTON" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
                            <children>
                               <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="category" HBox.hgrow="ALWAYS">
                            <graphic>
@@ -111,7 +111,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                         </HBox>
-                        <HBox accessibleRole="BUTTON">
+                        <HBox accessibleRole="BUTTON" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
                            <children>
                               <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="category" HBox.hgrow="ALWAYS">
                            <graphic>
