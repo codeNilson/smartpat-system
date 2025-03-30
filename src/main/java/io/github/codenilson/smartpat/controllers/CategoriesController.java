@@ -41,8 +41,8 @@ public class CategoriesController implements Initializable {
             Stage stage = (Stage) root.getScene().getWindow();
             stage.widthProperty().addListener((obs, oldVal, newVal) -> {
                 if (stage.isMaximized()) {
-                    categoriesContainer.setPrefTileHeight(300);
-                    categoriesContainer.setPrefTileWidth(300);
+                    categoriesContainer.setPrefTileWidth(stage.getWidth() / 6);
+                    categoriesContainer.setPrefTileHeight(stage.getWidth() / 6);
                 } else {
                     categoriesContainer.setPrefTileHeight(200);
                     categoriesContainer.setPrefTileWidth(200);
