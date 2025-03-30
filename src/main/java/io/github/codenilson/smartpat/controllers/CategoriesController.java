@@ -24,10 +24,19 @@ public class CategoriesController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+        applyScaleToCategories();
+
+        adjustCategoryContainerSize();
+
+    }
+
+    private void applyScaleToCategories() {
         for (Node node : root.lookupAll(".category")) {
             applyScaleAnimation(node);
         }
+    }
 
+    private void adjustCategoryContainerSize() {
         Platform.runLater(() -> {
             Stage stage = (Stage) root.getScene().getWindow();
             stage.widthProperty().addListener((obs, oldVal, newVal) -> {
@@ -40,7 +49,6 @@ public class CategoriesController implements Initializable {
                 }
             });
         });
-
     }
 
     public static void applyScaleAnimation(Node node) {
