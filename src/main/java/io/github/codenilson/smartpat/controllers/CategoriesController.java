@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.TilePane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -45,9 +46,26 @@ public class CategoriesController implements Initializable {
                     double newWidth = newVal.doubleValue() / 6;
                     categoriesContainer.setPrefTileWidth(newWidth);
                     categoriesContainer.setPrefTileHeight(newWidth);
+
+                    for (Node node : root.lookupAll(".category-image")) {
+                        if (node instanceof ImageView) {
+                            ImageView img = (ImageView) node;
+                            img.setFitWidth(250);
+                            img.setFitHeight(250);
+                        }
+                    }
+
                 } else {
                     categoriesContainer.setPrefTileHeight(200);
                     categoriesContainer.setPrefTileWidth(200);
+
+                    for (Node node : root.lookupAll(".category-image")) {
+                        if (node instanceof ImageView) {
+                            ImageView img = (ImageView) node;
+                            img.setFitWidth(150);
+                            img.setFitHeight(150);
+                        }
+                    }
                 }
             });
         });
