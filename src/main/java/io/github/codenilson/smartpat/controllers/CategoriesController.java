@@ -50,8 +50,8 @@ public class CategoriesController implements Initializable {
                     for (Node node : root.lookupAll(".category-image")) {
                         if (node instanceof ImageView) {
                             ImageView img = (ImageView) node;
-                            img.setFitWidth(250);
-                            img.setFitHeight(250);
+                            img.setFitWidth(newWidth / 1.2);
+                            img.setFitHeight(newWidth / 1.2);
                         }
                     }
 
