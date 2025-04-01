@@ -56,6 +56,10 @@
     -fx-font-weight: bold;
 }
 
+.category-container {
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.8), 5, 0, 0, 0);
+}
+
 .scroll-pane .viewport {
     -fx-background-color: green;
 }
