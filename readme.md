@@ -1,6 +1,6 @@
 # Sistema SmartPat
 
-🚀 Bem-vindo ao repositório do Sistema SmartPat! Este projeto foi desenvolvido para oferecer soluções inteligentes para gerenciar e otimizar diversos sistemas.
+🚀 Bem-vindo ao repositório do Sistema SmartPat! Este projeto foi desenvolvido para oferecer soluções inteligentes para gerenciar e otimizar a administração de bens patrimoniais de órgãos públicos.
 
 ⚠️ **Atenção:** Este projeto está em desenvolvimento. Algumas funcionalidades podem não estar completas ou podem sofrer alterações.
 
