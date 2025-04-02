@@ -18,13 +18,14 @@ public class MainController implements Initializable {
     private BorderPane primaryRootPane;
 
     @FXML
-    private Button btnSearch;
-
-    @FXML
-    private Button btnAdd;
-
-    @FXML
     private Button btnQuit;
+
+    @FXML
+    private Button btnHome;
+
+    @FXML
+    private Button btnRegister;
+
 
     @FXML
     private Button btnReport;
@@ -32,6 +33,21 @@ public class MainController implements Initializable {
     @FXML
     public void onBtnQuitClicked() {
         Platform.exit();
+    }
+
+    @FXML
+    public void onBtnHomeClicked() {
+        changeScene("gui/scenes/categories");
+    }
+
+    @FXML
+    public void onBtnRegisterClicked() {
+        changeScene("gui/scenes/register");
+    }
+
+    @FXML
+    public void onBtnReportClicked() {
+        changeScene("gui/scenes/reports");
     }
 
     @Override

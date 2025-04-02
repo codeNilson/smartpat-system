@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
@@ -51,32 +52,41 @@
    <left>
       <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="147.0" spacing="20.0" styleClass="sidebar" BorderPane.alignment="CENTER_LEFT">
          <children>
-            <Button fx:id="btnSearch" graphicTextGap="5.0" mnemonicParsing="false" styleClass="sidebar-item" text="Pesquisar">
+            <Button fx:id="btnHome" graphicTextGap="5.0" mnemonicParsing="false" onAction="#onBtnHomeClicked" styleClass="sidebar-item" text="Home">
                <graphic>
                   <ImageView fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" smooth="false">
                      <image>
-                        <Image url="@../styles/icons/iconmonstr-magnifier-lined-240.png" />
+                        <Image url="https://img.icons8.com/color/48/home--v1.png" />
                      </image>
                   </ImageView>
                </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
-            <Button fx:id="btnAdd" graphicTextGap="5.0" mnemonicParsing="false" styleClass="sidebar-item" text="Cadastrar">
+            <Button fx:id="btnRegister" graphicTextGap="5.0" mnemonicParsing="false" onAction="#onBtnRegisterClicked" styleClass="sidebar-item" text="Register">
                <graphic>
                   <ImageView fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../styles/icons/save.png" />
+                        <Image url="https://img.icons8.com/color/48/save--v1.png" />
                      </image>
                   </ImageView>
                </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
-            <Button fx:id="btnReport" graphicTextGap="5.0" mnemonicParsing="false" styleClass="sidebar-item" text="Relatórios">
+            <Button fx:id="btnReport" graphicTextGap="5.0" mnemonicParsing="false" onAction="#onBtnReportClicked" styleClass="sidebar-item" text="Reports">
                <graphic>
                   <ImageView fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../styles/icons/relatorios.png" />
+                        <Image url="https://img.icons8.com/color/48/pdf.png" />
                      </image>
                   </ImageView>
                </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
          </children>
          <padding>
@@ -87,7 +97,17 @@
    <bottom>
       <HBox prefHeight="25.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" prefWidth="147.0" styleClass="sidebar-item" text="Sobre" />
+            <Button mnemonicParsing="false" prefWidth="147.0" styleClass="sidebar-item" text="About">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <graphic>
+                  <ImageView fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="https://img.icons8.com/fluency/48/info.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
             <Pane maxWidth="400.0" style="-fx-background-color: -fx-primary-color;" HBox.hgrow="SOMETIMES" />
             <Pane maxWidth="400.0" minWidth="50.0" style="-fx-background-color: -fx-detail-color;" HBox.hgrow="SOMETIMES" />
             <Pane style="-fx-background-color: -fx-primary-color;" HBox.hgrow="SOMETIMES" />

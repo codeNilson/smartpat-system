@@ -24,6 +24,8 @@ public class CategoriesController implements Initializable {
     @FXML
     private TilePane categoriesContainer;
 
+    private Stage stage;
+
     private List<ImageView> categoriesImages = new ArrayList<>();
 
     private static final double MIN_TILE_WIDTH = 200;
@@ -36,9 +38,14 @@ public class CategoriesController implements Initializable {
 
         Platform.runLater(() -> {
 
+            stage = (Stage) root.getScene().getWindow();
+
+            adjustContainerSize(stage);
+            adjustImageSize(stage);
+
             loadCategoryImageViews();
             applyScaleToCategories();
-            adjustCategoryContainerDimensions();
+            setupStageMaximizedListener(stage);
         });
     }
 
@@ -53,41 +60,40 @@ public class CategoriesController implements Initializable {
     private void applyScaleToCategories() {
         for (Node node : root.lookupAll(".category")) {
             applyScaleAnimation(node);
-
         }
     }
 
-    private void adjustCategoryContainerDimensions() {
-
-        Stage stage = (Stage) root.getScene().getWindow();
+    private void setupStageMaximizedListener(Stage stage) {
 
         stage.maximizedProperty().addListener((obs, oldVal, newVal) -> {
-            Platform.runLater(() -> {
-                adjustContainerSize(stage);
-                adjustImageSize(stage);
-            });
+            adjustContainerSize(stage);
+            adjustImageSize(stage);
         });
     }
 
     private void adjustImageSize(Stage stage) {
-        Double maxImageWidth = stage.getWidth() / IMAGE_WIDTH_RATIO;
-        Double newImageWidth = Math.max(MIN_IMAGE_WIDTH, maxImageWidth);
+        Platform.runLater(() -> {
+            Double maxImageWidth = stage.getWidth() / IMAGE_WIDTH_RATIO;
+            Double newImageWidth = Math.max(MIN_IMAGE_WIDTH, maxImageWidth);
 
-        for (ImageView imageView : categoriesImages) {
-            imageView.setFitWidth(newImageWidth);
-            imageView.setFitHeight(newImageWidth);
-        }
+            for (ImageView imageView : categoriesImages) {
+                imageView.setFitWidth(newImageWidth);
+                imageView.setFitHeight(newImageWidth);
+            }
+        });
     }
 
     private void adjustContainerSize(Stage stage) {
-        double maxWidth = stage.getWidth() / TILE_WIDTH_RATIO;
-        double newWidth = Math.max(MIN_TILE_WIDTH, maxWidth);
+        Platform.runLater(() -> {
+            double maxWidth = stage.getWidth() / TILE_WIDTH_RATIO;
+            double newWidth = Math.max(MIN_TILE_WIDTH, maxWidth);
 
-        categoriesContainer.setPrefTileWidth(newWidth);
-        categoriesContainer.setPrefTileHeight(newWidth);
+            categoriesContainer.setPrefTileWidth(newWidth);
+            categoriesContainer.setPrefTileHeight(newWidth);
+        });
     }
 
-    public static void applyScaleAnimation(Node node) {
+    private void applyScaleAnimation(Node node) {
         ScaleTransition st = new ScaleTransition(Duration.millis(200), node);
         st.setToX(1.1);
         st.setToY(1.1);
