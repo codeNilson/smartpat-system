@@ -14,7 +14,7 @@
 
 Clone o repositório para explorar o projeto:
 ```bash
-git clone https://github.com/Denilson/smartpat-system.git
+git clone https://github.com/codeNilson/smartpat-system.git
 ```
 
 ## Licença
@@ -23,4 +23,4 @@ git clone https://github.com/Denilson/smartpat-system.git
 
 ## Contato
 
-📧 Para dúvidas ou suporte, entre em contato com [Denilson](mailto:your-email@example.com).
+📧 Para dúvidas ou suporte, entre em contato com [Denilson](mailto:fcodenilson@gmail.com).
