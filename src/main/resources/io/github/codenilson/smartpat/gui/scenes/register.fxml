@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.VBox?>
 
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: red;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.codenilson.smartpat.controllers.RegisterController" />
+<VBox alignment="CENTER" fillWidth="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.codenilson.smartpat.controllers.RegisterController">
+   <children>
+      <TableView fx:id="tableView" maxHeight="800.0" minHeight="100.0" VBox.vgrow="ALWAYS">
+        <columns>
+          <TableColumn minWidth="80.0" prefWidth="-1.0" resizable="false" text="#" />
+          <TableColumn fx:id="tombamentoColumn" minWidth="80.0" prefWidth="-1.0" resizable="false" text="Tombamento" />
+            <TableColumn fx:id="categoryColumn" minWidth="80.0" prefWidth="-1.0" resizable="false" text="Category" />
+            <TableColumn fx:id="unidadeAdministrativaColumn" minWidth="80.0" prefWidth="-1.0" resizable="false" text="U.A" />
+            <TableColumn fx:id="unidadeDeLocalizacaoColumn" minWidth="80.0" prefWidth="-1.0" resizable="false" text="UL" />
+            <TableColumn fx:id="propertyColumn" minWidth="80.0" prefWidth="-1.0" resizable="false" text="Propriedade" />
+            <TableColumn minWidth="80.0" prefWidth="-1.0" resizable="false" text="Info" />
+        </columns>
+      </TableView>
+   </children>
+</VBox>
