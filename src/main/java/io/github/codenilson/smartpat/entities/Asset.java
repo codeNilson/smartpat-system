@@ -1,67 +1,67 @@
 package io.github.codenilson.smartpat.entities;
 
-import javafx.beans.property.SimpleLongProperty;
-import javafx.beans.property.SimpleStringProperty;
-
 public class Asset {
-    private SimpleLongProperty tombamento;
+    private Long tombamento;
 
-    private SimpleStringProperty category;
+    private String category;
 
-    private SimpleStringProperty unidadeAdministrativa;
+    private String unidadeAdministrativa;
 
-    private SimpleStringProperty unidadeDeLocalizacao;
+    private String unidadeDeLocalizacao;
 
-    private SimpleStringProperty property;
+    private String property;
 
     public Asset(Long tombamento, String category,
             String unidadeAdministrativa, String unidadeDeLocalizacao,
             String property) {
-        this.tombamento = new SimpleLongProperty(tombamento);
-        this.category = new SimpleStringProperty(category);
-        this.unidadeAdministrativa = new SimpleStringProperty(unidadeAdministrativa);
-        this.unidadeDeLocalizacao = new SimpleStringProperty(unidadeDeLocalizacao);
-        this.property = new SimpleStringProperty(property);
+        this.tombamento = tombamento;
+        this.category = category;
+        this.unidadeAdministrativa = unidadeAdministrativa;
+        this.unidadeDeLocalizacao = unidadeDeLocalizacao;
+        this.property = property;
+    }
+
+    public Asset() {
     }
 
     public Long getTombamento() {
-        return tombamento.get();
+        return tombamento;
     }
 
     public void setTombamento(Long tombamento) {
-        this.tombamento = new SimpleLongProperty(tombamento);
+        this.tombamento = tombamento;
     }
 
     public String getCategory() {
-        return category.get();
+        return category;
     }
 
     public void setCategory(String category) {
-        this.category = new SimpleStringProperty(category);
+        this.category = category;
     }
 
     public String getUnidadeAdministrativa() {
-        return unidadeAdministrativa.get();
+        return unidadeAdministrativa;
     }
 
     public void setUnidadeAdministrativa(String unidadeAdministrativa) {
-        this.unidadeAdministrativa = new SimpleStringProperty(unidadeAdministrativa);
+        this.unidadeAdministrativa = unidadeAdministrativa;
     }
 
     public String getUnidadeDeLocalizacao() {
-        return unidadeDeLocalizacao.get();
+        return unidadeDeLocalizacao;
     }
 
     public void setUnidadeDeLocalizacao(String unidadeDeLocalizacao) {
-        this.unidadeDeLocalizacao = new SimpleStringProperty(unidadeDeLocalizacao);
+        this.unidadeDeLocalizacao = unidadeDeLocalizacao;
     }
 
     public String getProperty() {
-        return property.get();
+        return property;
     }
 
     public void setProperty(String property) {
-        this.property = new SimpleStringProperty(property);
+        this.property = property;
     }
 
     @Override
@@ -89,6 +89,4 @@ public class Asset {
         return true;
     }
 
-
-    
 }
