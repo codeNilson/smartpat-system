@@ -1,6 +1,21 @@
 package io.github.codenilson.smartpat.entities;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "asset")
 public class Asset {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    // @Column(unique = true)
     private Long tombamento;
 
     private String category;
@@ -9,16 +24,16 @@ public class Asset {
 
     private String unidadeDeLocalizacao;
 
-    private String property;
+    private String attributes;
 
     public Asset(Long tombamento, String category,
             String unidadeAdministrativa, String unidadeDeLocalizacao,
-            String property) {
+            String attributes) {
         this.tombamento = tombamento;
         this.category = category;
         this.unidadeAdministrativa = unidadeAdministrativa;
         this.unidadeDeLocalizacao = unidadeDeLocalizacao;
-        this.property = property;
+        this.attributes = attributes;
     }
 
     public Asset() {
@@ -56,12 +71,12 @@ public class Asset {
         this.unidadeDeLocalizacao = unidadeDeLocalizacao;
     }
 
-    public String getProperty() {
-        return property;
+    public String getAttributes() {
+        return attributes;
     }
 
-    public void setProperty(String property) {
-        this.property = property;
+    public void setAttributes(String attributes) {
+        this.attributes = attributes;
     }
 
     @Override

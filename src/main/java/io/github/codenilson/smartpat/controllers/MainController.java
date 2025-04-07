@@ -5,6 +5,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import io.github.codenilson.smartpat.App;
+import io.github.codenilson.smartpat.entities.Asset;
+import io.github.codenilson.smartpat.repository.AssetRepository;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -65,5 +67,7 @@ public class MainController implements Initializable {
             e.printStackTrace();
         }
     }
+
+
 
 }

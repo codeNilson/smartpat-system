@@ -2,6 +2,8 @@ package io.github.codenilson.smartpat;
 
 import java.io.IOException;
 
+import io.github.codenilson.smartpat.entities.Asset;
+import io.github.codenilson.smartpat.repository.AssetRepository;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -35,4 +37,6 @@ public class App extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
     }
+
+
 }

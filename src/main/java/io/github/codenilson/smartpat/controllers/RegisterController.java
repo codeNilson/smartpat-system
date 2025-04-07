@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import io.github.codenilson.smartpat.entities.Asset;
+import io.github.codenilson.smartpat.repository.AssetRepository;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -38,7 +39,9 @@ public class RegisterController implements Initializable {
         categoryColumn.setCellValueFactory(new PropertyValueFactory<>("category"));
         unidadeAdministrativaColumn.setCellValueFactory(new PropertyValueFactory<>("unidadeAdministrativa"));
         unidadeDeLocalizacaoColumn.setCellValueFactory(new PropertyValueFactory<>("unidadeDeLocalizacao"));
-        propertyColumn.setCellValueFactory(new PropertyValueFactory<>("property"));
+        propertyColumn.setCellValueFactory(new PropertyValueFactory<>("attributes"));
+
+        loadDataBaseData();
 
         // Dados de exemplo
         ObservableList<Asset> lista = FXCollections.observableArrayList(
@@ -50,6 +53,15 @@ public class RegisterController implements Initializable {
                 new Asset(6700008805L, "Mesa", "COAFI", "CEGEA", "Terceiros"));
 
         tableView.setItems(lista);
+    }
+
+    public void loadDataBaseData() {
+        AssetRepository repository = new AssetRepository();
+
+        repository.save(new Asset(6700004588L, "table", "TI", "Sala 101",
+                "{'length': 1,20, 'width': 1,20, 'has_drawers': true, 'color': 'black'}"));
+
+        repository.close();
     }
 
 }
