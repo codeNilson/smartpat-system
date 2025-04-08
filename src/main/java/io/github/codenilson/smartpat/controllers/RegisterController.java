@@ -35,17 +35,22 @@ public class RegisterController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        initializeTableColumns();
+
+        loadDataBaseData();
+
+    }
+
+    private void initializeTableColumns() {
         tombamentoColumn.setCellValueFactory(new PropertyValueFactory<>("tombamento"));
         categoryColumn.setCellValueFactory(new PropertyValueFactory<>("category"));
         unidadeAdministrativaColumn.setCellValueFactory(new PropertyValueFactory<>("unidadeAdministrativa"));
         unidadeDeLocalizacaoColumn.setCellValueFactory(new PropertyValueFactory<>("unidadeDeLocalizacao"));
         propertyColumn.setCellValueFactory(new PropertyValueFactory<>("attributes"));
 
-        loadDataBaseData();
-
         // Dados de exemplo
-        ObservableList<Asset> lista = FXCollections.observableArrayList(
-                new Asset(6700004588L, "Computador", "COPROJ", "Sala 101", "Proprio"),
+        ObservableList<Asset> lista = FXCollections.observableArrayList(new Asset(6700004588L, "Computador", "COPROJ", "Sala 101", "Proprio"),
                 new Asset(6700004558L, "Mesa", "COPROJ", "Sala 101", "Proprio"),
                 new Asset(6700004528L, "Computador", "COPROJ", "Sala 101", "Proprio"),
                 new Asset(6700004538L, "Cadeira", "COPROJ", "Sala 101", "Proprio"),
