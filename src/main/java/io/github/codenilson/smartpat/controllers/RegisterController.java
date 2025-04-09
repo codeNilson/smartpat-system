@@ -79,9 +79,6 @@ public class RegisterController implements Initializable {
         AssetRepository repository2 = new AssetRepository();
 
         Asset asset = repository2.findById(1);
-        asset.getAttributes().forEach((key, value) -> {
-            System.out.println(key + " = " + value + " (" + value.getClass().getSimpleName() + ")");
-        });
 
         repository2.close();
     }

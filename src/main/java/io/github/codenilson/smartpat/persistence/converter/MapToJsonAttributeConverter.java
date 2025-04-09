@@ -9,7 +9,7 @@ import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
 
 @Converter(autoApply = true)
-public class MyJsonDataConverter implements AttributeConverter<Map<String, Object>, String> {
+public class MapToJsonAttributeConverter implements AttributeConverter<Map<String, Object>, String> {
 
     private final ObjectMapper mapper = new ObjectMapper();
 
