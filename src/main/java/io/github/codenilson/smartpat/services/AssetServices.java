@@ -1,7 +1,7 @@
 package io.github.codenilson.smartpat.services;
 
 import io.github.codenilson.smartpat.entities.Asset;
-import io.github.codenilson.smartpat.repository.AssetRepository;
+import io.github.codenilson.smartpat.repositories.AssetRepository;
 
 public class AssetServices {
     
@@ -15,7 +15,7 @@ public class AssetServices {
         assetRepository.save(asset);
     }
 
-    public Asset findById(Long id) {
+    public Asset findById(Integer id) {
         return assetRepository.findById(id);
     }
 

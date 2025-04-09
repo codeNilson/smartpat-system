@@ -1,4 +1,4 @@
-package io.github.codenilson.smartpat.repository;
+package io.github.codenilson.smartpat.repositories;
 
 import io.github.codenilson.smartpat.entities.Asset;
 import jakarta.persistence.EntityManagerFactory;
@@ -15,10 +15,13 @@ public class AssetRepository {
         em.close();
     }
 
-    public Asset findById(Long id) {
+    public Asset findById(Integer id) {
         var em = emf.createEntityManager();
         var asset = em.find(Asset.class, id);
         em.close();
+        if (asset == null) {
+            System.out.println("Asset not found with ID: " + id);
+        }
         return asset;
     }
 

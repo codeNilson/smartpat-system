@@ -1,6 +1,7 @@
 package io.github.codenilson.smartpat.entities;
 
-import jakarta.persistence.Column;
+import java.util.Map;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -16,35 +17,40 @@ public class Asset {
     private Long id;
 
     // @Column(unique = true)
-    private Long tombamento;
+    private Long inventoryId;
 
     private String category;
 
-    private String unidadeAdministrativa;
+    private String administrativeUnit;
 
-    private String unidadeDeLocalizacao;
+    private String locationUnit;
 
-    private String attributes;
+    private Map<String, Object> extraProperties;
 
-    public Asset(Long tombamento, String category,
-            String unidadeAdministrativa, String unidadeDeLocalizacao,
-            String attributes) {
-        this.tombamento = tombamento;
+    public Asset(Long inventoryId, String category,
+            String administrativeUnit, String locationUnit,
+            Map<String, Object> extraProperties) {
+        this.inventoryId = inventoryId;
         this.category = category;
-        this.unidadeAdministrativa = unidadeAdministrativa;
-        this.unidadeDeLocalizacao = unidadeDeLocalizacao;
-        this.attributes = attributes;
+        this.administrativeUnit = administrativeUnit;
+        this.locationUnit = locationUnit;
+        this.extraProperties = extraProperties;
     }
 
     public Asset() {
     }
 
-    public Long getTombamento() {
-        return tombamento;
+
+    public Long getId() {
+        return id;
     }
 
-    public void setTombamento(Long tombamento) {
-        this.tombamento = tombamento;
+    public Long getInventoryId() {
+        return inventoryId;
+    }
+
+    public void setInventoryId(Long inventoryId) {
+        this.inventoryId = inventoryId;
     }
 
     public String getCategory() {
@@ -55,35 +61,35 @@ public class Asset {
         this.category = category;
     }
 
-    public String getUnidadeAdministrativa() {
-        return unidadeAdministrativa;
+    public String getAdministrativeUnit() {
+        return administrativeUnit;
     }
 
-    public void setUnidadeAdministrativa(String unidadeAdministrativa) {
-        this.unidadeAdministrativa = unidadeAdministrativa;
+    public void setAdministrativeUnit(String administrativeUnit) {
+        this.administrativeUnit = administrativeUnit;
     }
 
-    public String getUnidadeDeLocalizacao() {
-        return unidadeDeLocalizacao;
+    public String getLocationUnit() {
+        return locationUnit;
     }
 
-    public void setUnidadeDeLocalizacao(String unidadeDeLocalizacao) {
-        this.unidadeDeLocalizacao = unidadeDeLocalizacao;
+    public void setLocationUnit(String locationUnit) {
+        this.locationUnit = locationUnit;
     }
 
-    public String getAttributes() {
-        return attributes;
+    public Map<String, Object> getExtraProperties() {
+        return extraProperties;
     }
 
-    public void setAttributes(String attributes) {
-        this.attributes = attributes;
+    public void setExtraProperties(Map<String, Object> extraProperties) {
+        this.extraProperties = extraProperties;
     }
 
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((tombamento == null) ? 0 : tombamento.hashCode());
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
         return result;
     }
 
@@ -96,12 +102,18 @@ public class Asset {
         if (getClass() != obj.getClass())
             return false;
         Asset other = (Asset) obj;
-        if (tombamento == null) {
-            if (other.tombamento != null)
+        if (id == null) {
+            if (other.id != null)
                 return false;
-        } else if (!tombamento.equals(other.tombamento))
+        } else if (!id.equals(other.id))
             return false;
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Asset [id=" + id + ", inventoryId=" + inventoryId + ", category=" + category + ", administrativeUnit="
+                + administrativeUnit + ", locationUnit=" + locationUnit + ", extraProperties=" + extraProperties + "]";
     }
 
 }
