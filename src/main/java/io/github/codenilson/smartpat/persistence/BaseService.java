@@ -8,20 +8,23 @@ public abstract class BaseService<T> {
         this.repository = repository;
     }
 
-    public void save(T entity) {
+    protected void save(T entity) {
+        sanitizeEntity(entity);
         repository.save(entity);
     }
 
-    public T findById(Integer id) {
+    protected T findById(Integer id) {
         return repository.findById(id);
     }
 
-    public void update(T entity) {
+    protected void update(T entity) {
         repository.update(entity);
     }
 
-    public void delete(T entity) {
+    protected void delete(T entity) {
         repository.delete(entity);
     }
+
+    protected abstract void sanitizeEntity(T entity);
 
 }

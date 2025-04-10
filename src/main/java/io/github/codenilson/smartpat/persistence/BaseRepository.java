@@ -13,7 +13,7 @@ public abstract class BaseRepository<T> {
         this.entityClass = entityClass;
     }
 
-    public void save(T entity) {
+    protected void save(T entity) {
         var em = emf.createEntityManager();
         em.getTransaction().begin();
         em.persist(entity);
@@ -21,7 +21,7 @@ public abstract class BaseRepository<T> {
         em.close();
     }
 
-    public T findById(Integer id) {
+    protected T findById(Integer id) {
         var em = emf.createEntityManager();
         var entity = em.find(entityClass, id);
         em.close();
@@ -31,7 +31,7 @@ public abstract class BaseRepository<T> {
         return entity;
     }
 
-    public void update(T entity) {
+    protected void update(T entity) {
         var em = emf.createEntityManager();
         em.getTransaction().begin();
         em.merge(entity);
@@ -39,7 +39,7 @@ public abstract class BaseRepository<T> {
         em.close();
     }
 
-    public void delete(T entity) {
+    protected void delete(T entity) {
         var em = emf.createEntityManager();
         em.getTransaction().begin();
         em.remove(em.contains(entity) ? entity : em.merge(entity));

@@ -73,8 +73,8 @@ public class RegisterController implements Initializable {
         map.put("comprimento", 0.8);
         map.put("cor", "amarelo");
 
-        Category category = new Category("mesa");
-        Asset asset = new Asset(6700004588L, category, map, "COPROJ", "Orçamento");
+        Category category = new Category("MEsa");
+        Asset asset = new Asset(6700004588L, category, map, "COPrOJ", "OrçamEnto");
 
         CategoryServices categoryServices = new CategoryServices();
         categoryServices.save(category);
