@@ -36,7 +36,26 @@
     -fx-font-weight: bold;
     -fx-font-size: 1.4em;
     -fx-background-color: -fx-secondary-color;
-    -fx-background-radius: 0px;
+}
+
+.sidebar-item > .title {
+    -fx-background-color: -fx-secondary-color;
+}
+
+.sidebar-item > .title > .arrow-button {
+    -fx-padding: 0;
+    -fx-shape: "";
+    -fx-background-color: transparent;
+    -fx-opacity: 0;
+    -fx-max-width: 0;
+}
+
+.title-pane>.title>.arrow {
+    -fx-padding: 0;
+    -fx-shape: "";
+    -fx-background-color: transparent;
+    -fx-opacity: 0;
+    -fx-max-width: 0;
 }
 
 .main {

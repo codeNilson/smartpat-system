@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
@@ -53,6 +56,9 @@
       <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="147.0" spacing="20.0" styleClass="sidebar" BorderPane.alignment="CENTER_LEFT">
          <children>
             <Button fx:id="btnHome" graphicTextGap="5.0" mnemonicParsing="false" onAction="#onBtnHomeClicked" styleClass="sidebar-item" text="Home">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
                <graphic>
                   <ImageView fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" smooth="false">
                      <image>
@@ -60,23 +66,32 @@
                      </image>
                   </ImageView>
                </graphic>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
             </Button>
-            <Button fx:id="btnRegister" graphicTextGap="5.0" mnemonicParsing="false" onAction="#onBtnRegisterClicked" styleClass="sidebar-item" text="Register">
+            <TitledPane alignment="CENTER" expanded="false" text="Register">
                <graphic>
-                  <ImageView fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" smooth="false">
                      <image>
                         <Image url="https://img.icons8.com/color/48/save--v1.png" />
                      </image>
                   </ImageView>
                </graphic>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-            <Button fx:id="btnReport" graphicTextGap="5.0" mnemonicParsing="false" onAction="#onBtnReportClicked" styleClass="sidebar-item" text="Reports">
+               <styleClass>
+                  <String fx:value="sidebar-item" />
+                  <String fx:value="sidebar-pane" />
+               </styleClass>
+               <content>
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Button mnemonicParsing="false" text="Asset" />
+                        <Button mnemonicParsing="false" text="Product" />
+                     </children>
+                  </VBox>
+               </content>
+            </TitledPane>
+            <TitledPane alignment="CENTER" expanded="false" text="Reports">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
                <graphic>
                   <ImageView fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -84,10 +99,11 @@
                      </image>
                   </ImageView>
                </graphic>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
+               <styleClass>
+                  <String fx:value="sidebar-item" />
+                  <String fx:value="sidebar-pane" />
+               </styleClass>
+            </TitledPane>
          </children>
          <padding>
             <Insets bottom="20.0" top="20.0" />
