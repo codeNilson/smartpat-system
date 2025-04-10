@@ -2,6 +2,7 @@ package io.github.codenilson.smartpat;
 
 import java.io.IOException;
 
+import io.github.codenilson.smartpat.persistence.BaseRepository;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -34,6 +35,11 @@ public class App extends Application {
     public static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
+    }
+
+    @Override
+    public void stop() {
+        BaseRepository.shutdown();
     }
 
 }

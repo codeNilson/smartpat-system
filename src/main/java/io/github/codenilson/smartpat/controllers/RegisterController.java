@@ -7,8 +7,8 @@ import java.util.ResourceBundle;
 
 import io.github.codenilson.smartpat.entities.Asset;
 import io.github.codenilson.smartpat.entities.Category;
-import io.github.codenilson.smartpat.repositories.AssetRepository;
-import io.github.codenilson.smartpat.repositories.CategoryRepository;
+import io.github.codenilson.smartpat.services.AssetServices;
+import io.github.codenilson.smartpat.services.CategoryServices;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
@@ -73,17 +73,15 @@ public class RegisterController implements Initializable {
         map.put("comprimento", 0.8);
         map.put("cor", "amarelo");
 
-        Category category = new Category("Mesa", map);
+        Category category = new Category("mesa");
+        Asset asset = new Asset(6700004588L, category, map, "COPROJ", "Orçamento");
 
-        Asset asset = new Asset(6700004588L, category, "COPROJ", "Sala 101");
+        CategoryServices categoryServices = new CategoryServices();
+        categoryServices.save(category);
 
-        AssetRepository repository = new AssetRepository();
-        CategoryRepository categoryRepository = new CategoryRepository();
+        AssetServices assetServices = new AssetServices();
+        assetServices.save(asset);
 
-        categoryRepository.save(category);
-        repository.save(asset);
-        repository.close();
-        categoryRepository.close();
     }
 
 }

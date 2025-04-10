@@ -1,7 +1,5 @@
 package io.github.codenilson.smartpat.entities;
 
-import java.util.Map;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,32 +12,31 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String categoryName;
-
-    private Map<String, Object> extraProperties;
+    // @Column(unique = true)
+    private String name;
 
     public Category() {
     }
 
-    public Category(String categoryName, Map<String, Object> extraProperties) {
-        this.categoryName = categoryName;
-        this.extraProperties = extraProperties;
+    public Category(String name) {
+        this.name = name;
     }
 
-    public String getCategoryName() {
-        return categoryName;
+    public Long getId() {
+        return id;
     }
 
-    public void setCategoryName(String categoryName) {
-        this.categoryName = categoryName;
+    public String getName() {
+        return name;
     }
 
-    public Map<String, Object> getExtraProperties() {
-        return extraProperties;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setExtraProperties(Map<String, Object> extraProperties) {
-        this.extraProperties = extraProperties;
+    @Override
+    public String toString() {
+        return "Category [id=" + id + ", name=" + name + "]";
     }
 
 }

@@ -1,5 +1,7 @@
 package io.github.codenilson.smartpat.entities;
 
+import java.util.Map;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -15,11 +17,13 @@ public class Asset {
     private Long id;
 
     // @Column(unique = true)
-    private Long inventoryId;
+    private Long assetCode;
 
     @ManyToOne
     @JoinColumn(name = "category_id", nullable = false)
     private Category category;
+
+    private Map<String, Object> extraProperties;
 
     private String administrativeUnit;
 
@@ -27,26 +31,30 @@ public class Asset {
 
     // private String property;
 
-    public Asset(Long inventoryId, Category category, String administrativeUnit, String locationUnit) {
-        this.inventoryId = inventoryId;
-        this.category = category;
-        this.administrativeUnit = administrativeUnit;
-        this.locationUnit = locationUnit;
-    }
+    
 
     public Asset() {
+    }
+
+    public Asset(Long assetCode, Category category, Map<String, Object> extraProperties, String administrativeUnit,
+            String locationUnit) {
+        this.assetCode = assetCode;
+        this.category = category;
+        this.extraProperties = extraProperties;
+        this.administrativeUnit = administrativeUnit;
+        this.locationUnit = locationUnit;
     }
 
     public Long getId() {
         return id;
     }
 
-    public Long getInventoryId() {
-        return inventoryId;
+    public Long getAssetCode() {
+        return assetCode;
     }
 
-    public void setInventoryId(Long inventoryId) {
-        this.inventoryId = inventoryId;
+    public void setAssetCode(Long assetCode) {
+        this.assetCode = assetCode;
     }
 
     public Category getCategory() {
@@ -55,6 +63,14 @@ public class Asset {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public Map<String, Object> getExtraProperties() {
+        return extraProperties;
+    }
+
+    public void setExtraProperties(Map<String, Object> extraProperties) {
+        this.extraProperties = extraProperties;
     }
 
     public String getAdministrativeUnit() {
@@ -73,35 +89,24 @@ public class Asset {
         this.locationUnit = locationUnit;
     }
 
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((id == null) ? 0 : id.hashCode());
-        return result;
-    }
+    // public String getProperty() {
+    // return property;
+    // }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        Asset other = (Asset) obj;
-        if (id == null) {
-            if (other.id != null)
-                return false;
-        } else if (!id.equals(other.id))
-            return false;
-        return true;
-    }
+    // public void setProperty(String property) {
+
+    // this.property = property;
+    // }
 
     @Override
     public String toString() {
-        return "Asset [id=" + id + ", inventoryId=" + inventoryId + ", category=" + category + ", administrativeUnit="
-                + administrativeUnit + ", locationUnit=" + locationUnit + "]";
+        return "Asset{" +
+                "id=" + id +
+                ", assetCode=" + assetCode +
+                ", category=" + category +
+                ", extraProperties=" + extraProperties +
+                ", administrativeUnit='" + administrativeUnit + '\'' +
+                ", locationUnit='" + locationUnit + '\'' +
+                '}';
     }
-
 }
