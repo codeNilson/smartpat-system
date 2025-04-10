@@ -1,11 +1,11 @@
 package io.github.codenilson.smartpat.entities;
 
-import java.util.Map;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Asset {
@@ -17,27 +17,25 @@ public class Asset {
     // @Column(unique = true)
     private Long inventoryId;
 
-    private String category;
+    @ManyToOne
+    @JoinColumn(name = "category_id", nullable = false)
+    private Category category;
 
     private String administrativeUnit;
 
     private String locationUnit;
 
-    private Map<String, Object> extraProperties;
+    // private String property;
 
-    public Asset(Long inventoryId, String category,
-            String administrativeUnit, String locationUnit,
-            Map<String, Object> extraProperties) {
+    public Asset(Long inventoryId, Category category, String administrativeUnit, String locationUnit) {
         this.inventoryId = inventoryId;
         this.category = category;
         this.administrativeUnit = administrativeUnit;
         this.locationUnit = locationUnit;
-        this.extraProperties = extraProperties;
     }
 
     public Asset() {
     }
-
 
     public Long getId() {
         return id;
@@ -51,11 +49,11 @@ public class Asset {
         this.inventoryId = inventoryId;
     }
 
-    public String getCategory() {
+    public Category getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(Category category) {
         this.category = category;
     }
 
@@ -73,14 +71,6 @@ public class Asset {
 
     public void setLocationUnit(String locationUnit) {
         this.locationUnit = locationUnit;
-    }
-
-    public Map<String, Object> getExtraProperties() {
-        return extraProperties;
-    }
-
-    public void setExtraProperties(Map<String, Object> extraProperties) {
-        this.extraProperties = extraProperties;
     }
 
     @Override
@@ -111,7 +101,7 @@ public class Asset {
     @Override
     public String toString() {
         return "Asset [id=" + id + ", inventoryId=" + inventoryId + ", category=" + category + ", administrativeUnit="
-                + administrativeUnit + ", locationUnit=" + locationUnit + ", extraProperties=" + extraProperties + "]";
+                + administrativeUnit + ", locationUnit=" + locationUnit + "]";
     }
 
 }

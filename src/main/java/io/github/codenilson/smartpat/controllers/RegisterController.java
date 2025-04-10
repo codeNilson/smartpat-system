@@ -6,7 +6,9 @@ import java.util.Map;
 import java.util.ResourceBundle;
 
 import io.github.codenilson.smartpat.entities.Asset;
+import io.github.codenilson.smartpat.entities.Category;
 import io.github.codenilson.smartpat.repositories.AssetRepository;
+import io.github.codenilson.smartpat.repositories.CategoryRepository;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
@@ -64,7 +66,6 @@ public class RegisterController implements Initializable {
     }
 
     public void loadDataBaseData() {
-        AssetRepository repository = new AssetRepository();
 
         Map<String, Object> map = new HashMap<>();
         map.put("propriedade", "proprio");
@@ -72,15 +73,17 @@ public class RegisterController implements Initializable {
         map.put("comprimento", 0.8);
         map.put("cor", "amarelo");
 
-        repository.save(new Asset(6700004588L, "table", "TI", "Sala 101", map));
+        Category category = new Category("Mesa", map);
 
+        Asset asset = new Asset(6700004588L, category, "COPROJ", "Sala 101");
+
+        AssetRepository repository = new AssetRepository();
+        CategoryRepository categoryRepository = new CategoryRepository();
+
+        categoryRepository.save(category);
+        repository.save(asset);
         repository.close();
-
-        AssetRepository repository2 = new AssetRepository();
-
-        Asset asset = repository2.findById(1);
-
-        repository2.close();
+        categoryRepository.close();
     }
 
 }
