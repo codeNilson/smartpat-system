@@ -9,6 +9,5 @@ module io.github.codenilson.smartpat {
     opens io.github.codenilson.smartpat.entities to org.hibernate.orm.core;
 
     exports io.github.codenilson.smartpat;
-    exports io.github.codenilson.smartpat.entities;
     exports io.github.codenilson.smartpat.persistence.converter;
 }
