@@ -2,7 +2,11 @@ package io.github.codenilson.smartpat;
 
 import java.io.IOException;
 
+import com.google.inject.Guice;
+import com.google.inject.Injector;
+
 import io.github.codenilson.smartpat.persistence.BaseRepository;
+import io.github.codenilson.smartpat.persistence.PersistenceModule;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -12,10 +16,17 @@ import javafx.stage.Stage;
 
 public class App extends Application {
 
+    private static Injector injector;
+
     @Override
     public void start(Stage stage) throws IOException {
 
-        Parent root = loadFXML("gui/main");
+        injector = Guice.createInjector(new PersistenceModule());
+
+        FXMLLoader loader = loadFXML("gui/main");
+        // loader.setControllerFactory(injector::getInstance);
+
+        Parent root = loader.load();
         Scene scene = new Scene(root);
         scene.getStylesheets().add(App.class.getResource("styles/style.css").toExternalForm());
         stage.setScene(scene);
@@ -32,9 +43,10 @@ public class App extends Application {
         launch(args);
     }
 
-    public static Parent loadFXML(String fxml) throws IOException {
+    public static FXMLLoader loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
-        return fxmlLoader.load();
+        fxmlLoader.setControllerFactory(injector::getInstance);
+        return fxmlLoader;
     }
 
     @Override

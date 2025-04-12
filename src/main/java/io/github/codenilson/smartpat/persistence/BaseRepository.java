@@ -1,5 +1,7 @@
 package io.github.codenilson.smartpat.persistence;
 
+import java.util.List;
+
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
@@ -13,7 +15,7 @@ public abstract class BaseRepository<T> {
         this.entityClass = entityClass;
     }
 
-    protected void save(T entity) {
+    public void save(T entity) {
         var em = emf.createEntityManager();
         em.getTransaction().begin();
         em.persist(entity);
@@ -21,7 +23,7 @@ public abstract class BaseRepository<T> {
         em.close();
     }
 
-    protected T findById(Integer id) {
+    public T findById(Integer id) {
         var em = emf.createEntityManager();
         var entity = em.find(entityClass, id);
         em.close();
@@ -31,7 +33,7 @@ public abstract class BaseRepository<T> {
         return entity;
     }
 
-    protected void update(T entity) {
+    public void update(T entity) {
         var em = emf.createEntityManager();
         em.getTransaction().begin();
         em.merge(entity);
@@ -39,13 +41,22 @@ public abstract class BaseRepository<T> {
         em.close();
     }
 
-    protected void delete(T entity) {
+    public void delete(T entity) {
         var em = emf.createEntityManager();
         em.getTransaction().begin();
         em.remove(em.contains(entity) ? entity : em.merge(entity));
         em.getTransaction().commit();
         em.close();
     }
+
+    public List<T> findAll() {
+        var em = emf.createEntityManager();
+        var query = em.createQuery("SELECT e FROM " + entityClass.getSimpleName() + " e", entityClass);
+        var resultList = query.getResultList();
+        em.close();
+        return resultList;
+    }
+    
 
     public static void shutdown() {
         if (emf != null && emf.isOpen()) {

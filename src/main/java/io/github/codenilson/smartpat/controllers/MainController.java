@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 import io.github.codenilson.smartpat.App;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
@@ -53,13 +54,13 @@ public class MainController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         changeScene("gui/scenes/categories");
-
     }
 
     private void changeScene(String fxml) {
         try {
-            Parent newScene = App.loadFXML(fxml);
-            primaryRootPane.setCenter(newScene);
+            FXMLLoader loader = App.loadFXML(fxml);
+            Parent root = loader.load();
+            primaryRootPane.setCenter(root);
         } catch (IOException e) {
             e.printStackTrace();
         }
