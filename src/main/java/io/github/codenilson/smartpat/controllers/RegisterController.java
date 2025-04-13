@@ -5,11 +5,9 @@ import java.util.ResourceBundle;
 
 import com.google.inject.Inject;
 
-import io.github.codenilson.smartpat.entities.Asset;
-import io.github.codenilson.smartpat.entities.Category;
-import io.github.codenilson.smartpat.services.AssetService;
-import io.github.codenilson.smartpat.services.CategorySchemaService;
-import io.github.codenilson.smartpat.services.CategoryService;
+import io.github.codenilson.smartpat.infra.persistence.jpa.AssetJpaEntity;
+import io.github.codenilson.smartpat.infra.persistence.jpa.CategoryJpaEntity;
+import io.github.codenilson.smartpat.usecase.category.CreateCategory;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
@@ -18,33 +16,28 @@ import javafx.scene.control.TableView;
 public class RegisterController implements Initializable {
 
     @FXML
-    private TableView<Asset> tableView;
+    private TableView<AssetJpaEntity> tableView;
 
     @FXML
-    private TableColumn<Asset, String> tombamentoColumn;
+    private TableColumn<AssetJpaEntity, String> tombamentoColumn;
 
     @FXML
-    private TableColumn<Asset, String> categoryColumn;
+    private TableColumn<AssetJpaEntity, String> categoryColumn;
 
     @FXML
-    private TableColumn<Asset, String> unidadeAdministrativaColumn;
+    private TableColumn<AssetJpaEntity, String> unidadeAdministrativaColumn;
 
     @FXML
-    private TableColumn<Asset, String> unidadeDeLocalizacaoColumn;
+    private TableColumn<AssetJpaEntity, String> unidadeDeLocalizacaoColumn;
 
     @FXML
-    private TableColumn<Asset, String> propertyColumn;
+    private TableColumn<AssetJpaEntity, String> propertyColumn;
 
-    private final AssetService assetService;
-    private final CategoryService categoryService;
-    private final CategorySchemaService categorySchemaService;
+    private final CreateCategory createCategory;
 
     @Inject
-    public RegisterController(AssetService assetService, CategoryService categoryService,
-            CategorySchemaService categorySchemaService) {
-        this.assetService = assetService;
-        this.categoryService = categoryService;
-        this.categorySchemaService = categorySchemaService;
+    public RegisterController(CreateCategory createCategory) {
+        this.createCategory = createCategory;
     }
 
     @Override
@@ -61,18 +54,10 @@ public class RegisterController implements Initializable {
 
     public void loadDataBaseData() {
 
-        Category category = new Category();
+        CategoryJpaEntity category = new CategoryJpaEntity();
         category.setName("Cadeira");
 
-        categoryService.save(category);
-
-        Asset asset = new Asset();
-        asset.setAssetCode(6700004588L);
-        asset.setAdministrativeUnit("COAFI");
-        asset.setLocationUnit("CEGEA");
-        asset.setCategory(category);
-
-        assetService.save(asset);
+        createCategory.execute(category);
 
     }
 

@@ -53,7 +53,7 @@ public class MainController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        changeScene("/gui/scenes/categories");
+        changeScene("/gui/scenes/register");
 
         setupSidebarPanes();
     }
@@ -97,10 +97,10 @@ public class MainController implements Initializable {
     }
 
     private void collapseOtherPanes(TitledPane expandedPane) {
-    for (TitledPane pane : sideBarPanes) {
-        if (pane != expandedPane) {
-            pane.setExpanded(false);
+        for (TitledPane pane : sideBarPanes) {
+            if (pane != expandedPane) {
+                pane.setExpanded(false);
+            }
         }
     }
-}
 }

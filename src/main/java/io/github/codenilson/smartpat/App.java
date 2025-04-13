@@ -5,8 +5,8 @@ import java.io.IOException;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 
-import io.github.codenilson.smartpat.persistence.BaseRepository;
-import io.github.codenilson.smartpat.persistence.PersistenceModule;
+import io.github.codenilson.smartpat.infra.BaseRepository;
+import io.github.codenilson.smartpat.modules.PersistenceModule;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -30,6 +30,7 @@ public class App extends Application {
         Scene scene = new Scene(root);
         scene.getStylesheets().add(App.class.getResource("/styles/style.css").toExternalForm());
         stage.setScene(scene);
+        stage.setMaximized(true);
 
         Platform.runLater(() -> {
             stage.setMinWidth(stage.getWidth());

@@ -1,31 +1,17 @@
-package io.github.codenilson.smartpat.entities;
+package io.github.codenilson.smartpat.domain.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-
-@Entity
 public class CategorySchema {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @ManyToOne
-    @JoinColumn(name = "category_id", nullable = false)
     private Category category;
-
     private String fieldName;
-
     private String fieldType;
 
     public CategorySchema() {
     }
 
-    public CategorySchema(Category category, String fieldName, String fieldType) {
+    public CategorySchema(Long id, Category category, String fieldName, String fieldType) {
+        this.id = id;
         this.category = category;
         this.fieldName = fieldName;
         this.fieldType = fieldType;
@@ -33,6 +19,10 @@ public class CategorySchema {
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Category getCategory() {
@@ -64,5 +54,4 @@ public class CategorySchema {
         return "CategorySchema [id=" + id + ", category=" + category + ", fieldName=" + fieldName + ", fieldType="
                 + fieldType + "]";
     }
-
 }
