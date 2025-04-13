@@ -2,10 +2,11 @@ package io.github.codenilson.smartpat.usecase.category;
 
 import com.google.inject.Inject;
 
-import io.github.codenilson.smartpat.infra.persistence.jpa.CategoryJpaEntity;
-import io.github.codenilson.smartpat.repositories.CategoryRepository;
+import io.github.codenilson.smartpat.persistence.entities.Category;
+import io.github.codenilson.smartpat.persistence.repositories.CategoryRepository;
 
 public class DeleteCategory {
+    // implementation
     private final CategoryRepository categoryRepository;
 
     @Inject
@@ -13,7 +14,7 @@ public class DeleteCategory {
         this.categoryRepository = categoryRepository;
     }
 
-    public void execute(CategoryJpaEntity category) {
+    public void execute(Category category) {
         categoryRepository.delete(category);
     }
 

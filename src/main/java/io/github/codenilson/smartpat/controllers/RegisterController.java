@@ -5,8 +5,8 @@ import java.util.ResourceBundle;
 
 import com.google.inject.Inject;
 
-import io.github.codenilson.smartpat.infra.persistence.jpa.AssetJpaEntity;
-import io.github.codenilson.smartpat.infra.persistence.jpa.CategoryJpaEntity;
+import io.github.codenilson.smartpat.persistence.entities.Asset;
+import io.github.codenilson.smartpat.persistence.entities.Category;
 import io.github.codenilson.smartpat.usecase.category.CreateCategory;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -16,22 +16,22 @@ import javafx.scene.control.TableView;
 public class RegisterController implements Initializable {
 
     @FXML
-    private TableView<AssetJpaEntity> tableView;
+    private TableView<Asset> tableView;
 
     @FXML
-    private TableColumn<AssetJpaEntity, String> tombamentoColumn;
+    private TableColumn<Asset, String> tombamentoColumn;
 
     @FXML
-    private TableColumn<AssetJpaEntity, String> categoryColumn;
+    private TableColumn<Asset, String> categoryColumn;
 
     @FXML
-    private TableColumn<AssetJpaEntity, String> unidadeAdministrativaColumn;
+    private TableColumn<Asset, String> unidadeAdministrativaColumn;
 
     @FXML
-    private TableColumn<AssetJpaEntity, String> unidadeDeLocalizacaoColumn;
+    private TableColumn<Asset, String> unidadeDeLocalizacaoColumn;
 
     @FXML
-    private TableColumn<AssetJpaEntity, String> propertyColumn;
+    private TableColumn<Asset, String> propertyColumn;
 
     private final CreateCategory createCategory;
 
@@ -54,7 +54,7 @@ public class RegisterController implements Initializable {
 
     public void loadDataBaseData() {
 
-        CategoryJpaEntity category = new CategoryJpaEntity();
+        Category category = new Category();
         category.setName("Cadeira");
 
         createCategory.execute(category);

@@ -3,7 +3,7 @@ package io.github.codenilson.smartpat.modules;
 import com.google.inject.AbstractModule;
 import com.google.inject.Scopes;
 
-import io.github.codenilson.smartpat.repositories.CategorySchemaRepository;
+import io.github.codenilson.smartpat.persistence.repositories.CategorySchemaRepository;
 import io.github.codenilson.smartpat.usecase.categoryschema.CreateCategorySchema;
 import io.github.codenilson.smartpat.usecase.categoryschema.DeleteCategorySchema;
 import io.github.codenilson.smartpat.usecase.categoryschema.GetAllCategorySchemas;

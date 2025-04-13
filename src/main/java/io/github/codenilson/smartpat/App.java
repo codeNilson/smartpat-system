@@ -5,8 +5,8 @@ import java.io.IOException;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 
-import io.github.codenilson.smartpat.infra.BaseRepository;
 import io.github.codenilson.smartpat.modules.PersistenceModule;
+import io.github.codenilson.smartpat.persistence.base.BaseRepository;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -24,7 +24,6 @@ public class App extends Application {
         injector = Guice.createInjector(new PersistenceModule());
 
         FXMLLoader loader = loadFXML("/gui/main");
-        // loader.setControllerFactory(injector::getInstance);
 
         Parent root = loader.load();
         Scene scene = new Scene(root);

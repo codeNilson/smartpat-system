@@ -4,10 +4,11 @@ import java.util.List;
 
 import com.google.inject.Inject;
 
-import io.github.codenilson.smartpat.infra.persistence.jpa.AssetJpaEntity;
-import io.github.codenilson.smartpat.repositories.AssetRepository;
+import io.github.codenilson.smartpat.persistence.entities.Asset;
+import io.github.codenilson.smartpat.persistence.repositories.AssetRepository;
 
 public class GetAllAssets {
+    // implementation
     private final AssetRepository assetRepository;
 
     @Inject
@@ -15,7 +16,7 @@ public class GetAllAssets {
         this.assetRepository = assetRepository;
     }
 
-    public List<AssetJpaEntity> execute() {
+    public List<Asset> execute() {
         return assetRepository.findAll();
     }
 }

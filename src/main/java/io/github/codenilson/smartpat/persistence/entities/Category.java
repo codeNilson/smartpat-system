@@ -1,6 +1,6 @@
-package io.github.codenilson.smartpat.infra.persistence.jpa;
+package io.github.codenilson.smartpat.persistence.entities;
 
-import io.github.codenilson.smartpat.domain.entities.Category;
+import io.github.codenilson.smartpat.persistence.entities.Category;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -9,7 +9,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "categories")
-public class CategoryJpaEntity {
+public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,10 +18,10 @@ public class CategoryJpaEntity {
     // @Column(unique = true)
     private String name;
 
-    public CategoryJpaEntity() {
+    public Category() {
     }
 
-    public CategoryJpaEntity(String name) {
+    public Category(String name) {
         this.name = name;
     }
 
@@ -35,10 +35,6 @@ public class CategoryJpaEntity {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public static CategoryJpaEntity fromDomain(Category category) {
-        return new CategoryJpaEntity(category.getName());
     }
 
     @Override
