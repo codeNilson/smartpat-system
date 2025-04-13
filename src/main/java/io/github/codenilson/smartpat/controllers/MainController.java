@@ -54,6 +54,8 @@ public class MainController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         changeScene("/gui/scenes/categories");
+
+        setupSidebarPanes();
     }
 
     private void changeScene(String fxml) {
