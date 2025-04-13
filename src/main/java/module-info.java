@@ -12,7 +12,7 @@ module io.github.codenilson.smartpat {
     opens io.github.codenilson.smartpat.usecase.asset to com.google.guice;
     opens io.github.codenilson.smartpat.usecase.categoryschema to com.google.guice;
 
-    opens io.github.codenilson.smartpat.domain.entities to org.hibernate.orm.core;
+    opens io.github.codenilson.smartpat.infra.persistence.jpa to org.hibernate.orm.core;
 
     exports io.github.codenilson.smartpat;
     exports io.github.codenilson.smartpat.infra.persistence.converters;

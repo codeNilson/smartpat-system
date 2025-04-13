@@ -2,7 +2,7 @@ package io.github.codenilson.smartpat.usecase.asset;
 
 import com.google.inject.Inject;
 
-import io.github.codenilson.smartpat.domain.entities.Asset;
+import io.github.codenilson.smartpat.infra.persistence.jpa.AssetJpaEntity;
 import io.github.codenilson.smartpat.repositories.AssetRepository;
 
 public class UpdateAsset {
@@ -13,7 +13,7 @@ public class UpdateAsset {
         this.assetRepository = assetRepository;
     }
 
-    public void execute(Asset asset) {
+    public void execute(AssetJpaEntity asset) {
         assetRepository.update(asset);
     }
 }

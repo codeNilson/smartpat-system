@@ -2,13 +2,13 @@ package io.github.codenilson.smartpat.domain.repository;
 
 import java.util.List;
 
-import io.github.codenilson.smartpat.domain.entities.Asset;
+import io.github.codenilson.smartpat.infra.persistence.jpa.AssetJpaEntity;
 
 public interface AssetRepository {
 
-    public void save(Asset asset);
-    public Asset findById(int id);
-    public List<Asset> findAll();
-    public void update(Asset asset);
-    public void delete(Asset asset);
+    public void save(AssetJpaEntity asset);
+    public AssetJpaEntity findById(int id);
+    public List<AssetJpaEntity> findAll();
+    public void update(AssetJpaEntity asset);
+    public void delete(AssetJpaEntity asset);
 }

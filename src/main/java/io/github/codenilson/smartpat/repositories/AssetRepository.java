@@ -1,12 +1,12 @@
 package io.github.codenilson.smartpat.repositories;
 
-import io.github.codenilson.smartpat.domain.entities.Asset;
 import io.github.codenilson.smartpat.infra.BaseRepository;
+import io.github.codenilson.smartpat.infra.persistence.jpa.AssetJpaEntity;
 
-public class AssetRepository extends BaseRepository<Asset> {
+public class AssetRepository extends BaseRepository<AssetJpaEntity> {
 
     public AssetRepository() {
-        super(Asset.class);
+        super(AssetJpaEntity.class);
     }
 
 }

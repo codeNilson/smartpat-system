@@ -1,11 +1,11 @@
 package io.github.codenilson.smartpat.repositories;
 
-import io.github.codenilson.smartpat.domain.entities.Category;
 import io.github.codenilson.smartpat.infra.BaseRepository;
+import io.github.codenilson.smartpat.infra.persistence.jpa.CategoryJpaEntity;
 
-public class CategoryRepository extends BaseRepository<Category> {
+public class CategoryRepository extends BaseRepository<CategoryJpaEntity> {
 
     public CategoryRepository() {
-        super(Category.class);
+        super(CategoryJpaEntity.class);
     }
 }

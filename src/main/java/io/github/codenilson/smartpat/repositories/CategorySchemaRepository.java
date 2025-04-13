@@ -1,12 +1,12 @@
 package io.github.codenilson.smartpat.repositories;
 
-import io.github.codenilson.smartpat.domain.entities.CategorySchema;
 import io.github.codenilson.smartpat.infra.BaseRepository;
+import io.github.codenilson.smartpat.infra.persistence.jpa.CategorySchemaJpaEntity;
 
-public class CategorySchemaRepository extends BaseRepository<CategorySchema> {
+public class CategorySchemaRepository extends BaseRepository<CategorySchemaJpaEntity> {
 
     public CategorySchemaRepository() {
-        super(CategorySchema.class);
+        super(CategorySchemaJpaEntity.class);
     }
 
 }

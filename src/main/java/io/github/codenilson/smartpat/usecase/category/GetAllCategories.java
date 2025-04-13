@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.google.inject.Inject;
 
-import io.github.codenilson.smartpat.domain.entities.Category;
+import io.github.codenilson.smartpat.infra.persistence.jpa.CategoryJpaEntity;
 import io.github.codenilson.smartpat.repositories.CategoryRepository;
 
 public class GetAllCategories {
@@ -15,7 +15,7 @@ public class GetAllCategories {
         this.categoryRepository = categoryRepository;
     }
 
-    public List<Category> execute() {
+    public List<CategoryJpaEntity> execute() {
         return categoryRepository.findAll();
     }
 }

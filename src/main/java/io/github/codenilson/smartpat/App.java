@@ -30,6 +30,7 @@ public class App extends Application {
         Scene scene = new Scene(root);
         scene.getStylesheets().add(App.class.getResource("/styles/style.css").toExternalForm());
         stage.setScene(scene);
+        stage.setMaximized(true);
 
         Platform.runLater(() -> {
             stage.setMinWidth(stage.getWidth());

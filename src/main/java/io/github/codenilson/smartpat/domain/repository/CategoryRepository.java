@@ -2,16 +2,16 @@ package io.github.codenilson.smartpat.domain.repository;
 
 import java.util.List;
 
-import io.github.codenilson.smartpat.domain.entities.Category;
+import io.github.codenilson.smartpat.infra.persistence.jpa.CategoryJpaEntity;
 
 public interface CategoryRepository {
-    public void save(Category category);
+    public void save(CategoryJpaEntity category);
 
-    public void update(Category category);
+    public void update(CategoryJpaEntity category);
 
-    public Category findById(Integer id);
+    public CategoryJpaEntity findById(Integer id);
 
-    public List<Category> findAll();
+    public List<CategoryJpaEntity> findAll();
 
-    public void delete(Category entity);
+    public void delete(CategoryJpaEntity entity);
 }

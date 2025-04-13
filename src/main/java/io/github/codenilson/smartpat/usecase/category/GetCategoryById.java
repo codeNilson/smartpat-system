@@ -2,7 +2,7 @@ package io.github.codenilson.smartpat.usecase.category;
 
 import com.google.inject.Inject;
 
-import io.github.codenilson.smartpat.domain.entities.Category;
+import io.github.codenilson.smartpat.infra.persistence.jpa.CategoryJpaEntity;
 import io.github.codenilson.smartpat.repositories.CategoryRepository;
 
 public class GetCategoryById {
@@ -13,7 +13,7 @@ public class GetCategoryById {
         this.categoryRepository = categoryRepository;
     }
 
-    public Category execute(Integer id) {
+    public CategoryJpaEntity execute(Integer id) {
         return categoryRepository.findById(id);
     }
 }
