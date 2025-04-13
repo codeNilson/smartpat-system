@@ -37,23 +37,23 @@ public class MainController implements Initializable {
 
     @FXML
     public void onBtnHomeClicked() {
-        changeScene("gui/scenes/categories");
+        changeScene("/gui/scenes/categories");
     }
 
     @FXML
     public void onBtnRegisterClicked() {
-        changeScene("gui/scenes/register");
+        changeScene("/gui/scenes/register");
     }
 
     @FXML
     public void onBtnReportClicked() {
-        changeScene("gui/scenes/reports");
+        changeScene("/gui/scenes/reports");
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        changeScene("gui/scenes/categories");
+        changeScene("/gui/scenes/categories");
     }
 
     private void changeScene(String fxml) {
