@@ -2,10 +2,11 @@ package io.github.codenilson.smartpat.usecase.categoryschema;
 
 import com.google.inject.Inject;
 
-import io.github.codenilson.smartpat.infra.persistence.jpa.CategorySchemaJpaEntity;
-import io.github.codenilson.smartpat.repositories.CategorySchemaRepository;
+import io.github.codenilson.smartpat.persistence.entities.CategorySchema;
+import io.github.codenilson.smartpat.persistence.repositories.CategorySchemaRepository;
 
 public class GetCategorySchemaById {
+    // implementation
     private final CategorySchemaRepository categorySchemaRepository;
 
     @Inject
@@ -13,7 +14,7 @@ public class GetCategorySchemaById {
         this.categorySchemaRepository = categorySchemaRepository;
     }
 
-    public CategorySchemaJpaEntity execute(Integer id) {
+    public CategorySchema execute(Integer id) {
         return categorySchemaRepository.findById(id);
     }
 }

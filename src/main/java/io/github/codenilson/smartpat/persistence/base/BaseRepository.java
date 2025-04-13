@@ -1,4 +1,4 @@
-package io.github.codenilson.smartpat.infra;
+package io.github.codenilson.smartpat.persistence.base;
 
 import java.util.List;
 

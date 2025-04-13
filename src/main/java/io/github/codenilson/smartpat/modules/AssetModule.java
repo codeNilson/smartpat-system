@@ -3,7 +3,7 @@ package io.github.codenilson.smartpat.modules;
 import com.google.inject.AbstractModule;
 import com.google.inject.Scopes;
 
-import io.github.codenilson.smartpat.repositories.AssetRepository;
+import io.github.codenilson.smartpat.persistence.repositories.AssetRepository;
 import io.github.codenilson.smartpat.usecase.asset.CreateAsset;
 import io.github.codenilson.smartpat.usecase.asset.DeleteAsset;
 import io.github.codenilson.smartpat.usecase.asset.GetAllAssets;

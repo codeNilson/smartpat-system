@@ -4,10 +4,11 @@ import java.util.List;
 
 import com.google.inject.Inject;
 
-import io.github.codenilson.smartpat.infra.persistence.jpa.CategorySchemaJpaEntity;
-import io.github.codenilson.smartpat.repositories.CategorySchemaRepository;
+import io.github.codenilson.smartpat.persistence.entities.CategorySchema;
+import io.github.codenilson.smartpat.persistence.repositories.CategorySchemaRepository;
 
 public class GetAllCategorySchemas {
+    // implementation
     private final CategorySchemaRepository categorySchemaRepository;
 
     @Inject
@@ -15,7 +16,7 @@ public class GetAllCategorySchemas {
         this.categorySchemaRepository = categorySchemaRepository;
     }
 
-    public List<CategorySchemaJpaEntity> execute() {
+    public List<CategorySchema> execute() {
         return categorySchemaRepository.findAll();
     }
 }

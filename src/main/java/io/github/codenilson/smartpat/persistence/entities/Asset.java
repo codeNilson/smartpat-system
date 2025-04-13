@@ -1,8 +1,8 @@
-package io.github.codenilson.smartpat.infra.persistence.jpa;
+package io.github.codenilson.smartpat.persistence.entities;
 
 import java.util.Map;
 
-import io.github.codenilson.smartpat.domain.entities.Asset;
+import io.github.codenilson.smartpat.persistence.entities.Asset;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -13,7 +13,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "assets")
-public class AssetJpaEntity {
+public class Asset {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,7 +24,7 @@ public class AssetJpaEntity {
 
     @ManyToOne
     @JoinColumn(name = "category_id", nullable = false)
-    private CategoryJpaEntity category;
+    private Category category;
 
     private Map<String, Object> extraProperties;
 
@@ -34,10 +34,10 @@ public class AssetJpaEntity {
 
     // private String property;
 
-    public AssetJpaEntity() {
+    public Asset() {
     }
 
-    public AssetJpaEntity(Long assetCode, CategoryJpaEntity category, Map<String, Object> extraProperties,
+    public Asset(Long assetCode, Category category, Map<String, Object> extraProperties,
             String administrativeUnit,
             String locationUnit) {
         this.assetCode = assetCode;
@@ -59,11 +59,11 @@ public class AssetJpaEntity {
         this.assetCode = assetCode;
     }
 
-    public CategoryJpaEntity getCategory() {
+    public Category getCategory() {
         return category;
     }
 
-    public void setCategory(CategoryJpaEntity category) {
+    public void setCategory(Category category) {
         this.category = category;
     }
 
@@ -99,16 +99,6 @@ public class AssetJpaEntity {
 
     // this.property = property;
     // }
-
-    public static AssetJpaEntity fromDomain(Asset asset) {
-        return new AssetJpaEntity(
-            asset.getAssetCode(),
-            CategoryJpaEntity.fromDomain(asset.getCategory()), // idem aqui
-            asset.getExtraProperties(),
-            asset.getAdministrativeUnit(),
-            asset.getLocationUnit()
-        );
-    }
 
     @Override
     public String toString() {

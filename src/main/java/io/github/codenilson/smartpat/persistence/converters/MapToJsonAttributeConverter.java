@@ -1,4 +1,4 @@
-package io.github.codenilson.smartpat.infra.persistence.converters;
+package io.github.codenilson.smartpat.persistence.converters;
 
 import java.util.Map;
 
