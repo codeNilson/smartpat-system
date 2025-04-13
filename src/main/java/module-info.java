@@ -9,6 +9,7 @@ module io.github.codenilson.smartpat {
     opens io.github.codenilson.smartpat.controllers to javafx.fxml, com.google.guice;
     opens io.github.codenilson.smartpat.entities to org.hibernate.orm.core;
     opens io.github.codenilson.smartpat.services to com.google.guice;
+    opens io.github.codenilson.smartpat.repositories to com.google.guice;
 
     exports io.github.codenilson.smartpat;
     exports io.github.codenilson.smartpat.persistence.converters;

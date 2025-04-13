@@ -2,6 +2,8 @@ package io.github.codenilson.smartpat.services;
 
 import java.util.List;
 
+import com.google.inject.Inject;
+
 import io.github.codenilson.smartpat.entities.Asset;
 import io.github.codenilson.smartpat.persistence.Service;
 import io.github.codenilson.smartpat.repositories.AssetRepository;
@@ -11,8 +13,9 @@ public class AssetService implements Service<Asset> {
 
     private final AssetRepository assetRepository;
 
-    public AssetService() {
-        this.assetRepository = new AssetRepository();
+    @Inject
+    public AssetService(AssetRepository assetRepository) {
+        this.assetRepository = assetRepository;
     }
 
     @Override

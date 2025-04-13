@@ -2,6 +2,8 @@ package io.github.codenilson.smartpat.services;
 
 import java.util.List;
 
+import com.google.inject.Inject;
+
 import io.github.codenilson.smartpat.entities.CategorySchema;
 import io.github.codenilson.smartpat.persistence.Service;
 import io.github.codenilson.smartpat.repositories.CategorySchemaRepository;
@@ -11,8 +13,9 @@ public class CategorySchemaService implements Service<CategorySchema> {
 
     private final CategorySchemaRepository categorySchemaRepository;
 
-    public CategorySchemaService() {
-        this.categorySchemaRepository = new CategorySchemaRepository();
+    @Inject
+    public CategorySchemaService(CategorySchemaRepository categorySchemaRepository) {
+        this.categorySchemaRepository = categorySchemaRepository;
     }
 
     @Override
