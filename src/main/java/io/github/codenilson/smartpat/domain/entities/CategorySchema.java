@@ -1,4 +1,4 @@
-package io.github.codenilson.smartpat.entities;
+package io.github.codenilson.smartpat.domain.entities;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

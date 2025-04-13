@@ -1,7 +1,7 @@
 package io.github.codenilson.smartpat.repositories;
 
-import io.github.codenilson.smartpat.entities.Asset;
-import io.github.codenilson.smartpat.persistence.BaseRepository;
+import io.github.codenilson.smartpat.domain.entities.Asset;
+import io.github.codenilson.smartpat.infra.BaseRepository;
 
 public class AssetRepository extends BaseRepository<Asset> {
 
