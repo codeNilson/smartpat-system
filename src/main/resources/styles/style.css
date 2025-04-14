@@ -27,7 +27,8 @@
     -fx-font-weight: bold;
 }
 
-.sidebar {
+.sidebar,
+.sidebar-item>.title {
     -fx-background-color: -fx-secondary-color;
 }
 
@@ -36,26 +37,40 @@
     -fx-font-weight: bold;
     -fx-font-size: 1.4em;
     -fx-background-color: -fx-secondary-color;
+    -fx-background-radius: 0;
+    -fx-max-width: Infinity;
 }
 
-.sidebar-item > .title {
-    -fx-background-color: -fx-secondary-color;
+.sidebar-item:hover,
+.sidebar-item>.title:hover,
+.submenu-container {
+    -fx-background-color: #18715e;
 }
 
-.sidebar-item > .title > .arrow-button {
-    -fx-padding: 0;
-    -fx-shape: "";
-    -fx-background-color: transparent;
+.sidebar-pane>.title>.arrow-button {
     -fx-opacity: 0;
     -fx-max-width: 0;
 }
 
-.title-pane>.title>.arrow {
-    -fx-padding: 0;
-    -fx-shape: "";
-    -fx-background-color: transparent;
-    -fx-opacity: 0;
-    -fx-max-width: 0;
+.sidebar-pane>.content {
+    -fx-border-width: 0;
+}
+
+.submenu-container {
+    -fx-padding: 0px;
+}
+
+.submenu-container > * {
+    -fx-background-color: inherit;
+    -fx-text-fill: #ffffff;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+    -fx-background-radius: 0;
+    -fx-pref-width: Infinity;
+}
+
+.submenu-container > *:hover {
+    -fx-background-color: -fx-detail-color;
 }
 
 .main {
