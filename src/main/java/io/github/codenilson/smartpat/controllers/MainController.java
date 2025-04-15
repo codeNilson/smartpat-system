@@ -29,6 +29,7 @@ public class MainController implements Initializable {
     private Button btnHome;
 
     private List<TitledPane> sideBarPanes = new ArrayList<>();
+    
 
     @FXML
     public void onBtnQuitClicked() {

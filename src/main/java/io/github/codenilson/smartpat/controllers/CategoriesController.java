@@ -5,12 +5,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import javafx.animation.ParallelTransition;
 import javafx.animation.ScaleTransition;
+import javafx.animation.SequentialTransition;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.TilePane;
 import javafx.stage.Stage;
@@ -27,6 +30,7 @@ public class CategoriesController implements Initializable {
     private Stage stage;
 
     private List<ImageView> categoriesImages = new ArrayList<>();
+    private List<Button> categoryButtons = new ArrayList<>();
 
     private static final double MIN_TILE_WIDTH = 200;
     private static final double MIN_IMAGE_WIDTH = 150;
@@ -44,9 +48,14 @@ public class CategoriesController implements Initializable {
             adjustImageSize(stage);
 
             loadCategoryImageViews();
-            applyScaleToCategories();
+            applyCategoriesAnimations();
             setupStageMaximizedListener(stage);
         });
+    }
+
+    private void applyCategoriesAnimations() {
+        applyScaleAnimationToCategories();
+        applyAnimation();
     }
 
     private void loadCategoryImageViews() {
@@ -57,10 +66,50 @@ public class CategoriesController implements Initializable {
         }
     }
 
-    private void applyScaleToCategories() {
+    private void applyScaleAnimationToCategories() {
         for (Node node : root.lookupAll(".category")) {
+            if (node instanceof Button) {
+                categoryButtons.add((Button) node);
+            }
             applyScaleAnimation(node);
         }
+    }
+
+    private void applyAnimation() {
+        ParallelTransition pt = new ParallelTransition();
+        Duration delay = Duration.ZERO;
+        Duration delayTransitions = Duration.millis(150);
+
+        for (Button button : categoryButtons) {
+            SequentialTransition st = new SequentialTransition();
+
+            // FadeTransition fade = new FadeTransition(Duration.millis(200));
+            // fade.setFromValue(0);
+            // fade.setToValue(1);
+
+            ScaleTransition scaleUp = new ScaleTransition(Duration.millis(400));
+            scaleUp.setFromX(0.8);
+            scaleUp.setFromY(0.8);
+            scaleUp.setToX(1.05);
+            scaleUp.setToY(1.05);
+
+            ScaleTransition scaleDown = new ScaleTransition(Duration.millis(400));
+            scaleDown.setFromX(1.05);
+            scaleDown.setFromY(1.05);
+
+            scaleDown.setToX(1);
+            scaleDown.setToY(1);
+
+            // fade.setNode(button);
+            scaleUp.setNode(button);
+            scaleDown.setNode(button);
+
+            st.getChildren().addAll(scaleUp, scaleDown);
+            st.setDelay(delay);
+            delay = delay.add(delayTransitions);
+            pt.getChildren().add(st);
+        }
+        pt.play();
     }
 
     private void setupStageMaximizedListener(Stage stage) {
