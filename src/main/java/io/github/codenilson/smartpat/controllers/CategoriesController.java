@@ -77,36 +77,27 @@ public class CategoriesController implements Initializable {
 
     private void applyAnimation() {
         ParallelTransition pt = new ParallelTransition();
-        Duration delay = Duration.ZERO;
-        Duration delayTransitions = Duration.millis(150);
 
         for (Button button : categoryButtons) {
             SequentialTransition st = new SequentialTransition();
 
-            // FadeTransition fade = new FadeTransition(Duration.millis(200));
-            // fade.setFromValue(0);
-            // fade.setToValue(1);
-
-            ScaleTransition scaleUp = new ScaleTransition(Duration.millis(400));
+            ScaleTransition scaleUp = new ScaleTransition(Duration.millis(200));
             scaleUp.setFromX(0.8);
             scaleUp.setFromY(0.8);
             scaleUp.setToX(1.05);
             scaleUp.setToY(1.05);
 
-            ScaleTransition scaleDown = new ScaleTransition(Duration.millis(400));
+            ScaleTransition scaleDown = new ScaleTransition(Duration.millis(200));
             scaleDown.setFromX(1.05);
             scaleDown.setFromY(1.05);
 
             scaleDown.setToX(1);
             scaleDown.setToY(1);
 
-            // fade.setNode(button);
             scaleUp.setNode(button);
             scaleDown.setNode(button);
 
             st.getChildren().addAll(scaleUp, scaleDown);
-            st.setDelay(delay);
-            delay = delay.add(delayTransitions);
             pt.getChildren().add(st);
         }
         pt.play();
