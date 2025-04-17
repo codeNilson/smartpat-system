@@ -28,18 +28,27 @@ public class MainController implements Initializable {
     @FXML
     private Button btnHome;
 
+    @FXML
+    private Button btnSearch;
+
     private List<TitledPane> sideBarPanes = new ArrayList<>();
     
+
+    @FXML
+    public void onBtnHomeClicked() {
+        changeScene("/gui/scenes/categories");
+    }
+
+    @FXML
+    public void onBtnSearchClicked() {
+        changeScene("/gui/scenes/categories");
+    }
 
     @FXML
     public void onBtnQuitClicked() {
         Platform.exit();
     }
 
-    @FXML
-    public void onBtnHomeClicked() {
-        changeScene("/gui/scenes/categories");
-    }
 
     @FXML
     public void onBtnRegisterClicked() {

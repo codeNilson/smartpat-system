@@ -66,6 +66,34 @@
                   </ImageView>
                </graphic>
             </Button>
+            <Button fx:id="btnSearch" graphicTextGap="5.0" mnemonicParsing="false" onAction="#onBtnSearchClicked" styleClass="sidebar-item" text="Search">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <graphic>
+                  <ImageView fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" smooth="false">
+                     <image>
+                        <Image url="https://img.icons8.com/color/48/search--v1.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <TitledPane alignment="CENTER" expanded="false" text="Reports">
+               <graphic>
+                  <ImageView fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="https://img.icons8.com/color/48/pdf.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <content>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="147.0" styleClass="submenu-container" />
+               </content>
+               <styleClass>
+                  <String fx:value="sidebar-item" />
+                  <String fx:value="sidebar-pane" />
+               </styleClass>
+            </TitledPane>
             <TitledPane alignment="CENTER" expanded="false" graphicTextGap="10.0" text="Register" textAlignment="CENTER">
                <graphic>
                   <ImageView fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" smooth="false">
@@ -81,22 +109,6 @@
                         <Button mnemonicParsing="false" styleClass="submenu-item" text="Category" VBox.vgrow="ALWAYS" />
                      </children>
                   </VBox>
-               </content>
-               <styleClass>
-                  <String fx:value="sidebar-item" />
-                  <String fx:value="sidebar-pane" />
-               </styleClass>
-            </TitledPane>
-            <TitledPane alignment="CENTER" expanded="false" text="Reports">
-               <graphic>
-                  <ImageView fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="https://img.icons8.com/color/48/pdf.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <content>
-                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="147.0" styleClass="submenu-container" />
                </content>
                <styleClass>
                   <String fx:value="sidebar-item" />
