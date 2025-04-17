@@ -2,6 +2,7 @@ package io.github.codenilson.smartpat.persistence.entities;
 
 import java.time.Instant;
 import java.util.Map;
+import java.util.UUID;
 
 import io.github.codenilson.smartpat.persistence.valueobjects.Ownership;
 import jakarta.persistence.Column;
@@ -23,7 +24,9 @@ public class Asset {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // @Column(unique = true)
+    private UUID uuid = UUID.randomUUID();
+
+    @Column(unique = true)
     private Long assetCode;
 
     @ManyToOne
@@ -114,15 +117,22 @@ public class Asset {
         this.ownership = ownership;
     }
 
+    public UUID getUuid() {
+        return uuid;
+    }
+
     @Override
     public String toString() {
         return "Asset{" +
                 "id=" + id +
+                ", uuid=" + uuid +
                 ", assetCode=" + assetCode +
                 ", category=" + category +
                 ", extraProperties=" + extraProperties +
                 ", administrativeUnit='" + administrativeUnit + '\'' +
                 ", locationUnit='" + locationUnit + '\'' +
+                ", createdAt=" + createdAt +
+                ", ownership=" + ownership +
                 '}';
     }
 }
