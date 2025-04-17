@@ -33,18 +33,23 @@ public class Asset {
     @JoinColumn(name = "category_id", nullable = false)
     private Category category;
 
+    @Column(name = "extra_properties")
     private Map<String, Object> extraProperties;
 
+    @Column(name = "administrative_unit")
     private String administrativeUnit;
 
     private String locationUnit;
 
     @Column(nullable = false)
-    private final Instant createdAt = Instant.now();
-
-    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private Ownership ownership;
+
+    @Column(name = "image_path")
+    private String imagePath;
+
+    @Column(nullable = false, name = "created_at")
+    private final Instant createdAt = Instant.now();
 
     public Asset() {
     }
@@ -52,13 +57,15 @@ public class Asset {
     public Asset(Long assetCode, Category category, Map<String, Object> extraProperties,
             String administrativeUnit,
             String locationUnit,
-            Ownership ownership) {
+            Ownership ownership,
+            String imagePath) {
         this.assetCode = assetCode;
         this.category = category;
         this.extraProperties = extraProperties;
         this.administrativeUnit = administrativeUnit;
         this.locationUnit = locationUnit;
         this.ownership = ownership;
+        this.imagePath = imagePath;
     }
 
     public Long getId() {
@@ -115,6 +122,14 @@ public class Asset {
 
     public void setOwnership(Ownership ownership) {
         this.ownership = ownership;
+    }
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
 
     public UUID getUuid() {
