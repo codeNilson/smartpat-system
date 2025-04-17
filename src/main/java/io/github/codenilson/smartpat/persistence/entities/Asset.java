@@ -1,9 +1,13 @@
 package io.github.codenilson.smartpat.persistence.entities;
 
+import java.time.Instant;
 import java.util.Map;
 
-import io.github.codenilson.smartpat.persistence.entities.Asset;
+import io.github.codenilson.smartpat.persistence.valueobjects.Ownership;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -32,19 +36,26 @@ public class Asset {
 
     private String locationUnit;
 
-    // private String property;
+    @Column(nullable = false)
+    private final Instant createdAt = Instant.now();
+
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Ownership ownership;
 
     public Asset() {
     }
 
     public Asset(Long assetCode, Category category, Map<String, Object> extraProperties,
             String administrativeUnit,
-            String locationUnit) {
+            String locationUnit,
+            Ownership ownership) {
         this.assetCode = assetCode;
         this.category = category;
         this.extraProperties = extraProperties;
         this.administrativeUnit = administrativeUnit;
         this.locationUnit = locationUnit;
+        this.ownership = ownership;
     }
 
     public Long getId() {
@@ -91,14 +102,17 @@ public class Asset {
         this.locationUnit = locationUnit;
     }
 
-    // public String getProperty() {
-    // return property;
-    // }
+    public Instant getCreatedAt() {
+        return createdAt;
+    }
 
-    // public void setProperty(String property) {
+    public Ownership getOwnership() {
+        return ownership;
+    }
 
-    // this.property = property;
-    // }
+    public void setOwnership(Ownership ownership) {
+        this.ownership = ownership;
+    }
 
     @Override
     public String toString() {
