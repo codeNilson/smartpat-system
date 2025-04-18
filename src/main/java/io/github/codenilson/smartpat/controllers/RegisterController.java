@@ -16,7 +16,8 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.layout.Region;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 
@@ -107,6 +108,14 @@ public class RegisterController implements Initializable {
 
         List<Asset> assets = getAllAssets.execute();
 
+        Image image = new Image("https://i.imgur.com/73WbAZm.jpeg");
+        ImageView imageView = new ImageView(image);
+        imageView.setFitWidth(150);
+        // imageView.setFitHeight(100);
+        imageView.setPreserveRatio(true);
+        imageView.setSmooth(true);
+        imageView.setCache(true);
+
         assets.forEach(asset -> {
             VBox vBox = new VBox(5);
             Label cardTitle = new Label();
@@ -122,17 +131,16 @@ public class RegisterController implements Initializable {
                 cardDescriptionText.append(key).append(" ").append(" ").append(value).append(", ");
             });
             cardDescription.setText(cardDescriptionText.toString());
+            cardDescription.setWrapText(true);
 
             cardLocationInfo.setText(asset.getAdministrativeUnit() + " - " + asset.getLocationUnit());
-            cardLocationInfo.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
+            cardLocationInfo.setMaxWidth(Double.MAX_VALUE);
             cardLocationInfo.setStyle("-fx-background-color: red;");
 
-            vBox.getChildren().addAll(cardTitle, cardDescription, cardLocationInfo);
+            vBox.getChildren().addAll(imageView, cardTitle, cardDescription, cardLocationInfo);
             vBox.setFillWidth(true);
+            vBox.setAlignment(Pos.CENTER);
             vBox.setStyle("-fx-background-color:  #f5f5f5;");
-            vBox.setPrefHeight(Region.USE_COMPUTED_SIZE);
-            // VBox.setVgrow(cardDescription, Priority.ALWAYS);
-
             assetsContainer.getChildren().add(vBox);
 
         });

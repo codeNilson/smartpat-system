@@ -1,15 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.layout.VBox?>
 
 <VBox fillWidth="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: -fx-main-background-color;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.codenilson.smartpat.controllers.RegisterController">
    <children>
-      <TilePane fx:id="assetsContainer" hgap="5.0" prefColumns="3" prefRows="3" prefTileHeight="0.0" prefTileWidth="200.0" vgap="10.0">
-         <VBox.margin>
-            <Insets left="10.0" top="10.0" />
-         </VBox.margin>
-      </TilePane>
+      <TilePane fx:id="assetsContainer" prefColumns="4" />
    </children>
 </VBox>
