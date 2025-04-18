@@ -12,12 +12,14 @@ import io.github.codenilson.smartpat.usecase.asset.GetAllAssets;
 import io.github.codenilson.smartpat.usecase.category.CreateCategory;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 
@@ -108,41 +110,57 @@ public class RegisterController implements Initializable {
 
         List<Asset> assets = getAllAssets.execute();
 
-        Image image = new Image("https://i.imgur.com/73WbAZm.jpeg");
-        ImageView imageView = new ImageView(image);
-        imageView.setFitWidth(150);
-        // imageView.setFitHeight(100);
-        imageView.setPreserveRatio(true);
-        imageView.setSmooth(true);
-        imageView.setCache(true);
+        populateAssetCards(assets);
+        populateAssetCards(assets);
+    }
 
+    private void populateAssetCards(List<Asset> assets) {
         assets.forEach(asset -> {
-            VBox vBox = new VBox(5);
-            Label cardTitle = new Label();
-            Label cardDescription = new Label();
-            Label cardLocationInfo = new Label();
+            VBox outVBox = new VBox();
+            VBox innerVBox = new VBox(5);
             StringBuilder cardDescriptionText = new StringBuilder();
 
+            Image image = new Image("file:/" + asset.getImagePath());
+            ImageView imageView = new ImageView(image);
+            imageView.setFitWidth(200);
+            imageView.setPreserveRatio(true);
+            imageView.setSmooth(true);
+            imageView.setCache(true);
+
+            Label cardTitle = new Label();
             cardTitle.setText(asset.getCategory().getName());
             cardTitle.setStyle("-fx-font-weight: bold; -fx-font-size: 16px;");
             cardTitle.setMaxWidth(Double.MAX_VALUE);
             cardTitle.setAlignment(Pos.CENTER);
+            VBox.setVgrow(cardTitle, Priority.ALWAYS);
+
+            Label cardDescription = new Label();
             asset.getExtraProperties().forEach((key, value) -> {
                 cardDescriptionText.append(key).append(" ").append(" ").append(value).append(", ");
             });
-            cardDescription.setText(cardDescriptionText.toString());
+            cardDescription.setText(cardDescriptionText.toString() + " com gaveta, cor azul, comprimento 1,20m");
+            // cardDescription.setPrefWidth(150);
             cardDescription.setWrapText(true);
+            cardDescription.setMaxWidth(Double.MAX_VALUE);
+            cardDescription.setMaxHeight(Double.MAX_VALUE);
+            VBox.setVgrow(cardDescription, Priority.ALWAYS);
 
+            Label cardLocationInfo = new Label();
             cardLocationInfo.setText(asset.getAdministrativeUnit() + " - " + asset.getLocationUnit());
             cardLocationInfo.setMaxWidth(Double.MAX_VALUE);
-            cardLocationInfo.setStyle("-fx-background-color: red;");
+            cardLocationInfo.setStyle("-fx-font-style: italic; -fx-font-size: 12px;");
 
-            vBox.getChildren().addAll(imageView, cardTitle, cardDescription, cardLocationInfo);
-            vBox.setFillWidth(true);
-            vBox.setAlignment(Pos.CENTER);
-            vBox.setStyle("-fx-background-color:  #f5f5f5;");
-            assetsContainer.getChildren().add(vBox);
+            innerVBox.getChildren().addAll(imageView, cardTitle, cardDescription, cardLocationInfo);
+            innerVBox.setFillWidth(true);
+            innerVBox.setAlignment(Pos.CENTER);
+            innerVBox.setPrefHeight(250);
+            innerVBox.setPrefWidth(150);
+            innerVBox.setStyle("-fx-background-color:  #f5f5f5;");
 
+            outVBox.getChildren().add(innerVBox);
+            outVBox.setPadding(new Insets(10));
+
+            assetsContainer.getChildren().add(outVBox);
         });
     }
 
