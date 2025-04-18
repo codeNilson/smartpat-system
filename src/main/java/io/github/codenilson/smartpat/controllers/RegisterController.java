@@ -1,6 +1,5 @@
 package io.github.codenilson.smartpat.controllers;
 
-import java.io.File;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -11,14 +10,13 @@ import io.github.codenilson.smartpat.persistence.entities.Asset;
 import io.github.codenilson.smartpat.usecase.asset.CreateAsset;
 import io.github.codenilson.smartpat.usecase.asset.GetAllAssets;
 import io.github.codenilson.smartpat.usecase.category.CreateCategory;
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 
@@ -115,19 +113,26 @@ public class RegisterController implements Initializable {
             Label cardDescription = new Label();
             Label cardLocationInfo = new Label();
             StringBuilder cardDescriptionText = new StringBuilder();
-            
+
             cardTitle.setText(asset.getCategory().getName());
+            cardTitle.setStyle("-fx-font-weight: bold; -fx-font-size: 16px;");
+            cardTitle.setMaxWidth(Double.MAX_VALUE);
+            cardTitle.setAlignment(Pos.CENTER);
             asset.getExtraProperties().forEach((key, value) -> {
                 cardDescriptionText.append(key).append(" ").append(" ").append(value).append(", ");
             });
             cardDescription.setText(cardDescriptionText.toString());
-            
+
             cardLocationInfo.setText(asset.getAdministrativeUnit() + " - " + asset.getLocationUnit());
-            
+            cardLocationInfo.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
+            cardLocationInfo.setStyle("-fx-background-color: red;");
+
             vBox.getChildren().addAll(cardTitle, cardDescription, cardLocationInfo);
             vBox.setFillWidth(true);
             vBox.setStyle("-fx-background-color:  #f5f5f5;");
-            
+            vBox.setPrefHeight(Region.USE_COMPUTED_SIZE);
+            // VBox.setVgrow(cardDescription, Priority.ALWAYS);
+
             assetsContainer.getChildren().add(vBox);
 
         });
