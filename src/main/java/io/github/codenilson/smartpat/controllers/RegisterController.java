@@ -112,18 +112,19 @@ public class RegisterController implements Initializable {
 
         populateAssetCards(assets);
         populateAssetCards(assets);
+        populateAssetCards(assets);
     }
 
     private void populateAssetCards(List<Asset> assets) {
         assets.forEach(asset -> {
             VBox outVBox = new VBox();
-            VBox innerVBox = new VBox(5);
+            VBox innerVBox = new VBox();
             StringBuilder cardDescriptionText = new StringBuilder();
 
             Image image = new Image("file:/" + asset.getImagePath());
             ImageView imageView = new ImageView(image);
             imageView.setFitWidth(200);
-            imageView.setPreserveRatio(true);
+            imageView.setFitHeight(150);
             imageView.setSmooth(true);
             imageView.setCache(true);
 
@@ -139,27 +140,33 @@ public class RegisterController implements Initializable {
                 cardDescriptionText.append(key).append(" ").append(" ").append(value).append(", ");
             });
             cardDescription.setText(cardDescriptionText.toString() + " com gaveta, cor azul, comprimento 1,20m");
-            // cardDescription.setPrefWidth(150);
+            cardDescription.setPadding(new Insets(0, 5, 0, 5));
             cardDescription.setWrapText(true);
             cardDescription.setMaxWidth(Double.MAX_VALUE);
             cardDescription.setMaxHeight(Double.MAX_VALUE);
             VBox.setVgrow(cardDescription, Priority.ALWAYS);
 
             Label cardLocationInfo = new Label();
+            Image locationImage = new Image("https://img.icons8.com/color/48/marker--v1.png");
+            ImageView locationImageView = new ImageView(locationImage);
+            locationImageView.setFitWidth(15);
+            locationImageView.setPreserveRatio(true);
+            locationImageView.setSmooth(true);
+            locationImageView.setCache(true);
+            cardLocationInfo.setGraphic(locationImageView);
             cardLocationInfo.setText(asset.getAdministrativeUnit() + " - " + asset.getLocationUnit());
             cardLocationInfo.setMaxWidth(Double.MAX_VALUE);
             cardLocationInfo.setStyle("-fx-font-style: italic; -fx-font-size: 12px;");
+            cardLocationInfo.setPadding(new Insets(0, 5, 0, 5));
 
             innerVBox.getChildren().addAll(imageView, cardTitle, cardDescription, cardLocationInfo);
             innerVBox.setFillWidth(true);
             innerVBox.setAlignment(Pos.CENTER);
-            innerVBox.setPrefHeight(250);
-            innerVBox.setPrefWidth(150);
-            innerVBox.setStyle("-fx-background-color:  #f5f5f5;");
-
+            innerVBox.setStyle("-fx-background-color:  white;");
+            VBox.setVgrow(innerVBox, Priority.ALWAYS);
+            
             outVBox.getChildren().add(innerVBox);
-            outVBox.setPadding(new Insets(10));
-
+            CategoriesController.applyScaleAnimation(outVBox);
             assetsContainer.getChildren().add(outVBox);
         });
     }

@@ -133,7 +133,7 @@ public class CategoriesController implements Initializable {
         });
     }
 
-    private void applyScaleAnimation(Node node) {
+    public static void applyScaleAnimation(Node node) {
         ScaleTransition st = new ScaleTransition(Duration.millis(200), node);
         st.setToX(1.1);
         st.setToY(1.1);
