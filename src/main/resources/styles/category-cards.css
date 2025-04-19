@@ -10,7 +10,7 @@
 
 .category-location-info {
     -fx-font-style: italic;
-    -fx-font-size: 12px;
+    -fx-font-size: 10px;
     -fx-max-width: Infinity;
     -fx-padding: 5px;
 }
@@ -21,7 +21,9 @@
 
 .category-card {
     -fx-background-color:  white;
+    -fx-background-radius: 5;
     -fx-alignment: center;
+    -fx-cursor: hand;
 }
 
 .category-card > .image-view {

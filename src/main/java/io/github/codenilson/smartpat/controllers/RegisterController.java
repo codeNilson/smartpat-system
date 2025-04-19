@@ -12,16 +12,17 @@ import io.github.codenilson.smartpat.usecase.asset.GetAllAssets;
 import io.github.codenilson.smartpat.usecase.category.CreateCategory;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 
 public class RegisterController implements Initializable {
 
@@ -155,13 +156,25 @@ public class RegisterController implements Initializable {
         
         VBox innerVBox = new VBox();
         innerVBox.getStyleClass().add("category-card");
+        addShadowEffect(innerVBox);
         innerVBox.getChildren().addAll(imageView, cardTitle, cardDescription, cardLocationInfo);
         innerVBox.setFillWidth(true);
         VBox.setVgrow(innerVBox, Priority.ALWAYS);
 
         outVBox.getChildren().add(innerVBox);
+        outVBox.getStyleClass().add("category-card-container");
         CategoriesController.applyScaleAnimation(outVBox);
+
         assetsContainer.getChildren().add(outVBox);
+    }
+
+    public void addShadowEffect(Node node) {
+        DropShadow dropShadow = new DropShadow();
+        dropShadow.setOffsetX(1);
+        dropShadow.setOffsetY(1);
+        dropShadow.setRadius(5);
+        dropShadow.setColor(Color.GRAY);
+        node.setEffect(dropShadow);
     }
 
 }
