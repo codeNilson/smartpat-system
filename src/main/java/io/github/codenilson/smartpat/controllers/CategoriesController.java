@@ -135,8 +135,8 @@ public class CategoriesController implements Initializable {
 
     public static void applyScaleAnimation(Node node) {
         ScaleTransition st = new ScaleTransition(Duration.millis(200), node);
-        st.setToX(1.1);
-        st.setToY(1.1);
+        st.setToX(1.05);
+        st.setToY(1.05);
 
         ScaleTransition stReverse = new ScaleTransition(Duration.millis(200), node);
         stReverse.setToX(1);
