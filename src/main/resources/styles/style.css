@@ -95,7 +95,7 @@
 }
 
 .scroll-pane .viewport {
-    -fx-background-color: green;
+    -fx-background-color: -fx-main-background-color;
 }
 
 .category {

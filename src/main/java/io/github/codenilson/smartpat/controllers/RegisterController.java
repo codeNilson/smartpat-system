@@ -113,6 +113,8 @@ public class RegisterController implements Initializable {
         populateAssetCards(assets);
         populateAssetCards(assets);
         populateAssetCards(assets);
+        populateAssetCards(assets);
+        populateAssetCards(assets);
     }
 
     private void populateAssetCards(List<Asset> assets) {
