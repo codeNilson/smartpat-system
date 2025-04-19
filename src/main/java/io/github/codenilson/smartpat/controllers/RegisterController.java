@@ -119,58 +119,49 @@ public class RegisterController implements Initializable {
 
     private void populateAssetCards(List<Asset> assets) {
         assets.forEach(asset -> {
-            VBox outVBox = new VBox();
-            VBox innerVBox = new VBox();
-            StringBuilder cardDescriptionText = new StringBuilder();
-
-            Image image = new Image("file:/" + asset.getImagePath());
-            ImageView imageView = new ImageView(image);
-            imageView.setFitWidth(200);
-            imageView.setFitHeight(150);
-            imageView.setSmooth(true);
-            imageView.setCache(true);
-
-            Label cardTitle = new Label();
-            cardTitle.setText(asset.getCategory().getName());
-            cardTitle.setStyle("-fx-font-weight: bold; -fx-font-size: 16px;");
-            cardTitle.setMaxWidth(Double.MAX_VALUE);
-            cardTitle.setAlignment(Pos.CENTER);
-            VBox.setVgrow(cardTitle, Priority.ALWAYS);
-
-            Label cardDescription = new Label();
-            asset.getExtraProperties().forEach((key, value) -> {
-                cardDescriptionText.append(key).append(" ").append(" ").append(value).append(", ");
-            });
-            cardDescription.setText(cardDescriptionText.toString() + " com gaveta, cor azul, comprimento 1,20m");
-            cardDescription.setPadding(new Insets(0, 5, 0, 5));
-            cardDescription.setWrapText(true);
-            cardDescription.setMaxWidth(Double.MAX_VALUE);
-            cardDescription.setMaxHeight(Double.MAX_VALUE);
-            VBox.setVgrow(cardDescription, Priority.ALWAYS);
-
-            Label cardLocationInfo = new Label();
-            Image locationImage = new Image("https://img.icons8.com/color/48/marker--v1.png");
-            ImageView locationImageView = new ImageView(locationImage);
-            locationImageView.setFitWidth(15);
-            locationImageView.setPreserveRatio(true);
-            locationImageView.setSmooth(true);
-            locationImageView.setCache(true);
-            cardLocationInfo.setGraphic(locationImageView);
-            cardLocationInfo.setText(asset.getAdministrativeUnit() + " - " + asset.getLocationUnit());
-            cardLocationInfo.setMaxWidth(Double.MAX_VALUE);
-            cardLocationInfo.setStyle("-fx-font-style: italic; -fx-font-size: 12px;");
-            cardLocationInfo.setPadding(new Insets(0, 5, 0, 5));
-
-            innerVBox.getChildren().addAll(imageView, cardTitle, cardDescription, cardLocationInfo);
-            innerVBox.setFillWidth(true);
-            innerVBox.setAlignment(Pos.CENTER);
-            innerVBox.setStyle("-fx-background-color:  white;");
-            VBox.setVgrow(innerVBox, Priority.ALWAYS);
-            
-            outVBox.getChildren().add(innerVBox);
-            CategoriesController.applyScaleAnimation(outVBox);
-            assetsContainer.getChildren().add(outVBox);
+            createAssetCardView(asset);
         });
+    }
+
+    private void createAssetCardView(Asset asset) {
+        VBox outVBox = new VBox();
+        StringBuilder cardDescriptionText = new StringBuilder();
+        
+        Image image = new Image("file:/" + asset.getImagePath());
+        ImageView imageView = new ImageView(image);
+        imageView.setCache(true);
+        
+        Label cardTitle = new Label();
+        cardTitle.getStyleClass().add("category-title");
+        cardTitle.setText(asset.getCategory().getName());
+        
+        Label cardDescription = new Label();
+        cardDescription.getStyleClass().add("category-description");
+        asset.getExtraProperties().forEach((key, value) -> {
+            cardDescriptionText.append(key).append(" ").append(" ").append(value).append(", ");
+        });
+        cardDescription.setText(cardDescriptionText.toString() + " com gaveta, cor azul, comprimento 1,20m");
+        cardDescription.setWrapText(true);
+        VBox.setVgrow(cardDescription, Priority.ALWAYS);
+        
+        Label cardLocationInfo = new Label();
+        cardLocationInfo.getStyleClass().add("category-location-info");
+        Image locationImage = new Image("https://img.icons8.com/color/48/marker--v1.png");
+        ImageView locationImageView = new ImageView(locationImage);
+        locationImageView.setPreserveRatio(true);
+        locationImageView.setCache(true);
+        cardLocationInfo.setGraphic(locationImageView);
+        cardLocationInfo.setText(asset.getAdministrativeUnit() + " - " + asset.getLocationUnit());
+        
+        VBox innerVBox = new VBox();
+        innerVBox.getStyleClass().add("category-card");
+        innerVBox.getChildren().addAll(imageView, cardTitle, cardDescription, cardLocationInfo);
+        innerVBox.setFillWidth(true);
+        VBox.setVgrow(innerVBox, Priority.ALWAYS);
+
+        outVBox.getChildren().add(innerVBox);
+        CategoriesController.applyScaleAnimation(outVBox);
+        assetsContainer.getChildren().add(outVBox);
     }
 
 }

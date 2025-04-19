@@ -1,0 +1,30 @@
+.category-title {
+    -fx-font-weight: bold;
+    -fx-font-size: 16px;
+}
+
+.category-description {
+    -fx-padding: 0px 5px;
+    -fx-max-height: Infinity;
+}
+
+.category-location-info {
+    -fx-font-style: italic;
+    -fx-font-size: 12px;
+    -fx-max-width: Infinity;
+    -fx-padding: 5px;
+}
+
+.category-location-info .image-view {
+    -fx-fit-width: 15;
+}
+
+.category-card {
+    -fx-background-color:  white;
+    -fx-alignment: center;
+}
+
+.category-card > .image-view {
+    -fx-fit-width: 200;
+    -fx-fit-height: 150;
+}
