@@ -7,6 +7,7 @@ import com.google.inject.Injector;
 
 import io.github.codenilson.smartpat.modules.PersistenceModule;
 import io.github.codenilson.smartpat.persistence.base.BaseRepository;
+import io.github.codenilson.smartpat.utils.Util;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -16,14 +17,14 @@ import javafx.stage.Stage;
 
 public class App extends Application {
 
-    private static Injector injector;
+    public static Injector injector;
 
     @Override
     public void start(Stage stage) throws IOException {
 
         injector = Guice.createInjector(new PersistenceModule());
 
-        FXMLLoader loader = loadFXML("/gui/main");
+        FXMLLoader loader = Util.loadFXML("/gui/main");
 
         Parent root = loader.load();
         Scene scene = new Scene(root);
@@ -40,12 +41,6 @@ public class App extends Application {
 
     public static void main(String[] args) {
         launch(args);
-    }
-
-    public static FXMLLoader loadFXML(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
-        fxmlLoader.setControllerFactory(injector::getInstance);
-        return fxmlLoader;
     }
 
     @Override

@@ -10,6 +10,7 @@ import io.github.codenilson.smartpat.persistence.entities.Asset;
 import io.github.codenilson.smartpat.usecase.asset.CreateAsset;
 import io.github.codenilson.smartpat.usecase.asset.GetAllAssets;
 import io.github.codenilson.smartpat.usecase.category.CreateCategory;
+import io.github.codenilson.smartpat.utils.Util;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -163,7 +164,7 @@ public class RegisterController implements Initializable {
 
         outVBox.getChildren().add(innerVBox);
         outVBox.getStyleClass().add("category-card-container");
-        CategoriesController.applyScaleAnimation(outVBox);
+        Util.applyScaleAnimation(outVBox);
 
         assetsContainer.getChildren().add(outVBox);
     }

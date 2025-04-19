@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import io.github.codenilson.smartpat.utils.Util;
 import javafx.animation.ParallelTransition;
 import javafx.animation.ScaleTransition;
 import javafx.animation.SequentialTransition;
@@ -46,7 +47,6 @@ public class CategoriesController implements Initializable {
 
             adjustContainerSize(stage);
             adjustImageSize(stage);
-
             loadCategoryImageViews();
             applyCategoriesAnimations();
             setupStageMaximizedListener(stage);
@@ -71,7 +71,7 @@ public class CategoriesController implements Initializable {
             if (node instanceof Button) {
                 categoryButtons.add((Button) node);
             }
-            applyScaleAnimation(node);
+            Util.applyScaleAnimation(node);
         }
     }
 
@@ -133,17 +133,6 @@ public class CategoriesController implements Initializable {
         });
     }
 
-    public static void applyScaleAnimation(Node node) {
-        ScaleTransition st = new ScaleTransition(Duration.millis(200), node);
-        st.setToX(1.05);
-        st.setToY(1.05);
 
-        ScaleTransition stReverse = new ScaleTransition(Duration.millis(200), node);
-        stReverse.setToX(1);
-        stReverse.setToY(1);
-
-        node.setOnMouseEntered(e -> st.playFromStart());
-        node.setOnMouseExited(e -> stReverse.playFromStart());
-    }
 
 }

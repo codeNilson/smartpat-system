@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import io.github.codenilson.smartpat.App;
+import io.github.codenilson.smartpat.utils.Util;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -70,7 +70,7 @@ public class MainController implements Initializable {
 
     private void changeScene(String fxml) {
         try {
-            FXMLLoader loader = App.loadFXML(fxml);
+            FXMLLoader loader = Util.loadFXML(fxml);
             Parent root = loader.load();
             primaryRootPane.setCenter(root);
         } catch (IOException e) {
