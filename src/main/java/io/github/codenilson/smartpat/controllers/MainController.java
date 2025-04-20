@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import com.google.inject.Inject;
+
+import io.github.codenilson.smartpat.usecase.asset.GetAllAssets;
 import io.github.codenilson.smartpat.utils.Util;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -32,11 +35,25 @@ public class MainController implements Initializable {
     private Button btnSearch;
 
     private List<TitledPane> sideBarPanes = new ArrayList<>();
-    
+
+    private final GetAllAssets getAllAssets;
+
+    @Inject
+    public MainController(GetAllAssets getAllAssets) {
+        this.getAllAssets = getAllAssets;
+    }
 
     @FXML
     public void onBtnHomeClicked() {
         changeScene("/gui/scenes/categories");
+    }
+    
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
+        changeScene("/gui/scenes/categories");
+
+        setupSidebarPanes();
     }
 
     @FXML
@@ -49,7 +66,6 @@ public class MainController implements Initializable {
         Platform.exit();
     }
 
-
     @FXML
     public void onBtnRegisterClicked() {
         changeScene("/gui/scenes/register");
@@ -60,13 +76,6 @@ public class MainController implements Initializable {
         changeScene("/gui/scenes/reports");
     }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-
-        changeScene("/gui/scenes/categories");
-
-        setupSidebarPanes();
-    }
 
     private void changeScene(String fxml) {
         try {

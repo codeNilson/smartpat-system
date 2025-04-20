@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ProgressIndicator?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.TilePane?>
@@ -12,9 +13,13 @@
          <children>
             <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS">
                <content>
-                  <StackPane>
+                  <StackPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
                      <children>
-                        <TilePane fx:id="assetsContainer" alignment="CENTER" hgap="15.0" maxHeight="-Infinity" maxWidth="-Infinity" prefTileHeight="250.0" prefTileWidth="200.0" vgap="15.0">
+                        <ProgressIndicator fx:id="loadingSpinner" prefWidth="52.0" StackPane.alignment="CENTER">
+                           <StackPane.margin>
+                              <Insets top="150.0" />
+                           </StackPane.margin></ProgressIndicator>
+                        <TilePane fx:id="assetsContainer" alignment="CENTER" hgap="15.0" maxHeight="-Infinity" maxWidth="-Infinity" prefTileHeight="250.0" prefTileWidth="200.0" vgap="15.0" StackPane.alignment="CENTER">
                            <padding>
                               <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                            </padding>

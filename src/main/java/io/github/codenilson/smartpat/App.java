@@ -20,9 +20,12 @@ public class App extends Application {
     public static Injector injector;
 
     @Override
-    public void start(Stage stage) throws IOException {
-
+    public void init() throws Exception {
         injector = Guice.createInjector(new PersistenceModule());
+    }
+
+    @Override
+    public void start(Stage stage) throws IOException {
 
         FXMLLoader loader = Util.loadFXML("/gui/main");
 

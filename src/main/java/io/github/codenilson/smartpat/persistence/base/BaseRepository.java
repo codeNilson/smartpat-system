@@ -56,7 +56,6 @@ public abstract class BaseRepository<T> {
         em.close();
         return resultList;
     }
-    
 
     public static void shutdown() {
         if (emf != null && emf.isOpen()) {
