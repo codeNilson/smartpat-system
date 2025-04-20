@@ -1,6 +1,7 @@
 package io.github.codenilson.smartpat.controllers;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -11,6 +12,8 @@ import io.github.codenilson.smartpat.usecase.asset.CreateAsset;
 import io.github.codenilson.smartpat.usecase.asset.GetAllAssets;
 import io.github.codenilson.smartpat.usecase.category.CreateCategory;
 import io.github.codenilson.smartpat.utils.Util;
+import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -48,6 +51,8 @@ public class RegisterController implements Initializable {
     @FXML
     private TilePane assetsContainer;
 
+    private List<Asset> assets = new ArrayList<>();
+
     private final CreateCategory createCategory;
     private final CreateAsset createAsset;
     private final GetAllAssets getAllAssets;
@@ -64,7 +69,9 @@ public class RegisterController implements Initializable {
 
         initializeTableColumns();
 
-        loadDataBaseData();
+        Platform.runLater(() -> {
+            loadDataBaseData();
+        });
 
     }
 
@@ -110,13 +117,19 @@ public class RegisterController implements Initializable {
         // asset3.setImagePath("C:\\Users\\Denilson\\Pictures\\bleach-background.jpg");
         // createAsset.execute(asset3);
 
-        List<Asset> assets = getAllAssets.execute();
+        Task<List<Asset>> loadAssetsTask = new Task<>() {
+            @Override
+            protected List<Asset> call() {
+                return getAllAssets.execute(); // Aqui ainda pode demorar, mas não trava a UI
+            }
+        };
 
-        populateAssetCards(assets);
-        populateAssetCards(assets);
-        populateAssetCards(assets);
-        populateAssetCards(assets);
-        populateAssetCards(assets);
+        loadAssetsTask.setOnSucceeded(e -> {
+            assets = loadAssetsTask.getValue();
+            populateAssetCards(assets); // Isso pode ser otimizado também
+        });
+
+        new Thread(loadAssetsTask).start();
     }
 
     private void populateAssetCards(List<Asset> assets) {
@@ -128,15 +141,15 @@ public class RegisterController implements Initializable {
     private void createAssetCardView(Asset asset) {
         VBox outVBox = new VBox();
         StringBuilder cardDescriptionText = new StringBuilder();
-        
+
         Image image = new Image("file:/" + asset.getImagePath());
         ImageView imageView = new ImageView(image);
         imageView.setCache(true);
-        
+
         Label cardTitle = new Label();
         cardTitle.getStyleClass().add("category-title");
         cardTitle.setText(asset.getCategory().getName());
-        
+
         Label cardDescription = new Label();
         cardDescription.getStyleClass().add("category-description");
         asset.getExtraProperties().forEach((key, value) -> {
@@ -145,7 +158,7 @@ public class RegisterController implements Initializable {
         cardDescription.setText(cardDescriptionText.toString() + " com gaveta, cor azul, comprimento 1,20m");
         cardDescription.setWrapText(true);
         VBox.setVgrow(cardDescription, Priority.ALWAYS);
-        
+
         Label cardLocationInfo = new Label();
         cardLocationInfo.getStyleClass().add("category-location-info");
         Image locationImage = new Image("https://img.icons8.com/color/48/marker--v1.png");
@@ -154,7 +167,7 @@ public class RegisterController implements Initializable {
         locationImageView.setCache(true);
         cardLocationInfo.setGraphic(locationImageView);
         cardLocationInfo.setText(asset.getAdministrativeUnit() + " - " + asset.getLocationUnit());
-        
+
         VBox innerVBox = new VBox();
         innerVBox.getStyleClass().add("category-card");
         addShadowEffect(innerVBox);
