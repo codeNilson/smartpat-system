@@ -34,12 +34,16 @@ public class App extends Application {
         scene.getStylesheets().add(App.class.getResource("/styles/main.css").toExternalForm());
         stage.setScene(scene);
 
+        configureStageSize(stage);
+
+        stage.show();
+    }
+
+    private void configureStageSize(Stage stage) {
         Platform.runLater(() -> {
             stage.setMinWidth(stage.getWidth());
             stage.setMinHeight(stage.getHeight());
         });
-
-        stage.show();
     }
 
     public static void main(String[] args) {

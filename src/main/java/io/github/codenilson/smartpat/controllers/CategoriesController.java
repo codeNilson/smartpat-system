@@ -21,13 +21,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class CategoriesController implements Initializable {
-
-    @FXML
-    private Parent root;
-
-    @FXML
-    private TilePane categoriesContainer;
-
+    
     private Stage stage;
 
     private List<ImageView> categoriesImages = new ArrayList<>();
@@ -37,6 +31,12 @@ public class CategoriesController implements Initializable {
     private static final double MIN_IMAGE_WIDTH = 150;
     private static final double TILE_WIDTH_RATIO = 6;
     private static final double IMAGE_WIDTH_RATIO = 7;
+
+    @FXML
+    private Parent root;
+
+    @FXML
+    private TilePane categoriesContainer;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

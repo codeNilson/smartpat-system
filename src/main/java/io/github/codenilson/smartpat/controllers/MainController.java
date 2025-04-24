@@ -43,17 +43,17 @@ public class MainController implements Initializable {
         this.getAllAssets = getAllAssets;
     }
 
-    @FXML
-    public void onBtnHomeClicked() {
-        changeScene("/gui/scenes/categories");
-    }
-    
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
         changeScene("/gui/scenes/categories");
 
         setupSidebarPanes();
+    }
+
+    @FXML
+    public void onBtnHomeClicked() {
+        changeScene("/gui/scenes/categories");
     }
 
     @FXML
@@ -75,7 +75,6 @@ public class MainController implements Initializable {
     public void onBtnReportClicked() {
         changeScene("/gui/scenes/reports");
     }
-
 
     private void changeScene(String fxml) {
         try {

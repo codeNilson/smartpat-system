@@ -50,13 +50,6 @@
             <version>3.2.0</version>
         </dependency>
 
-        <dependency>
-            <groupId>io.github.codenilson</groupId>
-            <artifactId>gsapi_core</artifactId>
-            <version>2.0.0</version>
-        </dependency>
-
-
         <!-- JAVAFX -->
         <dependency>
             <groupId>org.openjfx</groupId>
