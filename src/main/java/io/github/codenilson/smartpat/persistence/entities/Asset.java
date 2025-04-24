@@ -14,6 +14,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 
 @Entity
@@ -24,7 +25,7 @@ public class Asset {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private UUID uuid = UUID.randomUUID();
+    private UUID uuid;
 
     @Column(unique = true)
     private Long assetCode;
@@ -49,12 +50,14 @@ public class Asset {
     private String imagePath;
 
     @Column(nullable = false, name = "created_at")
-    private final Instant createdAt = Instant.now();
+    private Instant createdAt;
 
     public Asset() {
     }
 
-    public Asset(Long assetCode, Category category, Map<String, Object> extraProperties,
+    public Asset(Long assetCode,
+            Category category,
+            Map<String, Object> extraProperties,
             String administrativeUnit,
             String locationUnit,
             Ownership ownership,
@@ -134,6 +137,12 @@ public class Asset {
 
     public UUID getUuid() {
         return uuid;
+    }
+
+    @PrePersist
+    public void prePersist() {
+        uuid = UUID.randomUUID();
+        createdAt = Instant.now();
     }
 
     @Override

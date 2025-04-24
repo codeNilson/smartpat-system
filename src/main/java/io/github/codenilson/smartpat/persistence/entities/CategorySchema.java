@@ -1,6 +1,7 @@
 package io.github.codenilson.smartpat.persistence.entities;
 
-import io.github.codenilson.smartpat.persistence.entities.CategorySchema;
+import java.util.Map;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -21,17 +22,14 @@ public class CategorySchema {
     @JoinColumn(name = "category_id", nullable = false)
     private Category category;
 
-    private String fieldName;
-
-    private String fieldType;
+    private Map<String, Object> fieldName;
 
     public CategorySchema() {
     }
 
-    public CategorySchema(Category category, String fieldName, String fieldType) {
+    public CategorySchema(Category category, Map<String, Object> fieldName) {
         this.category = category;
         this.fieldName = fieldName;
-        this.fieldType = fieldType;
     }
 
     public Long getId() {
@@ -46,26 +44,21 @@ public class CategorySchema {
         this.category = category;
     }
 
-    public String getFieldName() {
+    public Map<String, Object> getFieldName() {
         return fieldName;
     }
 
-    public void setFieldName(String fieldName) {
+    public void setFieldName(Map<String, Object> fieldName) {
         this.fieldName = fieldName;
-    }
-
-    public String getFieldType() {
-        return fieldType;
-    }
-
-    public void setFieldType(String fieldType) {
-        this.fieldType = fieldType;
     }
 
     @Override
     public String toString() {
-        return "CategorySchema [id=" + id + ", category=" + category + ", fieldName=" + fieldName + ", fieldType="
-                + fieldType + "]";
+        return "CategorySchema{" +
+                "id=" + id +
+                ", category=" + category +
+                ", fieldName=" + fieldName +
+                '}';
     }
 
 }

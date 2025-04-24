@@ -1,4 +1,5 @@
 @import url("./category-cards.css");
+@import url("./combo-box.css");
 
 
 .root {
@@ -63,7 +64,7 @@
     -fx-padding: 0px;
 }
 
-.submenu-container > * {
+.submenu-container>* {
     -fx-background-color: inherit;
     -fx-text-fill: #ffffff;
     -fx-font-weight: bold;
@@ -72,7 +73,7 @@
     -fx-pref-width: Infinity;
 }
 
-.submenu-container > *:hover {
+.submenu-container>*:hover {
     -fx-background-color: -fx-detail-color;
 }
 
@@ -107,4 +108,25 @@
 
 .category:hover {
     -fx-background-color: -fx-primary-color;
+}
+
+.btn {
+    -fx-text-fill: white;
+    -fx-padding: 5px 10px;
+    -fx-border-radius: 0px;
+    -fx-background-radius: 0px;
+    -fx-cursor: hand;
+}
+
+.btn-save {
+    -fx-background-color: -fx-tipografy-color-2;
+}
+
+.btn-cancel {
+    -fx-background-color: -fx-detail-color;
+}
+
+.btn-save:disabled {
+    -fx-background-color: gray;
+    -fx-text-fill: black
 }

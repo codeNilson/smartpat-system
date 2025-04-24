@@ -1,0 +1,62 @@
+/* Estilo principal do ComboBox */
+.combo-box {
+    -fx-background-color: inherit;
+    -fx-border-color: -fx-primary-color;
+    -fx-border-width: 0 0 1px 0;
+    -fx-border-style: solid;
+    /* -fx-border-radius: 10px; */
+    /* -fx-background-radius: 5px; */
+    /* -fx-padding: 5px; */
+    -fx-font-size: 14px;
+    -fx-text-fill: #333333;
+}
+
+/* Estilo quando o ComboBox está aberto */
+.combo-box-popup .list-view {
+    -fx-background-color: white;
+    -fx-border-color: #cccccc;
+    -fx-border-width: 1px;
+    -fx-border-radius: 0 0 5px 5px;
+    -fx-background-radius: 0 0 5px 5px;
+    /* -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 5, 0, 0, 2); */
+}
+
+/* Estilo das células da lista */
+.combo-box-popup .list-cell {
+    -fx-padding: 5 10 5 10;
+    -fx-background-color: white;
+    -fx-text-fill: #333333;
+}
+
+/* Estilo quando o mouse passa sobre uma célula */
+.combo-box-popup .list-cell:hover {
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: white;
+}
+
+/* Estilo quando uma célula está selecionada */
+.combo-box-popup .list-cell:selected {
+    -fx-background-color: -fx-detail-color;
+    -fx-text-fill: white;
+}
+
+/* Estilo da seta do ComboBox */
+.combo-box .arrow {
+    -fx-background-color: -fx-primary-color;
+}
+
+.combo-box:focused .arrow {
+    -fx-background-color: -fx-detail-color;
+}
+
+/* Estilo quando o ComboBox está desabilitado */
+.combo-box:disabled {
+    -fx-opacity: 0.7;
+}
+
+/* Estilo quando o ComboBox está em foco */
+.combo-box:focused {
+    -fx-border-color: -fx-detail-color;
+    /* -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 5, 0, 0, 2); */
+}
+
