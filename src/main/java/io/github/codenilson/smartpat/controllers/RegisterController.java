@@ -1,5 +1,6 @@
 package io.github.codenilson.smartpat.controllers;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,10 +16,14 @@ import io.github.codenilson.smartpat.usecase.asset.CreateAsset;
 import io.github.codenilson.smartpat.usecase.asset.GetAllAssets;
 import io.github.codenilson.smartpat.usecase.category.CreateCategory;
 import io.github.codenilson.smartpat.utils.Util;
+import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TableColumn;
@@ -29,6 +34,7 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 
 public class RegisterController implements Initializable {
 
@@ -140,6 +146,9 @@ public class RegisterController implements Initializable {
 
     private void createAssetCardView(Asset asset) {
         VBox outVBox = new VBox();
+        outVBox.setOnMouseClicked(event -> {
+            openSecondaryWindow();
+        });
         StringBuilder cardDescriptionText = new StringBuilder();
 
         Image image = new Image("file:/" + asset.getImagePath());
@@ -180,6 +189,26 @@ public class RegisterController implements Initializable {
         Util.applyScaleAnimation(outVBox);
 
         assetsContainer.getChildren().add(outVBox);
+    }
+
+    private void openSecondaryWindow() {
+
+        Stage stage = new Stage();
+        stage.setTitle("Detalhes do item");
+        // stage.setResizable(false);
+
+        FXMLLoader loader;
+        try {
+            loader = Util.loadFXML("/gui/scenes/detail-item");
+            Parent parent = loader.load();
+            Scene scene = new Scene(parent);
+            scene.getStylesheets().add(RegisterController.class.getResource("/styles/main.css").toExternalForm());
+            stage.setScene(scene);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        stage.showAndWait();
     }
 
     public void addShadowEffect(Node node) {

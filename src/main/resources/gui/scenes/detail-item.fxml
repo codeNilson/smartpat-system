@@ -8,15 +8,13 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.codenilson.smartpat.controllers.DetailItemController">
    <children>
-      <Pane maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="45.0" style="-fx-background-color: -fx-primary-color;" />
       <VBox maxHeight="1.7976931348623157E308" prefHeight="200.0" style="-fx-background-color: -fx-main-background-color;" VBox.vgrow="ALWAYS">
          <children>
             <HBox VBox.vgrow="ALWAYS">
@@ -55,7 +53,7 @@
                         </VBox>
                         <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../../../../../Pictures/nilsow-logo.png" />
+                              <Image url="file:C:\Users\Denilson\Pictures\nilsow.png" />
                            </image>
                         </ImageView>
                      </children>
