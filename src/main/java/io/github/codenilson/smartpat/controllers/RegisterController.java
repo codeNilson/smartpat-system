@@ -16,8 +16,8 @@ import io.github.codenilson.smartpat.usecase.asset.CreateAsset;
 import io.github.codenilson.smartpat.usecase.asset.GetAllAssets;
 import io.github.codenilson.smartpat.usecase.category.CreateCategory;
 import io.github.codenilson.smartpat.utils.Util;
-import javafx.application.Platform;
 import javafx.concurrent.Task;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -27,6 +27,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TableColumn;
+import javafx.scene.effect.ColorAdjust;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -147,7 +148,8 @@ public class RegisterController implements Initializable {
     private void createAssetCardView(Asset asset) {
         VBox outVBox = new VBox();
         outVBox.setOnMouseClicked(event -> {
-            openSecondaryWindow();
+            Stage stage = getStageFromEvent(event);
+            openSecondaryWindow(stage);
         });
         StringBuilder cardDescriptionText = new StringBuilder();
 
@@ -191,15 +193,25 @@ public class RegisterController implements Initializable {
         assetsContainer.getChildren().add(outVBox);
     }
 
-    private void openSecondaryWindow() {
+    private Stage getStageFromEvent(Event event) {
+        return (Stage) ((Node) event.getSource()).getScene().getWindow();
+    }
+
+    private void openSecondaryWindow(Stage primaryStage) {
+
+        Parent primaryRoot = primaryStage.getScene().getRoot();
+        ColorAdjust colorAdjust = new ColorAdjust();
+        colorAdjust.setBrightness(-0.5);
+        primaryRoot.setEffect(colorAdjust);
 
         Stage stage = new Stage();
         stage.setTitle("Detalhes do item");
+        stage.initModality(javafx.stage.Modality.APPLICATION_MODAL);
+        stage.initOwner(primaryStage);
         // stage.setResizable(false);
 
-        FXMLLoader loader;
+        FXMLLoader loader = Util.loadFXML("/gui/scenes/detail-item");
         try {
-            loader = Util.loadFXML("/gui/scenes/detail-item");
             Parent parent = loader.load();
             Scene scene = new Scene(parent);
             scene.getStylesheets().add(RegisterController.class.getResource("/styles/main.css").toExternalForm());
@@ -208,6 +220,7 @@ public class RegisterController implements Initializable {
             e.printStackTrace();
         }
 
+        stage.setOnHidden(e -> primaryRoot.setEffect(null));
         stage.showAndWait();
     }
 

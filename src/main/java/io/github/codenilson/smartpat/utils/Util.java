@@ -1,7 +1,5 @@
 package io.github.codenilson.smartpat.utils;
 
-import java.io.IOException;
-
 import io.github.codenilson.smartpat.App;
 import javafx.animation.ScaleTransition;
 import javafx.fxml.FXMLLoader;
@@ -15,7 +13,7 @@ public class Util {
         return str.trim().toLowerCase();
     }
 
-    public static FXMLLoader loadFXML(String fxml) throws IOException {
+    public static FXMLLoader loadFXML(String fxml) {
         FXMLLoader loader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
         loader.setControllerFactory(App.injector::getInstance);
         return loader;

@@ -19,8 +19,11 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TitledPane;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
 
 public class MainController implements Initializable {
+
+    private Stage stage;
 
     @FXML
     private BorderPane primaryRootPane;
@@ -41,6 +44,10 @@ public class MainController implements Initializable {
     @Inject
     public MainController(GetAllAssets getAllAssets) {
         this.getAllAssets = getAllAssets;
+    }
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
     }
 
     @Override
