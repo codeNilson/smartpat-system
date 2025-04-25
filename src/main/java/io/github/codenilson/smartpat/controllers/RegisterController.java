@@ -210,15 +210,11 @@ public class RegisterController implements Initializable {
         stage.initOwner(primaryStage);
         // stage.setResizable(false);
 
-        FXMLLoader loader = Util.loadFXML("/gui/scenes/detail-item");
-        try {
-            Parent parent = loader.load();
-            Scene scene = new Scene(parent);
-            scene.getStylesheets().add(RegisterController.class.getResource("/styles/main.css").toExternalForm());
-            stage.setScene(scene);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        // 
+        Parent parent = Util.loadFXML("/gui/scenes/detail-item.fxml");
+        Scene scene = new Scene(parent);
+        scene.getStylesheets().add(RegisterController.class.getResource("/styles/main.css").toExternalForm());
+        stage.setScene(scene);
 
         stage.setOnHidden(e -> primaryRoot.setEffect(null));
         stage.showAndWait();

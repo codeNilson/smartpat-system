@@ -1,29 +1,23 @@
 package io.github.codenilson.smartpat.controllers;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import com.google.inject.Inject;
-
-import io.github.codenilson.smartpat.usecase.asset.GetAllAssets;
 import io.github.codenilson.smartpat.utils.Util;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TitledPane;
 import javafx.scene.layout.BorderPane;
-import javafx.stage.Stage;
 
 public class MainController implements Initializable {
 
-    private Stage stage;
+    private List<TitledPane> sideBarPanes = new ArrayList<>();
 
     @FXML
     private BorderPane primaryRootPane;
@@ -37,63 +31,20 @@ public class MainController implements Initializable {
     @FXML
     private Button btnSearch;
 
-    private List<TitledPane> sideBarPanes = new ArrayList<>();
-
-    private final GetAllAssets getAllAssets;
-
-    @Inject
-    public MainController(GetAllAssets getAllAssets) {
-        this.getAllAssets = getAllAssets;
-    }
-
-    public void setStage(Stage stage) {
-        this.stage = stage;
-    }
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        changeScene("/gui/scenes/categories");
+        changeScene("/gui/scenes/categories.fxml");
 
-        setupSidebarPanes();
-    }
-
-    @FXML
-    public void onBtnHomeClicked() {
-        changeScene("/gui/scenes/categories");
-    }
-
-    @FXML
-    public void onBtnSearchClicked() {
-        changeScene("/gui/scenes/register");
-    }
-
-    @FXML
-    public void onBtnQuitClicked() {
-        Platform.exit();
-    }
-
-    @FXML
-    public void onBtnRegisterClicked() {
-        changeScene("/gui/scenes/register");
-    }
-
-    @FXML
-    public void onBtnReportClicked() {
-        changeScene("/gui/scenes/reports");
+        configureSidebarPanes();
     }
 
     private void changeScene(String fxml) {
-        try {
-            FXMLLoader loader = Util.loadFXML(fxml);
-            Parent root = loader.load();
-            primaryRootPane.setCenter(root);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Parent root = Util.loadFXML(fxml);
+        primaryRootPane.setCenter(root);
     }
 
-    private void setupSidebarPanes() {
+    private void configureSidebarPanes() {
         loadSidebarPanes();
         setupExpansionBehavior();
     }
@@ -128,4 +79,30 @@ public class MainController implements Initializable {
             }
         }
     }
+
+    @FXML
+    public void onBtnHomeClicked() {
+        changeScene("/gui/scenes/categories.fxml");
+    }
+
+    @FXML
+    public void onBtnSearchClicked() {
+        changeScene("/gui/scenes/register.fxml");
+    }
+
+    @FXML
+    public void onBtnQuitClicked() {
+        Platform.exit();
+    }
+
+    @FXML
+    public void onBtnRegisterClicked() {
+        changeScene("/gui/scenes/register.fxml");
+    }
+
+    @FXML
+    public void onBtnReportClicked() {
+        changeScene("/gui/scenes/reports.fxml");
+    }
+
 }

@@ -1,22 +1,39 @@
 package io.github.codenilson.smartpat.utils;
 
+import java.io.IOException;
+
 import io.github.codenilson.smartpat.App;
 import javafx.animation.ScaleTransition;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert.AlertType;
 import javafx.util.Duration;
 
 public class Util {
-    public static String cleanString(String str) {
-        if (str == null)
+
+    public static Parent loadFXML(String fxml) {
+        try {
+            FXMLLoader loader = new FXMLLoader(App.class.getResource(fxml));
+            loader.setControllerFactory(App.injector::getInstance);
+            return loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+            AlertMessage alert = new AlertMessage(AlertType.ERROR, "Error", "Failed to load FXML: " + fxml);
+            alert.execute();
             return null;
-        return str.trim().toLowerCase();
+        }
     }
 
-    public static FXMLLoader loadFXML(String fxml) {
-        FXMLLoader loader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
-        loader.setControllerFactory(App.injector::getInstance);
-        return loader;
+    public static void loadStyleSheet(Scene scene, String cssPath) {
+        try {
+            scene.getStylesheets().add(App.class.getResource(cssPath).toExternalForm());
+        } catch (Exception e) {
+            e.printStackTrace();
+            AlertMessage alert = new AlertMessage(AlertType.ERROR, "Error", "Failed to load CSS: " + cssPath);
+            alert.execute();
+        }
     }
 
     public static void applyScaleAnimation(Node node) {

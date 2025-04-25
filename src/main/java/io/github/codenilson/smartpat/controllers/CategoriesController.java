@@ -21,19 +21,13 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class CategoriesController implements Initializable {
-    
-    private Stage stage;
 
+    private Stage stage;
     private List<ImageView> categoriesImages = new ArrayList<>();
     private List<Button> categoryButtons = new ArrayList<>();
 
-    private static final double MIN_TILE_WIDTH = 200;
-    private static final double MIN_IMAGE_WIDTH = 150;
-    private static final double TILE_WIDTH_RATIO = 6;
-    private static final double IMAGE_WIDTH_RATIO = 7;
-
     @FXML
-    private Parent root;
+    private Parent sceneRoot;
 
     @FXML
     private TilePane categoriesContainer;
@@ -43,14 +37,47 @@ public class CategoriesController implements Initializable {
 
         Platform.runLater(() -> {
 
-            stage = (Stage) root.getScene().getWindow();
+            if (stage == null) {
+                stage = (Stage) sceneRoot.getScene().getWindow();
+            }
 
+            // Modify this
             adjustContainerSize(stage);
             adjustImageSize(stage);
+            // Modify this
+
             loadCategoryImageViews();
+
+            loadCategoryButtons();
+
             applyCategoriesAnimations();
-            setupStageMaximizedListener(stage);
+
+            configureStageMaximizedListener(stage);
         });
+    }
+
+    private void loadCategoryImageViews() {
+
+        if (!categoriesImages.isEmpty())
+            return;
+
+        for (Node node : sceneRoot.lookupAll(".category-image")) {
+            if (node instanceof ImageView imageView) {
+                categoriesImages.add(imageView);
+            }
+        }
+    }
+
+    private void loadCategoryButtons() {
+
+        if (!categoryButtons.isEmpty())
+            return;
+
+        for (Node node : sceneRoot.lookupAll(".category")) {
+            if (node instanceof Button button) {
+                categoryButtons.add(button);
+            }
+        }
     }
 
     private void applyCategoriesAnimations() {
@@ -58,20 +85,10 @@ public class CategoriesController implements Initializable {
         applyAnimation();
     }
 
-    private void loadCategoryImageViews() {
-        for (Node node : root.lookupAll(".category-image")) {
-            if (node instanceof ImageView) {
-                categoriesImages.add((ImageView) node);
-            }
-        }
-    }
-
     private void applyScaleAnimationToCategories() {
-        for (Node node : root.lookupAll(".category")) {
-            if (node instanceof Button) {
-                categoryButtons.add((Button) node);
-            }
-            Util.applyScaleAnimation(node);
+
+        for (Button categoryButton : categoryButtons) {
+            Util.applyScaleAnimation(categoryButton);
         }
     }
 
@@ -103,7 +120,7 @@ public class CategoriesController implements Initializable {
         pt.play();
     }
 
-    private void setupStageMaximizedListener(Stage stage) {
+    private void configureStageMaximizedListener(Stage stage) {
 
         stage.maximizedProperty().addListener((obs, oldVal, newVal) -> {
             adjustContainerSize(stage);
@@ -111,10 +128,20 @@ public class CategoriesController implements Initializable {
         });
     }
 
+    private void adjustContainerSize(Stage stage) {
+        Platform.runLater(() -> {
+            double maxWidth = stage.getWidth() / 6;
+            double newWidth = Math.max(200, maxWidth);
+
+            categoriesContainer.setPrefTileWidth(newWidth);
+            categoriesContainer.setPrefTileHeight(newWidth);
+        });
+    }
+
     private void adjustImageSize(Stage stage) {
         Platform.runLater(() -> {
-            Double maxImageWidth = stage.getWidth() / IMAGE_WIDTH_RATIO;
-            Double newImageWidth = Math.max(MIN_IMAGE_WIDTH, maxImageWidth);
+            Double maxImageWidth = stage.getWidth() / 7;
+            Double newImageWidth = Math.max(150, maxImageWidth);
 
             for (ImageView imageView : categoriesImages) {
                 imageView.setFitWidth(newImageWidth);
@@ -122,17 +149,5 @@ public class CategoriesController implements Initializable {
             }
         });
     }
-
-    private void adjustContainerSize(Stage stage) {
-        Platform.runLater(() -> {
-            double maxWidth = stage.getWidth() / TILE_WIDTH_RATIO;
-            double newWidth = Math.max(MIN_TILE_WIDTH, maxWidth);
-
-            categoriesContainer.setPrefTileWidth(newWidth);
-            categoriesContainer.setPrefTileHeight(newWidth);
-        });
-    }
-
-
 
 }

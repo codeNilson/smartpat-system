@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox fx:id="root" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="main" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.codenilson.smartpat.controllers.CategoriesController">
+<VBox fx:id="sceneRoot" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="main" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.codenilson.smartpat.controllers.CategoriesController">
          <children>
             <Label alignment="CENTER" maxWidth="1.7976931348623157E308" styleClass="main-title" text="Categorias" VBox.vgrow="NEVER">
                <VBox.margin>
