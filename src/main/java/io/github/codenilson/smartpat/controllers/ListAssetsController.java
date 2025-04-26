@@ -1,6 +1,5 @@
 package io.github.codenilson.smartpat.controllers;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,21 +11,19 @@ import com.google.inject.Inject;
 import io.github.codenilson.smartpat.persistence.entities.Asset;
 import io.github.codenilson.smartpat.persistence.entities.Category;
 import io.github.codenilson.smartpat.persistence.valueobjects.Ownership;
+import io.github.codenilson.smartpat.tasks.LoadAssetsTask;
 import io.github.codenilson.smartpat.usecase.asset.CreateAsset;
 import io.github.codenilson.smartpat.usecase.asset.GetAllAssets;
 import io.github.codenilson.smartpat.usecase.category.CreateCategory;
 import io.github.codenilson.smartpat.utils.Util;
-import javafx.concurrent.Task;
 import javafx.event.Event;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressIndicator;
-import javafx.scene.control.TableColumn;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
@@ -35,24 +32,10 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-public class RegisterController implements Initializable {
-
-    @FXML
-    private TableColumn<Asset, String> tombamentoColumn;
-
-    @FXML
-    private TableColumn<Asset, String> categoryColumn;
-
-    @FXML
-    private TableColumn<Asset, String> unidadeAdministrativaColumn;
-
-    @FXML
-    private TableColumn<Asset, String> unidadeDeLocalizacaoColumn;
-
-    @FXML
-    private TableColumn<Asset, String> propertyColumn;
+public class ListAssetsController implements Initializable {
 
     @FXML
     private TilePane assetsContainer;
@@ -67,7 +50,7 @@ public class RegisterController implements Initializable {
     private final GetAllAssets getAllAssets;
 
     @Inject
-    public RegisterController(CreateCategory createCategory, CreateAsset createAsset, GetAllAssets getAllAssets) {
+    public ListAssetsController(CreateCategory createCategory, CreateAsset createAsset, GetAllAssets getAllAssets) {
         this.getAllAssets = getAllAssets;
         this.createAsset = createAsset;
         this.createCategory = createCategory;
@@ -84,12 +67,7 @@ public class RegisterController implements Initializable {
     public void loadDataBaseData() {
 
         loadingSpinner.setVisible(true);
-        Task<List<Asset>> loadAssetsTask = new Task<>() {
-            @Override
-            protected List<Asset> call() {
-                return getAllAssets.execute();
-            }
-        };
+        LoadAssetsTask loadAssetsTask = new LoadAssetsTask(getAllAssets);
 
         loadAssetsTask.setOnSucceeded(e -> {
             loadingSpinner.setVisible(false);
@@ -97,7 +75,19 @@ public class RegisterController implements Initializable {
             populateAssetCards(assets);
         });
 
-        new Thread(loadAssetsTask).start();
+        loadAssetsTask.setOnFailed(e -> {
+            loadingSpinner.setVisible(false);
+            assetsContainer.getChildren().clear();
+            assetsContainer.getChildren().add(new Label("Erro ao carregar os itens."));
+        });
+
+        loadAssetsTask.setOnCancelled(e -> {
+            loadingSpinner.setVisible(false);
+            assetsContainer.getChildren().clear();
+            assetsContainer.getChildren().add(new Label("Carregamento cancelado."));
+        });
+
+        loadAssetsTask.getAssets();
     }
 
     private void createInitialAssets() {
@@ -204,19 +194,19 @@ public class RegisterController implements Initializable {
         colorAdjust.setBrightness(-0.5);
         primaryRoot.setEffect(colorAdjust);
 
+        Parent parent = Util.loadFXML("/gui/scenes/detail-asset.fxml");
+        Scene scene = new Scene(parent);
+        Util.loadStyleSheet(scene, "/styles/main.css");
+
         Stage stage = new Stage();
         stage.setTitle("Detalhes do item");
-        stage.initModality(javafx.stage.Modality.APPLICATION_MODAL);
+        stage.initModality(Modality.APPLICATION_MODAL);
         stage.initOwner(primaryStage);
-        // stage.setResizable(false);
-
-        // 
-        Parent parent = Util.loadFXML("/gui/scenes/detail-item.fxml");
-        Scene scene = new Scene(parent);
-        scene.getStylesheets().add(RegisterController.class.getResource("/styles/main.css").toExternalForm());
         stage.setScene(scene);
+        stage.setResizable(false);
 
         stage.setOnHidden(e -> primaryRoot.setEffect(null));
+        stage.sizeToScene();
         stage.showAndWait();
     }
 

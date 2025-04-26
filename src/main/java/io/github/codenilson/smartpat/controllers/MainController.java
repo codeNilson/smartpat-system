@@ -87,7 +87,7 @@ public class MainController implements Initializable {
 
     @FXML
     public void onBtnSearchClicked() {
-        changeScene("/gui/scenes/register.fxml");
+        changeScene("/gui/scenes/list-assets.fxml");
     }
 
     @FXML

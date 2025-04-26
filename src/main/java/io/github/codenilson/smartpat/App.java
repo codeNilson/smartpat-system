@@ -7,6 +7,7 @@ import com.google.inject.Injector;
 
 import io.github.codenilson.smartpat.modules.PersistenceModule;
 import io.github.codenilson.smartpat.persistence.base.BaseRepository;
+import io.github.codenilson.smartpat.usecase.asset.GetAllAssets;
 import io.github.codenilson.smartpat.utils.Util;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -21,6 +22,9 @@ public class App extends Application {
     @Override
     public void init() throws Exception {
         injector = Guice.createInjector(new PersistenceModule());
+
+        // Initialize the database connection to speed up the first request
+        injector.getInstance(GetAllAssets.class);
     }
 
     @Override

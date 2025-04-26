@@ -119,11 +119,11 @@
 }
 
 .btn-save {
-    -fx-background-color: -fx-tipografy-color-2;
+    -fx-background-color: -fx-detail-color;
 }
 
 .btn-cancel {
-    -fx-background-color: -fx-detail-color;
+    -fx-background-color: -fx-tipografy-color-2;
 }
 
 .btn-save:disabled {
