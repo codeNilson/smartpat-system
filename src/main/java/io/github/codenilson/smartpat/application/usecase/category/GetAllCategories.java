@@ -1,4 +1,4 @@
-package io.github.codenilson.smartpat.usecase.category;
+package io.github.codenilson.smartpat.application.usecase.category;
 
 import java.util.List;
 

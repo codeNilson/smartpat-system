@@ -3,12 +3,12 @@ package io.github.codenilson.smartpat.modules;
 import com.google.inject.AbstractModule;
 import com.google.inject.Scopes;
 
+import io.github.codenilson.smartpat.application.usecase.category.CreateCategory;
+import io.github.codenilson.smartpat.application.usecase.category.DeleteCategory;
+import io.github.codenilson.smartpat.application.usecase.category.GetAllCategories;
+import io.github.codenilson.smartpat.application.usecase.category.GetCategoryById;
+import io.github.codenilson.smartpat.application.usecase.category.UpdateCategory;
 import io.github.codenilson.smartpat.persistence.repositories.CategoryRepository;
-import io.github.codenilson.smartpat.usecase.category.CreateCategory;
-import io.github.codenilson.smartpat.usecase.category.DeleteCategory;
-import io.github.codenilson.smartpat.usecase.category.GetAllCategories;
-import io.github.codenilson.smartpat.usecase.category.GetCategoryById;
-import io.github.codenilson.smartpat.usecase.category.UpdateCategory;
 
 public class CategoryModule extends AbstractModule {
 

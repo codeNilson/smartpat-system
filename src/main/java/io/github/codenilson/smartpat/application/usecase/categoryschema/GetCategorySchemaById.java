@@ -1,22 +1,20 @@
-package io.github.codenilson.smartpat.usecase.categoryschema;
-
-import java.util.List;
+package io.github.codenilson.smartpat.application.usecase.categoryschema;
 
 import com.google.inject.Inject;
 
 import io.github.codenilson.smartpat.persistence.entities.CategorySchema;
 import io.github.codenilson.smartpat.persistence.repositories.CategorySchemaRepository;
 
-public class GetAllCategorySchemas {
+public class GetCategorySchemaById {
     // implementation
     private final CategorySchemaRepository categorySchemaRepository;
 
     @Inject
-    public GetAllCategorySchemas(CategorySchemaRepository categorySchemaRepository) {
+    public GetCategorySchemaById(CategorySchemaRepository categorySchemaRepository) {
         this.categorySchemaRepository = categorySchemaRepository;
     }
 
-    public List<CategorySchema> execute() {
-        return categorySchemaRepository.findAll();
+    public CategorySchema execute(Integer id) {
+        return categorySchemaRepository.findById(id);
     }
 }

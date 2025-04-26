@@ -1,20 +1,22 @@
-package io.github.codenilson.smartpat.usecase.asset;
+package io.github.codenilson.smartpat.application.usecase.asset;
+
+import java.util.List;
 
 import com.google.inject.Inject;
 
 import io.github.codenilson.smartpat.persistence.entities.Asset;
 import io.github.codenilson.smartpat.persistence.repositories.AssetRepository;
 
-public class UpdateAsset {
+public class GetAllAssets {
     // implementation
     private final AssetRepository assetRepository;
 
     @Inject
-    public UpdateAsset(AssetRepository assetRepository) {
+    public GetAllAssets(AssetRepository assetRepository) {
         this.assetRepository = assetRepository;
     }
 
-    public void execute(Asset asset) {
-        assetRepository.update(asset);
+    public List<Asset> execute() {
+        return assetRepository.findAll();
     }
 }

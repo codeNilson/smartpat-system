@@ -3,12 +3,12 @@ package io.github.codenilson.smartpat.modules;
 import com.google.inject.AbstractModule;
 import com.google.inject.Scopes;
 
+import io.github.codenilson.smartpat.application.usecase.asset.CreateAsset;
+import io.github.codenilson.smartpat.application.usecase.asset.DeleteAsset;
+import io.github.codenilson.smartpat.application.usecase.asset.GetAllAssets;
+import io.github.codenilson.smartpat.application.usecase.asset.GetAssetById;
+import io.github.codenilson.smartpat.application.usecase.asset.UpdateAsset;
 import io.github.codenilson.smartpat.persistence.repositories.AssetRepository;
-import io.github.codenilson.smartpat.usecase.asset.CreateAsset;
-import io.github.codenilson.smartpat.usecase.asset.DeleteAsset;
-import io.github.codenilson.smartpat.usecase.asset.GetAllAssets;
-import io.github.codenilson.smartpat.usecase.asset.GetAssetById;
-import io.github.codenilson.smartpat.usecase.asset.UpdateAsset;
 
 public class AssetModule extends AbstractModule {
 

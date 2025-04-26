@@ -5,9 +5,9 @@ import java.io.IOException;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 
+import io.github.codenilson.smartpat.application.usecase.asset.GetAllAssets;
 import io.github.codenilson.smartpat.modules.PersistenceModule;
 import io.github.codenilson.smartpat.persistence.base.BaseRepository;
-import io.github.codenilson.smartpat.usecase.asset.GetAllAssets;
 import io.github.codenilson.smartpat.utils.Util;
 import javafx.application.Application;
 import javafx.application.Platform;

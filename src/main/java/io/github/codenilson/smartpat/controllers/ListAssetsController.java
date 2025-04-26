@@ -8,13 +8,13 @@ import java.util.ResourceBundle;
 
 import com.google.inject.Inject;
 
+import io.github.codenilson.smartpat.application.usecase.asset.CreateAsset;
+import io.github.codenilson.smartpat.application.usecase.asset.GetAllAssets;
+import io.github.codenilson.smartpat.application.usecase.category.CreateCategory;
 import io.github.codenilson.smartpat.persistence.entities.Asset;
 import io.github.codenilson.smartpat.persistence.entities.Category;
 import io.github.codenilson.smartpat.persistence.valueobjects.Ownership;
 import io.github.codenilson.smartpat.tasks.LoadAssetsTask;
-import io.github.codenilson.smartpat.usecase.asset.CreateAsset;
-import io.github.codenilson.smartpat.usecase.asset.GetAllAssets;
-import io.github.codenilson.smartpat.usecase.category.CreateCategory;
 import io.github.codenilson.smartpat.utils.Util;
 import javafx.event.Event;
 import javafx.fxml.FXML;

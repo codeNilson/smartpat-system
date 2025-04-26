@@ -1,20 +1,20 @@
-package io.github.codenilson.smartpat.usecase.category;
+package io.github.codenilson.smartpat.application.usecase.category;
 
 import com.google.inject.Inject;
 
 import io.github.codenilson.smartpat.persistence.entities.Category;
 import io.github.codenilson.smartpat.persistence.repositories.CategoryRepository;
 
-public class UpdateCategory {
+public class GetCategoryById {
     // implementation
     private final CategoryRepository categoryRepository;
 
     @Inject
-    public UpdateCategory(CategoryRepository categoryRepository) {
+    public GetCategoryById(CategoryRepository categoryRepository) {
         this.categoryRepository = categoryRepository;
     }
 
-    public void execute(Category category) {
-        categoryRepository.update(category);
+    public Category execute(Integer id) {
+        return categoryRepository.findById(id);
     }
 }
