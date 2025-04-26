@@ -34,6 +34,7 @@ public class App extends Application {
         Scene scene = new Scene(sceneRoot);
         Util.loadStyleSheet(scene, "/styles/main.css");
         stage.setScene(scene);
+        stage.setTitle("SmartPat - Gerenciador de Patrimônio");
 
         configureStageSize(stage);
 

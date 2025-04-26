@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 
 import com.google.inject.Inject;
 
+import io.github.codenilson.smartpat.App;
 import io.github.codenilson.smartpat.application.usecase.asset.CreateAsset;
 import io.github.codenilson.smartpat.application.usecase.asset.GetAllAssets;
 import io.github.codenilson.smartpat.application.usecase.category.CreateCategory;
@@ -20,11 +21,8 @@ import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressIndicator;
-import javafx.scene.effect.ColorAdjust;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -32,7 +30,6 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class ListAssetsController implements Initializable {
@@ -189,25 +186,8 @@ public class ListAssetsController implements Initializable {
 
     private void openSecondaryWindow(Stage primaryStage) {
 
-        Parent primaryRoot = primaryStage.getScene().getRoot();
-        ColorAdjust colorAdjust = new ColorAdjust();
-        colorAdjust.setBrightness(-0.5);
-        primaryRoot.setEffect(colorAdjust);
-
-        Parent parent = Util.loadFXML("/gui/scenes/detail-asset.fxml");
-        Scene scene = new Scene(parent);
-        Util.loadStyleSheet(scene, "/styles/main.css");
-
-        Stage stage = new Stage();
-        stage.setTitle("Detalhes do item");
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.initOwner(primaryStage);
-        stage.setScene(scene);
-        stage.setResizable(false);
-
-        stage.setOnHidden(e -> primaryRoot.setEffect(null));
-        stage.sizeToScene();
-        stage.showAndWait();
+        DetailItemController controller = App.injector.getInstance(DetailItemController.class);
+        controller.setupDetailView(primaryStage);
     }
 
     public void addShadowEffect(Node node) {
