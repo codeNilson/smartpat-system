@@ -130,3 +130,11 @@
     -fx-background-color: gray;
     -fx-text-fill: black
 }
+
+.asset-code-text:disabled {
+    -fx-background-color: inherit;
+    -fx-opacity: 1;
+    -fx-border-width: 0 0 1px 0;
+    -fx-border-color: -fx-primary-color;
+
+}

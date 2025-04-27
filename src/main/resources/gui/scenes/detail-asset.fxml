@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
@@ -23,31 +24,35 @@
                         <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
                            <children>
                               <Label style="-fx-text-fill: -fx-primary-color;" text="Categoria" />
-                              <ComboBox fx:id="categoryList" prefWidth="150.0" styleClass="options" />
+                              <ComboBox fx:id="categoryList" maxWidth="1.7976931348623157E308" prefWidth="150.0" styleClass="options" />
                            </children>
                         </VBox>
                         <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
                            <children>
-                              <Label style="-fx-text-fill: -fx-primary-color;" text="Unidade Administrativa (U.A.)" />
-                              <ComboBox fx:id="admnistrativeUnitList" prefWidth="150.0" styleClass="options" />
+                              <Label maxWidth="1.7976931348623157E308" style="-fx-text-fill: -fx-primary-color;" text="Unidade Administrativa (U.A.)" />
+                              <ComboBox fx:id="admnistrativeUnitList" maxWidth="1.7976931348623157E308" prefWidth="150.0" styleClass="options" />
                            </children>
                         </VBox>
                         <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
                            <children>
                               <Label style="-fx-text-fill: -fx-primary-color;" text="Unidade de Localização (U.L.)" />
-                              <ComboBox fx:id="locationUnitList" prefWidth="150.0" styleClass="options" />
+                              <ComboBox fx:id="locationUnitList" maxWidth="1.7976931348623157E308" prefWidth="150.0" styleClass="options" />
                            </children>
                         </VBox>
                         <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="5.0">
                            <children>
                               <Label style="-fx-text-fill: -fx-primary-color;" text="Tombamento" />
-                              <Label fx:id="assetCodeLabel" />
+                              <HBox maxWidth="1.7976931348623157E308" onMouseClicked="#onAssetCodeLabelClicked" prefWidth="150.0">
+                                 <children>
+                                    <TextField fx:id="assetCodeTextField" prefWidth="150.0" styleClass="asset-code-text" HBox.hgrow="ALWAYS" />
+                                 </children>
+                              </HBox>
                            </children>
                         </VBox>
                         <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
                            <children>
                               <Label style="-fx-text-fill: -fx-primary-color;" text="Propriedade" />
-                              <ComboBox fx:id="ownershipList" prefWidth="150.0" styleClass="options" />
+                              <ComboBox fx:id="ownershipList" maxWidth="1.7976931348623157E308" prefWidth="150.0" styleClass="options" />
                            </children>
                         </VBox>
                         <ImageView fx:id="assetImageView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
