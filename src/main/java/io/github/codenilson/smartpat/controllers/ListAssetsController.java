@@ -136,7 +136,7 @@ public class ListAssetsController implements Initializable {
         VBox outVBox = new VBox();
         outVBox.setOnMouseClicked(event -> {
             Stage stage = getStageFromEvent(event);
-            openSecondaryWindow(stage);
+            openSecondaryWindow(stage, asset);
         });
         StringBuilder cardDescriptionText = new StringBuilder();
 
@@ -184,10 +184,10 @@ public class ListAssetsController implements Initializable {
         return (Stage) ((Node) event.getSource()).getScene().getWindow();
     }
 
-    private void openSecondaryWindow(Stage primaryStage) {
+    private void openSecondaryWindow(Stage primaryStage, Asset asset) {
 
         DetailItemController controller = App.injector.getInstance(DetailItemController.class);
-        controller.setupDetailView(primaryStage);
+        controller.setupDetailView(primaryStage, asset);
     }
 
     public void addShadowEffect(Node node) {
