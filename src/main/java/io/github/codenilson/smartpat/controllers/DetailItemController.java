@@ -3,8 +3,15 @@ package io.github.codenilson.smartpat.controllers;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import com.google.inject.Inject;
+
+import io.github.codenilson.smartpat.application.usecase.asset.UpdateAsset;
 import io.github.codenilson.smartpat.persistence.entities.Asset;
+import io.github.codenilson.smartpat.persistence.entities.Category;
+import io.github.codenilson.smartpat.persistence.valueobjects.Ownership;
 import io.github.codenilson.smartpat.utils.Util;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
@@ -21,6 +28,9 @@ import javafx.stage.Stage;
 public class DetailItemController implements Initializable {
 
     private static Asset asset;
+
+    @FXML
+    private Button saveButton;
 
     @FXML
     private Button closeButton;
@@ -43,18 +53,29 @@ public class DetailItemController implements Initializable {
     @FXML
     private ImageView assetImageView;
 
+    private final UpdateAsset updateAsset;
+
+    private BooleanProperty valueHasChanged = new SimpleBooleanProperty(false);
+
+    @Inject
+    public DetailItemController(UpdateAsset updateAsset) {
+        this.updateAsset = updateAsset;
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
         setupAsseCodeText();
 
-        assetCodeTextField.setDisable(true);
+        loadAssetOptions();
 
-        categoryList.getItems().addAll("Mesa", "Cadeira", "Computador");
-        admnistrativeUnitList.getItems().addAll("COAFI", "COPROJ", "COEDIF");
-        locationUnitList.getItems().addAll("Sala de Orçamento", "Depósito", "Financeiro");
-        ownershipList.getItems().addAll("PMF", "Terceiros");
+        setAssetInformation();
 
+        setupSaveButton();
+        saveButton.disableProperty().bind(valueHasChanged.not());
+    }
+
+    private void setAssetInformation() {
         categoryList.setValue(asset.getCategory().getName());
         admnistrativeUnitList.setValue(asset.getAdministrativeUnit());
         locationUnitList.setValue(asset.getLocationUnit());
@@ -63,7 +84,15 @@ public class DetailItemController implements Initializable {
         assetImageView.setImage(new Image("file:/" + asset.getImagePath()));
     }
 
+    private void loadAssetOptions() {
+        categoryList.getItems().addAll("Mesa", "Cadeira", "Computador");
+        admnistrativeUnitList.getItems().addAll("COAFI", "COPROJ", "COEDIF", "CEGEA");
+        locationUnitList.getItems().addAll("Sala de Orçamento", "Depósito", "Financeiro", "Almoxarifado");
+        ownershipList.getItems().addAll("PMF", "Terceiros", "Leased");
+    }
+
     private void setupAsseCodeText() {
+        assetCodeTextField.setDisable(true);
 
         assetCodeTextField.focusedProperty().addListener((observable, oldValue,
                 newValue) -> {
@@ -113,6 +142,53 @@ public class DetailItemController implements Initializable {
             assetCodeTextField.setDisable(false);
             assetCodeTextField.requestFocus();
         }
+    }
+
+    private void setupSaveButton() {
+
+        categoryList.valueProperty().addListener((observable, oldValue, newValue) -> {
+            verifyChanges();
+        });
+
+        admnistrativeUnitList.valueProperty().addListener((observable, oldValue, newValue) -> {
+            verifyChanges();
+        });
+
+        locationUnitList.valueProperty().addListener((observable, oldValue, newValue) -> {
+            verifyChanges();
+        });
+
+        ownershipList.valueProperty().addListener((observable, oldValue, newValue) -> {
+            verifyChanges();
+        });
+
+        assetCodeTextField.textProperty().addListener((observable, oldValue,
+                newValue) -> {
+            verifyChanges();
+        });
+
+        saveButton.setOnAction(event -> {
+            asset.setCategory(new Category(categoryList.getValue()));
+            asset.setAdministrativeUnit(admnistrativeUnitList.getValue());
+            asset.setLocationUnit(locationUnitList.getValue());
+            asset.setOwnership(Ownership.valueOf(ownershipList.getValue()));
+            asset.setAssetCode(Long.valueOf(assetCodeTextField.getText()));
+            asset.setImagePath(assetImageView.getImage().getUrl());
+
+        });
+    }
+
+    private void verifyChanges() {
+
+        boolean isCategoryChanged = !categoryList.getValue().equals(asset.getCategory().getName());
+        boolean isAdmnistrativeUnitChanged = !admnistrativeUnitList.getValue().equals(asset.getAdministrativeUnit());
+        boolean isLocationUnitChanged = !locationUnitList.getValue().equals(asset.getLocationUnit());
+        boolean isOwnershipChanged = !ownershipList.getValue().equals(asset.getOwnership().toString());
+        boolean isAssetCodeChanged = !assetCodeTextField.getText().equals(asset.getAssetCode().toString());
+
+        valueHasChanged
+                .set(isCategoryChanged || isAdmnistrativeUnitChanged || isLocationUnitChanged || isOwnershipChanged
+                        || isAssetCodeChanged);
     }
 
 }
