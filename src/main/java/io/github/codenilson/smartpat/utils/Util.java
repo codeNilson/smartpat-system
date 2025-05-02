@@ -9,6 +9,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 
 public class Util {
@@ -29,6 +30,16 @@ public class Util {
     public static void loadStyleSheet(Scene scene, String cssPath) {
         try {
             scene.getStylesheets().add(App.class.getResource(cssPath).toExternalForm());
+        } catch (Exception e) {
+            e.printStackTrace();
+            AlertMessage alert = new AlertMessage(AlertType.ERROR, "Error", "Failed to load CSS: " + cssPath);
+            alert.execute();
+        }
+    }
+
+    public static void loadStyleSheet(Pane pane, String cssPath) {
+        try {
+            pane.getStylesheets().add(App.class.getResource(cssPath).toExternalForm());
         } catch (Exception e) {
             e.printStackTrace();
             AlertMessage alert = new AlertMessage(AlertType.ERROR, "Error", "Failed to load CSS: " + cssPath);

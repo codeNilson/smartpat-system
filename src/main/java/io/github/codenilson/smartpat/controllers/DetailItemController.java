@@ -16,8 +16,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DialogPane;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
@@ -108,7 +112,37 @@ public class DetailItemController implements Initializable {
     }
 
     public void onCloseButtonAction() {
-        closeButton.getScene().getWindow().hide();
+
+        if (!valueHasChanged.get()) {
+            closeButton.getScene().getWindow().hide();
+            return;
+        }
+
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.getButtonTypes().setAll(ButtonType.CANCEL, ButtonType.OK);
+        alert.setTitle("Alerta!");
+        alert.setHeaderText("ALTERAÇÕES NÃO SALVAS!");
+        alert.setContentText("Você tem certeza que deseja sair? As alterações não serão salvas.");
+
+        DialogPane dialogPane = alert.getDialogPane();
+        Util.loadStyleSheet(dialogPane, "/styles/main.css");
+
+        Button okButton = (Button) dialogPane.lookupButton(ButtonType.OK);
+        okButton.setText("SAIR");
+        okButton.getStyleClass().add("button-ok");
+
+        Button cancelButton = (Button) dialogPane.lookupButton(ButtonType.CANCEL);
+        cancelButton.setText("FICAR");
+        cancelButton.getStyleClass().add("button-cancel");
+
+        alert.showAndWait().ifPresent(response -> {
+            if (response == ButtonType.OK) {
+                closeButton.getScene().getWindow().hide();
+            } else if (response == ButtonType.CANCEL) {
+                alert.close();
+            }
+        });
+
     }
 
     public void setupDetailView(Stage primaryStage, Asset asset) {

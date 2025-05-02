@@ -1,5 +1,6 @@
 @import url("./category-cards.css");
 @import url("./combo-box.css");
+@import url("./alert.css");
 
 
 .root {
@@ -9,6 +10,15 @@
     -fx-main-background-color: #ffe6cb;
     -fx-tipografy-color-1: #325565;
     -fx-tipografy-color-2: #414042;
+}
+
+.button {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 5px 10px;
+    -fx-border-radius: 0px;
+    -fx-background-radius: 0px;
+    -fx-cursor: hand;
 }
 
 .logo {
@@ -110,13 +120,6 @@
     -fx-background-color: -fx-primary-color;
 }
 
-.btn {
-    -fx-text-fill: white;
-    -fx-padding: 5px 10px;
-    -fx-border-radius: 0px;
-    -fx-background-radius: 0px;
-    -fx-cursor: hand;
-}
 
 .btn-save {
     -fx-background-color: -fx-detail-color;
@@ -127,7 +130,7 @@
 }
 
 .btn-save:disabled {
-    -fx-background-color: gray;
+    -fx-background-color: #808080;
     -fx-text-fill: black
 }
 

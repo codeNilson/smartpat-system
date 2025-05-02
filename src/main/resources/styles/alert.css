@@ -1,0 +1,42 @@
+.dialog-pane {
+    -fx-border-color: -fx-main-background-color;
+}
+
+.dialog-pane:header .header-panel {
+    -fx-background-color: -fx-primary-color;
+}
+
+.dialog-pane>.button-bar>.container {
+    -fx-background-color: -fx-main-background-color;
+}
+
+.dialog-pane>.content.label {
+    -fx-padding: 0.5em 0.5em 0.5em 0.5em;
+    -fx-background-color: -fx-main-background-color;
+    -fx-text-fill: #000;
+    -fx-font-size: 15.0px;
+}
+
+
+.dialog-pane:header .header-panel .label {
+    -fx-background-color: -fx-primary-color;
+    -fx-text-fill: #fff;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+}
+
+/* .dialog-pane .button-ok {
+    -fx-background-color: linear-gradient(to bottom, #00a0dc, #0077aa);
+}
+
+.dialog-pane .button-ok:hover {
+    -fx-background-color: linear-gradient(to bottom, #0077aa, #005f8c);
+}
+
+.dialog-pane .button-cancel {
+    -fx-background-color: linear-gradient(to bottom, #909090, #808080);
+}
+
+.dialog-pane .button-cancel:hover {
+    -fx-background-color: linear-gradient(to bottom, #808080, #707070);
+} */
