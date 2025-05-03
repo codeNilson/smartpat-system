@@ -1,25 +1,19 @@
 @import url("./category-cards.css");
 @import url("./combo-box.css");
 @import url("./alert.css");
+@import url("./buttons.css");
 
 
 .root {
     -fx-primary-color: #f15a22;
     -fx-secondary-color: #1f8e76;
-    -fx-detail-color: #00a0dc;
+    -fx-tertiary-color: #00a0dc;
     -fx-main-background-color: #ffe6cb;
     -fx-tipografy-color-1: #325565;
     -fx-tipografy-color-2: #414042;
+    -fx-detail-color: -fx-tertiary-color;
 }
 
-.button {
-    -fx-text-fill: white;
-    -fx-font-weight: bold;
-    -fx-padding: 5px 10px;
-    -fx-border-radius: 0px;
-    -fx-background-radius: 0px;
-    -fx-cursor: hand;
-}
 
 .logo {
     -fx-image: url('https://i.imgur.com/YF4ZuHi.png');

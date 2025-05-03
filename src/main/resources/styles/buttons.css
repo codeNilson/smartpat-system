@@ -1,0 +1,43 @@
+/* base button */
+.button {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 5px 10px;
+    -fx-border-radius: 0px;
+    -fx-border-width: 1px;
+    -fx-background-radius: 0px;
+    -fx-cursor: hand;
+}
+
+/* button to confirm actions */
+.button-ok {
+    -fx-background-color: linear-gradient(to bottom, #00a0dc, #0077aa);
+}
+
+.button-ok:hover {
+    -fx-background-color: linear-gradient(to bottom, #0077aa, #005f8c);
+}
+
+.button-ok:pressed {
+    -fx-background-color: linear-gradient(to bottom, #005f8c, #004f7c);
+}
+
+.button-ok:focused {
+    -fx-effect: dropshadow(three-pass-box, #00c3ff, 6, 0.3, 0, 0);
+}
+
+/* button to cancel actions */
+.button-cancel {
+    -fx-background-color: linear-gradient(to bottom, #909090, #808080);
+}
+
+.button-cancel:hover {
+    -fx-background-color: linear-gradient(to bottom, #808080, #707070);
+}
+
+.button-cancel:pressed {
+    -fx-background-color: linear-gradient(to bottom, #707070, #606060);
+}
+.button-cancel:focused {
+    -fx-effect: dropshadow(three-pass-box, #909090, 6, 0.3, 0, 0);
+}
