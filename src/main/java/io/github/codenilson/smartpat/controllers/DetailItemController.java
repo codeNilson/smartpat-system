@@ -26,6 +26,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -121,8 +122,8 @@ public class DetailItemController implements Initializable {
         Alert alert = new Alert(AlertType.INFORMATION);
         alert.getButtonTypes().setAll(ButtonType.CANCEL, ButtonType.OK);
         alert.setTitle("Alerta!");
-        alert.setHeaderText("ALTERAÇÕES NÃO SALVAS!");
-        alert.setContentText("Você tem certeza que deseja sair? As alterações não serão salvas.");
+        alert.setHeaderText("Tem certeza que deseja sair?");
+        alert.setContentText("As alterações não salvas serão perdidas.");
 
         DialogPane dialogPane = alert.getDialogPane();
         Util.loadStyleSheet(dialogPane, "/styles/main.css");
