@@ -138,10 +138,9 @@ public class DetailItemController implements Initializable {
 
         String fullUrl = assetImageView.getImage().getUrl();
         if (fullUrl.startsWith("file:/")) {
-            currentAsset.setImagePath(fullUrl.replace("file:/", ""));
-        } else {
-            currentAsset.setImagePath(fullUrl);
+            fullUrl = fullUrl.replace("file:/", "");
         }
+        currentAsset.setImagePath(fullUrl);
 
         updateAsset.execute(currentAsset);
 
@@ -155,7 +154,7 @@ public class DetailItemController implements Initializable {
             return;
         }
 
-        AlertConfirmation alertConfirmation = new AlertConfirmation("Você tem certeza que deseja sair?");
+        AlertConfirmation alertConfirmation = new AlertConfirmation("As alteração não foram salvas.");
         alertConfirmation.getAlert().setOnHidden(e -> {
             if (alertConfirmation.getAlert().getResult() == ButtonType.OK) {
                 closeCurrentWindow(event);
@@ -228,10 +227,10 @@ public class DetailItemController implements Initializable {
 
     private void verifyChanges() {
 
-        boolean isCategoryChanged = !categoryList.getValue().equals(asset.getCategory().getName());
+        boolean isCategoryChanged = !categoryList.getValue().equals(asset.getCategory());
         boolean isAdmnistrativeUnitChanged = !admnistrativeUnitList.getValue().equals(asset.getAdministrativeUnit());
         boolean isLocationUnitChanged = !locationUnitList.getValue().equals(asset.getLocationUnit());
-        boolean isOwnershipChanged = !ownershipList.getValue().equals(asset.getOwnership().toString());
+        boolean isOwnershipChanged = !ownershipList.getValue().equals(asset.getOwnership());
         boolean isAssetCodeChanged = !assetCodeTextField.getText().equals(asset.getAssetCode().toString());
 
         valueHasChanged
