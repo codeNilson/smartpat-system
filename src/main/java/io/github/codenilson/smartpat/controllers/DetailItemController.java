@@ -1,5 +1,6 @@
 package io.github.codenilson.smartpat.controllers;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -17,6 +18,7 @@ import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -168,7 +170,7 @@ public class DetailItemController implements Initializable {
         ((Node) event.getSource()).getScene().getWindow().hide();
     }
 
-    public void setupDetailView(Stage primaryStage, Asset asset) {
+    public void setupDetailView(Stage primaryStage, Asset asset) throws IOException {
 
         DetailItemController.asset = asset;
 
@@ -177,7 +179,8 @@ public class DetailItemController implements Initializable {
         colorAdjust.setBrightness(-0.5);
         primaryRoot.setEffect(colorAdjust);
 
-        Parent parent = Util.loadFXML("/gui/scenes/detail-asset.fxml");
+        FXMLLoader loader = Util.loadFXML("/gui/scenes/detail-asset.fxml");
+        Parent parent = loader.load();
         Scene scene = new Scene(parent);
         Util.loadStyleSheet(scene, "/styles/main.css");
 

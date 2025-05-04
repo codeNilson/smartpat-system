@@ -11,6 +11,7 @@ import io.github.codenilson.smartpat.persistence.base.BaseRepository;
 import io.github.codenilson.smartpat.utils.Util;
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -30,7 +31,8 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
 
-        Parent sceneRoot = Util.loadFXML("/gui/main.fxml");
+        FXMLLoader loader = Util.loadFXML("/gui/main.fxml");
+        Parent sceneRoot = loader.load();
         Scene scene = new Scene(sceneRoot);
         Util.loadStyleSheet(scene, "/styles/main.css");
         stage.setScene(scene);

@@ -1,5 +1,6 @@
 package io.github.codenilson.smartpat.controllers;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +9,7 @@ import java.util.ResourceBundle;
 import io.github.codenilson.smartpat.utils.Util;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -34,13 +36,19 @@ public class MainController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        changeScene("/gui/scenes/categories.fxml");
+        try {
+            changeScene("/gui/scenes/categories.fxml");
+        } catch (IOException e) {
+            // WIP
+            e.printStackTrace();
+        }
 
         configureSidebarPanes();
     }
 
-    private void changeScene(String fxml) {
-        Parent root = Util.loadFXML(fxml);
+    private void changeScene(String fxml) throws IOException {
+        FXMLLoader loader = Util.loadFXML(fxml);
+        Parent root = loader.load();
         primaryRootPane.setCenter(root);
     }
 
@@ -81,12 +89,12 @@ public class MainController implements Initializable {
     }
 
     @FXML
-    public void onBtnHomeClicked() {
+    public void onBtnHomeClicked() throws IOException {
         changeScene("/gui/scenes/categories.fxml");
     }
 
     @FXML
-    public void onBtnSearchClicked() {
+    public void onBtnSearchClicked() throws IOException {
         changeScene("/gui/scenes/list-assets.fxml");
     }
 
@@ -96,12 +104,12 @@ public class MainController implements Initializable {
     }
 
     @FXML
-    public void onBtnRegisterClicked() {
+    public void onBtnRegisterClicked() throws IOException {
         changeScene("/gui/scenes/register.fxml");
     }
 
     @FXML
-    public void onBtnReportClicked() {
+    public void onBtnReportClicked() throws IOException {
         changeScene("/gui/scenes/reports.fxml");
     }
 

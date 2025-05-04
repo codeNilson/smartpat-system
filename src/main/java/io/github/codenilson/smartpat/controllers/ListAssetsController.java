@@ -1,5 +1,6 @@
 package io.github.codenilson.smartpat.controllers;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,6 +20,7 @@ import io.github.codenilson.smartpat.tasks.LoadAssetsTask;
 import io.github.codenilson.smartpat.utils.Util;
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
@@ -145,7 +147,12 @@ public class ListAssetsController implements Initializable {
         VBox outVBox = new VBox();
         outVBox.setOnMouseClicked(event -> {
             Stage stage = getStageFromEvent(event);
-            openSecondaryWindow(stage, asset);
+            try {
+                openSecondaryWindow(stage, asset);
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
         });
         StringBuilder cardDescriptionText = new StringBuilder();
 
@@ -193,10 +200,11 @@ public class ListAssetsController implements Initializable {
         return (Stage) ((Node) event.getSource()).getScene().getWindow();
     }
 
-    private void openSecondaryWindow(Stage primaryStage, Asset asset) {
+    private void openSecondaryWindow(Stage primaryStage, Asset asset) throws IOException {
 
-        DetailItemController controller = App.injector.getInstance(DetailItemController.class);
-        controller.setupDetailView(primaryStage, asset);
+        FXMLLoader loader = Util.loadFXML("/gui/scenes/detail-item.fxml");
+        loader.load();
+        DetailItemController detailItemController = loader.getController();
     }
 
     public void addShadowEffect(Node node) {
