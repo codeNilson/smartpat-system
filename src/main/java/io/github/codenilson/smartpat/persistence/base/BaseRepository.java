@@ -7,7 +7,7 @@ import jakarta.persistence.Persistence;
 
 public abstract class BaseRepository<T> {
 
-    private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("mainPU");
+    protected static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("mainPU");
 
     private final Class<T> entityClass;
 
@@ -23,7 +23,7 @@ public abstract class BaseRepository<T> {
         em.close();
     }
 
-    public T findById(Integer id) {
+    public T findById(Long id) {
         var em = emf.createEntityManager();
         var entity = em.find(entityClass, id);
         em.close();

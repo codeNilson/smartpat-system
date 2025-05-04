@@ -8,7 +8,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 
@@ -21,7 +20,7 @@ public class Util {
             return loader.load();
         } catch (IOException e) {
             e.printStackTrace();
-            AlertMessage alert = new AlertMessage(AlertType.ERROR, "Error", "Failed to load FXML: " + fxml);
+            AlertError alert = new AlertError("Failed to load FXML: " + fxml);
             alert.execute();
             return null;
         }
@@ -32,7 +31,7 @@ public class Util {
             scene.getStylesheets().add(App.class.getResource(cssPath).toExternalForm());
         } catch (Exception e) {
             e.printStackTrace();
-            AlertMessage alert = new AlertMessage(AlertType.ERROR, "Error", "Failed to load CSS: " + cssPath);
+            AlertError alert = new AlertError("Failed to load CSS: " + cssPath);
             alert.execute();
         }
     }
@@ -42,7 +41,7 @@ public class Util {
             pane.getStylesheets().add(App.class.getResource(cssPath).toExternalForm());
         } catch (Exception e) {
             e.printStackTrace();
-            AlertMessage alert = new AlertMessage(AlertType.ERROR, "Error", "Failed to load CSS: " + cssPath);
+            AlertError alert = new AlertError("Failed to load CSS: " + cssPath);
             alert.execute();
         }
     }

@@ -24,3 +24,8 @@
     -fx-font-size: 15px;
     -fx-wrap-text: true;
 }
+
+.dialog-pane .graphic-container {
+    -fx-background-color: transparent; 
+    -fx-padding: 0;
+}

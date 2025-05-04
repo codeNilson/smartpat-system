@@ -85,7 +85,7 @@
             </HBox>
             <HBox alignment="TOP_RIGHT" spacing="10.0">
                <children>
-                  <Button fx:id="saveButton" mnemonicParsing="false" text="SALVAR">
+                  <Button fx:id="saveButton" mnemonicParsing="false" onAction="#onSaveButtonAction" text="SALVAR">
                      <styleClass>
                         <String fx:value="button-ok" />
                      </styleClass>

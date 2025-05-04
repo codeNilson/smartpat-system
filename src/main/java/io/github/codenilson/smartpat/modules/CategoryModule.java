@@ -19,6 +19,7 @@ public class CategoryModule extends AbstractModule {
         bind(DeleteCategory.class).in(Scopes.SINGLETON);
         bind(GetCategoryById.class).in(Scopes.SINGLETON);
         bind(GetAllCategories.class).in(Scopes.SINGLETON);
+        bind(GetCategoryById.class).in(Scopes.SINGLETON);
         bind(UpdateCategory.class).in(Scopes.SINGLETON);
 
     }

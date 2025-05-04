@@ -14,7 +14,7 @@ public class GetCategorySchemaById {
         this.categorySchemaRepository = categorySchemaRepository;
     }
 
-    public CategorySchema execute(Integer id) {
+    public CategorySchema execute(Long id) {
         return categorySchemaRepository.findById(id);
     }
 }

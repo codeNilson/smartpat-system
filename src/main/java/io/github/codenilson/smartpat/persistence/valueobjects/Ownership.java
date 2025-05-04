@@ -1,8 +1,9 @@
 package io.github.codenilson.smartpat.persistence.valueobjects;
 
 public enum Ownership {
-    OWNED("Owned"),
-    LEASED("Leased");
+    OWNED("OWNED"),
+    LEASED("LEASED"),
+    UNKNOW("UNKNOWN");
 
     private final String description;
 

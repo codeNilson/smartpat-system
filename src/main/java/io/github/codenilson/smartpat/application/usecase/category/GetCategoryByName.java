@@ -5,16 +5,15 @@ import com.google.inject.Inject;
 import io.github.codenilson.smartpat.persistence.entities.Category;
 import io.github.codenilson.smartpat.persistence.repositories.CategoryRepository;
 
-public class GetCategoryById {
-    // implementation
+public class GetCategoryByName {
     private final CategoryRepository categoryRepository;
 
     @Inject
-    public GetCategoryById(CategoryRepository categoryRepository) {
+    public GetCategoryByName(CategoryRepository categoryRepository) {
         this.categoryRepository = categoryRepository;
     }
 
-    public Category execute(Long id) {
-        return categoryRepository.findById(id);
+    public Category execute(String name) {
+        return categoryRepository.findByName(name);
     }
 }

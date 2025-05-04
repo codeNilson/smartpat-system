@@ -14,7 +14,7 @@ public class GetAssetById {
         this.assetRepository = assetRepository;
     }
 
-    public Asset execute(Integer assetId) {
+    public Asset execute(Long assetId) {
         return assetRepository.findById(assetId);
     }
 }
