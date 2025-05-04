@@ -88,13 +88,22 @@ public class ListAssetsController implements Initializable {
     }
 
     private void createInitialAssets() {
-        Category category = new Category();
-        category.setName("Cadeira");
-        createCategory.execute(category);
+
+        Category category1 = new Category("Cadeira");
+        Category category2 = new Category("Mesa");
+        Category category3 = new Category("Computador");
+        Category category4 = new Category("Monitor");
+        Category category5 = new Category("Impressora");
+
+        createCategory.execute(category1);
+        createCategory.execute(category2);
+        createCategory.execute(category3);
+        createCategory.execute(category4);
+        createCategory.execute(category5);
 
         Asset asset = new Asset();
         asset.setAssetCode(123456L);
-        asset.setCategory(category);
+        asset.setCategory(category1);
         asset.setAdministrativeUnit("COAFI");
         asset.setLocationUnit("CEGEA");
         asset.setExtraProperties(new HashMap<>());
@@ -105,7 +114,7 @@ public class ListAssetsController implements Initializable {
 
         Asset asset2 = new Asset();
         asset2.setAssetCode(654321L);
-        asset2.setCategory(category);
+        asset2.setCategory(category2);
         asset2.setAdministrativeUnit("CEGEA");
         asset2.setLocationUnit("Almoxarifado");
         asset2.setExtraProperties(new HashMap<>());
@@ -116,7 +125,7 @@ public class ListAssetsController implements Initializable {
 
         Asset asset3 = new Asset();
         asset3.setAssetCode(789012L);
-        asset3.setCategory(category);
+        asset3.setCategory(category3);
         asset3.setAdministrativeUnit("COPROJ");
         asset3.setLocationUnit("Orçamentos");
         asset3.setExtraProperties(new HashMap<>());

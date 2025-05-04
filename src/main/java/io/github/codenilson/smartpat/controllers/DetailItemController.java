@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 import com.google.inject.Inject;
 
 import io.github.codenilson.smartpat.application.usecase.asset.UpdateAsset;
+import io.github.codenilson.smartpat.application.usecase.category.GetAllCategories;
 import io.github.codenilson.smartpat.application.usecase.category.GetCategoryByName;
 import io.github.codenilson.smartpat.persistence.entities.Asset;
 import io.github.codenilson.smartpat.persistence.entities.Category;
@@ -41,7 +42,7 @@ public class DetailItemController implements Initializable {
     private Button closeButton;
 
     @FXML
-    private ComboBox<String> categoryList;
+    private ComboBox<Category> categoryList;
 
     @FXML
     private ComboBox<String> admnistrativeUnitList;
@@ -60,13 +61,16 @@ public class DetailItemController implements Initializable {
 
     private final UpdateAsset updateAsset;
     private final GetCategoryByName getCategoryByName;
+    private final GetAllCategories getAllCategories;
 
     private BooleanProperty valueHasChanged = new SimpleBooleanProperty(false);
 
     @Inject
-    public DetailItemController(UpdateAsset updateAsset, GetCategoryByName getCategoryByName) {
+    public DetailItemController(UpdateAsset updateAsset, GetCategoryByName getCategoryByName,
+            GetAllCategories getAllCategories) {
         this.updateAsset = updateAsset;
         this.getCategoryByName = getCategoryByName;
+        this.getAllCategories = getAllCategories;
     }
 
     @Override
@@ -99,14 +103,15 @@ public class DetailItemController implements Initializable {
     }
 
     private void loadAssetOptions() {
-        categoryList.getItems().addAll("Mesa", "Cadeira", "Computador");
+
+        categoryList.getItems().addAll(getAllCategories.execute());
         admnistrativeUnitList.getItems().addAll("COAFI", "CEGEA", "COPROJ");
         locationUnitList.getItems().addAll("CEGEA", "Almoxarifado", "Orçamentos");
         ownershipList.getItems().addAll(Ownership.values());
     }
 
     private void setAssetInformation() {
-        categoryList.setValue(asset.getCategory().getName());
+        categoryList.setValue(asset.getCategory());
         admnistrativeUnitList.setValue(asset.getAdministrativeUnit());
         locationUnitList.setValue(asset.getLocationUnit());
         assetCodeTextField.setText(asset.getAssetCode().toString());
@@ -117,7 +122,7 @@ public class DetailItemController implements Initializable {
     @FXML
     public void onSaveButtonAction(Event event) {
 
-        Category category = getCategoryByName.execute(categoryList.getValue());
+        Category category = getCategoryByName.execute(categoryList.getValue().toString());
 
         Asset currentAsset = DetailItemController.asset;
 
