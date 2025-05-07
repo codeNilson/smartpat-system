@@ -5,16 +5,16 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.codenilson.smartpat.controllers.AssetCardController">
+<VBox fx:id="cardRoot" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="10.0" minWidth="10.0" onMouseClicked="#onCardRootClicked" styleClass="category-card-container" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.codenilson.smartpat.controllers.AssetCardController">
    <children>
-      <VBox prefHeight="200.0" prefWidth="100.0" styleClass="category-card">
+      <VBox fx:id="cardContent" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="category-card" VBox.vgrow="ALWAYS">
          <children>
-            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-            <Label styleClass="category-title" text="Card Title" />
-            <Label styleClass="category-description" text="Card Description" wrapText="true" VBox.vgrow="ALWAYS" />
-            <Label styleClass="category-location-info" text="Card Location Info">
+            <ImageView fx:id="assetPhoto" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="titleLabel" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="category-title" text="Card Title" VBox.vgrow="NEVER" />
+            <Label fx:id="descriptionLabel" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="category-description" text="Card Description" wrapText="true" VBox.vgrow="ALWAYS" />
+            <Label fx:id="locationLabel" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="category-location-info" text="Card Location Info" VBox.vgrow="NEVER">
                <graphic>
-                  <ImageView cache="true" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView cache="true" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="https://img.icons8.com/color/48/marker--v1.png" />
                      </image>

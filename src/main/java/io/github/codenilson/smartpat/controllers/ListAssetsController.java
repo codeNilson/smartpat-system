@@ -9,7 +9,6 @@ import java.util.ResourceBundle;
 
 import com.google.inject.Inject;
 
-import io.github.codenilson.smartpat.App;
 import io.github.codenilson.smartpat.application.usecase.asset.CreateAsset;
 import io.github.codenilson.smartpat.application.usecase.asset.GetAllAssets;
 import io.github.codenilson.smartpat.application.usecase.category.CreateCategory;
@@ -18,20 +17,16 @@ import io.github.codenilson.smartpat.persistence.entities.Category;
 import io.github.codenilson.smartpat.persistence.valueobjects.Ownership;
 import io.github.codenilson.smartpat.tasks.LoadAssetsTask;
 import io.github.codenilson.smartpat.utils.Util;
-import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.effect.DropShadow;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.Priority;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.stage.Stage;
 
 public class ListAssetsController implements Initializable {
 
@@ -132,77 +127,16 @@ public class ListAssetsController implements Initializable {
 
     private void populateAssetCards(List<Asset> assets) {
         assets.forEach(asset -> {
-            createAssetCardView(asset);
-        });
-    }
-
-    private void createAssetCardView(Asset asset) {
-        // Primary root for the card
-        VBox outVBox = new VBox();
-
-        // Set the onClick event for the card, opening a new window with the asset
-        // details
-        outVBox.setOnMouseClicked(event -> {
-            Stage stage = getStageFromEvent(event);
+            FXMLLoader loader = Util.loadFXML("/gui/components/asset-card.fxml");
             try {
-                openSecondaryWindow(stage, asset);
+                VBox cardRoot = loader.load();
+                AssetCardController assetCardController = loader.getController();
+                assetCardController.setData(asset);
+                assetsContainer.getChildren().add(cardRoot);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         });
-
-        Image image = new Image("file:/" + asset.getImagePath());
-        ImageView imageView = new ImageView(image);
-        imageView.setCache(true);
-
-        Label cardTitle = new Label();
-        cardTitle.getStyleClass().add("category-title");
-        cardTitle.setText(asset.getCategory().getName());
-
-        StringBuilder cardDescriptionText = new StringBuilder();
-        Label cardDescription = new Label();
-        cardDescription.getStyleClass().add("category-description");
-        if (asset.getExtraProperties() != null) {
-            asset.getExtraProperties().forEach((key, value) -> {
-                cardDescriptionText.append(key).append(" ").append(" ").append(value).append(", ");
-            });
-            cardDescription.setText(cardDescriptionText.toString() + " com gaveta, cor azul, comprimento 1,20m");
-        }
-        cardDescription.setWrapText(true);
-        VBox.setVgrow(cardDescription, Priority.ALWAYS);
-
-        Label cardLocationInfo = new Label();
-        cardLocationInfo.getStyleClass().add("category-location-info");
-        Image locationImage = new Image("https://img.icons8.com/color/48/marker--v1.png");
-        ImageView locationImageView = new ImageView(locationImage);
-        locationImageView.setPreserveRatio(true);
-        locationImageView.setCache(true);
-        cardLocationInfo.setGraphic(locationImageView);
-        cardLocationInfo.setText(asset.getAdministrativeUnit() + " - " + asset.getLocationUnit());
-
-        // Card container
-        VBox innerVBox = new VBox();
-        innerVBox.getStyleClass().add("category-card");
-        addShadowEffect(innerVBox);
-        innerVBox.getChildren().addAll(imageView, cardTitle, cardDescription, cardLocationInfo);
-        innerVBox.setFillWidth(true);
-        VBox.setVgrow(innerVBox, Priority.ALWAYS);
-
-        outVBox.getChildren().add(innerVBox);
-        outVBox.getStyleClass().add("category-card-container");
-        Util.applyScaleAnimation(outVBox);
-
-        assetsContainer.getChildren().add(outVBox);
-    }
-
-    private Stage getStageFromEvent(Event event) {
-        return (Stage) ((Node) event.getSource()).getScene().getWindow();
-    }
-
-    private void openSecondaryWindow(Stage primaryStage, Asset asset) throws IOException {
-
-        DetailItemController controller = App.injector.getInstance(DetailItemController.class);
-        controller.setupDetailView(primaryStage);
     }
 
     public void addShadowEffect(Node node) {
