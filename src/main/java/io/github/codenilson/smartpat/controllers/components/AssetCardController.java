@@ -1,10 +1,11 @@
-package io.github.codenilson.smartpat.controllers;
+package io.github.codenilson.smartpat.controllers.components;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import io.github.codenilson.smartpat.App;
+import io.github.codenilson.smartpat.controllers.scenes.DetailItemController;
 import io.github.codenilson.smartpat.persistence.entities.Asset;
 import io.github.codenilson.smartpat.utils.Util;
 import javafx.event.Event;

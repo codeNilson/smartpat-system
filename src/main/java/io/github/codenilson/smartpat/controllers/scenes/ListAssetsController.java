@@ -1,4 +1,4 @@
-package io.github.codenilson.smartpat.controllers;
+package io.github.codenilson.smartpat.controllers.scenes;
 
 import java.io.IOException;
 import java.net.URL;
@@ -12,6 +12,7 @@ import com.google.inject.Inject;
 import io.github.codenilson.smartpat.application.usecase.asset.CreateAsset;
 import io.github.codenilson.smartpat.application.usecase.asset.GetAllAssets;
 import io.github.codenilson.smartpat.application.usecase.category.CreateCategory;
+import io.github.codenilson.smartpat.controllers.components.AssetCardController;
 import io.github.codenilson.smartpat.persistence.entities.Asset;
 import io.github.codenilson.smartpat.persistence.entities.Category;
 import io.github.codenilson.smartpat.persistence.valueobjects.Ownership;

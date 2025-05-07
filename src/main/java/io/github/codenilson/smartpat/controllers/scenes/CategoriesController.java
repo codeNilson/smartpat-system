@@ -1,4 +1,4 @@
-package io.github.codenilson.smartpat.controllers;
+package io.github.codenilson.smartpat.controllers.scenes;
 
 import java.net.URL;
 import java.util.ArrayList;
