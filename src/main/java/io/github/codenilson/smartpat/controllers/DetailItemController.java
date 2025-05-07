@@ -14,6 +14,7 @@ import io.github.codenilson.smartpat.persistence.entities.Category;
 import io.github.codenilson.smartpat.persistence.valueobjects.Ownership;
 import io.github.codenilson.smartpat.utils.AlertConfirmation;
 import io.github.codenilson.smartpat.utils.Util;
+import javafx.application.Platform;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.Event;
@@ -35,7 +36,7 @@ import javafx.stage.Stage;
 
 public class DetailItemController implements Initializable {
 
-    private static Asset asset;
+    private static Asset asset = new Asset();
 
     @FXML
     private Button saveButton;
@@ -82,10 +83,6 @@ public class DetailItemController implements Initializable {
 
         loadAssetOptions();
 
-        setAssetInformation();
-
-        setupSaveButton();
-        saveButton.disableProperty().bind(valueHasChanged.not());
     }
 
     private void setupAssetCodeText() {
@@ -126,7 +123,7 @@ public class DetailItemController implements Initializable {
 
         Category category = getCategoryByName.execute(categoryList.getValue().toString());
 
-        Asset currentAsset = DetailItemController.asset;
+        Asset currentAsset = asset;
 
         currentAsset.setCategory(category);
 
@@ -138,11 +135,11 @@ public class DetailItemController implements Initializable {
 
         currentAsset.setAssetCode(Long.valueOf(assetCodeTextField.getText()));
 
-        String fullUrl = assetImageView.getImage().getUrl();
-        if (fullUrl.startsWith("file:/")) {
-            fullUrl = fullUrl.replace("file:/", "");
-        }
-        currentAsset.setImagePath(fullUrl);
+        // String fullUrl = assetImageView.getImage().getUrl();
+        // if (fullUrl.startsWith("file:/")) {
+        // fullUrl = fullUrl.replace("file:/", "");
+        // }
+        // currentAsset.setImagePath(fullUrl);
 
         updateAsset.execute(currentAsset);
 
@@ -181,6 +178,33 @@ public class DetailItemController implements Initializable {
 
         FXMLLoader loader = Util.loadFXML("/gui/scenes/detail-asset.fxml");
         Parent parent = loader.load();
+        DetailItemController controller = loader.getController();
+        controller.setAssetInformation();
+        controller.setupSaveButton();
+        Scene scene = new Scene(parent);
+        Util.loadStyleSheet(scene, "/styles/main.css");
+
+        Stage stage = new Stage();
+        stage.setTitle("Detalhes do item");
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.initOwner(primaryStage);
+        stage.setScene(scene);
+        stage.setResizable(false);
+
+        stage.setOnHidden(e -> primaryRoot.setEffect(null));
+        stage.sizeToScene();
+        stage.showAndWait();
+    }
+
+    public void setupDetailView(Stage primaryStage) throws IOException {
+
+        Parent primaryRoot = primaryStage.getScene().getRoot();
+        ColorAdjust colorAdjust = new ColorAdjust();
+        colorAdjust.setBrightness(-0.5);
+        primaryRoot.setEffect(colorAdjust);
+
+        FXMLLoader loader = Util.loadFXML("/gui/scenes/detail-asset.fxml");
+        Parent parent = loader.load();
         Scene scene = new Scene(parent);
         Util.loadStyleSheet(scene, "/styles/main.css");
 
@@ -205,6 +229,8 @@ public class DetailItemController implements Initializable {
     }
 
     private void setupSaveButton() {
+
+        saveButton.disableProperty().bind(valueHasChanged.not());
 
         categoryList.valueProperty().addListener((observable, oldValue, newValue) -> {
             verifyChanges();

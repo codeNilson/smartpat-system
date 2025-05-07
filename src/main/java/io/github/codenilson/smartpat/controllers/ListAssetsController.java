@@ -20,7 +20,6 @@ import io.github.codenilson.smartpat.tasks.LoadAssetsTask;
 import io.github.codenilson.smartpat.utils.Util;
 import javafx.event.Event;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
@@ -166,10 +165,12 @@ public class ListAssetsController implements Initializable {
 
         Label cardDescription = new Label();
         cardDescription.getStyleClass().add("category-description");
-        asset.getExtraProperties().forEach((key, value) -> {
-            cardDescriptionText.append(key).append(" ").append(" ").append(value).append(", ");
-        });
-        cardDescription.setText(cardDescriptionText.toString() + " com gaveta, cor azul, comprimento 1,20m");
+        if (asset.getExtraProperties() != null) {
+            asset.getExtraProperties().forEach((key, value) -> {
+                cardDescriptionText.append(key).append(" ").append(" ").append(value).append(", ");
+            });
+            cardDescription.setText(cardDescriptionText.toString() + " com gaveta, cor azul, comprimento 1,20m");
+        }
         cardDescription.setWrapText(true);
         VBox.setVgrow(cardDescription, Priority.ALWAYS);
 
@@ -202,9 +203,8 @@ public class ListAssetsController implements Initializable {
 
     private void openSecondaryWindow(Stage primaryStage, Asset asset) throws IOException {
 
-        FXMLLoader loader = Util.loadFXML("/gui/scenes/detail-item.fxml");
-        loader.load();
-        DetailItemController detailItemController = loader.getController();
+        DetailItemController controller = App.injector.getInstance(DetailItemController.class);
+        controller.setupDetailView(primaryStage);
     }
 
     public void addShadowEffect(Node node) {
