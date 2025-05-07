@@ -9,8 +9,8 @@
    <children>
       <VBox fx:id="cardContent" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="category-card" VBox.vgrow="ALWAYS">
          <children>
-            <ImageView fx:id="assetPhoto" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-            <Label fx:id="titleLabel" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="category-title" text="Card Title" VBox.vgrow="NEVER" />
+            <ImageView fx:id="assetPhoto" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" />
+            <Label fx:id="titleLabel" styleClass="category-title" text="Card Title" VBox.vgrow="NEVER" />
             <Label fx:id="descriptionLabel" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="category-description" text="Card Description" wrapText="true" VBox.vgrow="ALWAYS" />
             <Label fx:id="locationLabel" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="category-location-info" text="Card Location Info" VBox.vgrow="NEVER">
                <graphic>
