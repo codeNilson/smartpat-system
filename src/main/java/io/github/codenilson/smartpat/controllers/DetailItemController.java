@@ -14,7 +14,6 @@ import io.github.codenilson.smartpat.persistence.entities.Category;
 import io.github.codenilson.smartpat.persistence.valueobjects.Ownership;
 import io.github.codenilson.smartpat.utils.AlertConfirmation;
 import io.github.codenilson.smartpat.utils.Util;
-import javafx.application.Platform;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.Event;
@@ -135,11 +134,14 @@ public class DetailItemController implements Initializable {
 
         currentAsset.setAssetCode(Long.valueOf(assetCodeTextField.getText()));
 
-        // String fullUrl = assetImageView.getImage().getUrl();
-        // if (fullUrl.startsWith("file:/")) {
-        // fullUrl = fullUrl.replace("file:/", "");
-        // }
-        // currentAsset.setImagePath(fullUrl);
+        Image assetImage = assetImageView.getImage();
+        if (assetImage != null) {
+            String fullUrl = assetImage.getUrl();
+            if (fullUrl.startsWith("file:/")) {
+                fullUrl = fullUrl.replace("file:/", "");
+            }
+            currentAsset.setImagePath(fullUrl);
+        }
 
         updateAsset.execute(currentAsset);
 
