@@ -79,12 +79,6 @@ public class ListAssetsController implements Initializable {
             assetsContainer.getChildren().add(new Label("Erro ao carregar os itens."));
         });
 
-        loadAssetsTask.setOnCancelled(e -> {
-            loadingSpinner.setVisible(false);
-            assetsContainer.getChildren().clear();
-            assetsContainer.getChildren().add(new Label("Carregamento cancelado."));
-        });
-
         loadAssetsTask.getAssets();
     }
 
@@ -143,17 +137,19 @@ public class ListAssetsController implements Initializable {
     }
 
     private void createAssetCardView(Asset asset) {
+        // Primary root for the card
         VBox outVBox = new VBox();
+
+        // Set the onClick event for the card, opening a new window with the asset
+        // details
         outVBox.setOnMouseClicked(event -> {
             Stage stage = getStageFromEvent(event);
             try {
                 openSecondaryWindow(stage, asset);
             } catch (IOException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         });
-        StringBuilder cardDescriptionText = new StringBuilder();
 
         Image image = new Image("file:/" + asset.getImagePath());
         ImageView imageView = new ImageView(image);
@@ -163,6 +159,7 @@ public class ListAssetsController implements Initializable {
         cardTitle.getStyleClass().add("category-title");
         cardTitle.setText(asset.getCategory().getName());
 
+        StringBuilder cardDescriptionText = new StringBuilder();
         Label cardDescription = new Label();
         cardDescription.getStyleClass().add("category-description");
         if (asset.getExtraProperties() != null) {
@@ -183,6 +180,7 @@ public class ListAssetsController implements Initializable {
         cardLocationInfo.setGraphic(locationImageView);
         cardLocationInfo.setText(asset.getAdministrativeUnit() + " - " + asset.getLocationUnit());
 
+        // Card container
         VBox innerVBox = new VBox();
         innerVBox.getStyleClass().add("category-card");
         addShadowEffect(innerVBox);
