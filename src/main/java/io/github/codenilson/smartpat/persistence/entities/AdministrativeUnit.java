@@ -1,7 +1,7 @@
 package io.github.codenilson.smartpat.persistence.entities;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -14,17 +14,25 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "administrative_units")
 public class AdministrativeUnit {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private UUID id;
+    private Long id;
 
-    @Column
+    @Column(unique = true, nullable = false)
     private String name;
 
-    @OneToMany(mappedBy = "locationUnit")
-    private List<LocationUnit> administrativeUnit;
+    @OneToMany(mappedBy = "administrativeUnit")
+    private List<LocationUnit> locationUnits = new ArrayList<>();
 
-    public UUID getId() {
+    public AdministrativeUnit() {
+    }
+
+    public AdministrativeUnit(String name) {
+        this.name = name;
+    }
+
+    public Long getId() {
         return id;
     }
 
@@ -37,7 +45,7 @@ public class AdministrativeUnit {
     }
 
     public List<LocationUnit> getAdministrativeUnit() {
-        return administrativeUnit;
+        return locationUnits;
     }
 
 }

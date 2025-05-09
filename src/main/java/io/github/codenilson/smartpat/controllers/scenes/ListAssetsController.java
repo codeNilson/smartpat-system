@@ -13,8 +13,10 @@ import io.github.codenilson.smartpat.application.usecase.asset.CreateAsset;
 import io.github.codenilson.smartpat.application.usecase.asset.GetAllAssets;
 import io.github.codenilson.smartpat.application.usecase.category.CreateCategory;
 import io.github.codenilson.smartpat.controllers.components.AssetCardController;
+import io.github.codenilson.smartpat.persistence.entities.AdministrativeUnit;
 import io.github.codenilson.smartpat.persistence.entities.Asset;
 import io.github.codenilson.smartpat.persistence.entities.Category;
+import io.github.codenilson.smartpat.persistence.entities.LocationUnit;
 import io.github.codenilson.smartpat.persistence.valueobjects.Ownership;
 import io.github.codenilson.smartpat.tasks.LoadAssetsTask;
 import io.github.codenilson.smartpat.utils.Util;
@@ -92,11 +94,21 @@ public class ListAssetsController implements Initializable {
         createCategory.execute(category4);
         createCategory.execute(category5);
 
+        AdministrativeUnit administrativeUnit1 = new AdministrativeUnit("COAFI");
+        AdministrativeUnit administrativeUnit2 = new AdministrativeUnit("CEGEA");
+        AdministrativeUnit administrativeUnit3 = new AdministrativeUnit("COPROJ");
+
+        LocationUnit locationUnit1 = new LocationUnit("Almoxarifado", administrativeUnit1);
+        LocationUnit locationUnit2 = new LocationUnit("Orçamentos", administrativeUnit2);
+        LocationUnit locationUnit3 = new LocationUnit("Copa", administrativeUnit3);
+        LocationUnit locationUnit4 = new LocationUnit("Sala de Reunião", administrativeUnit1);
+        LocationUnit locationUnit5 = new LocationUnit("Sala de Reunião", administrativeUnit2);
+        LocationUnit locationUnit6 = new LocationUnit("Sala de Reunião", administrativeUnit3);
+
         Asset asset = new Asset();
         asset.setAssetCode(123456L);
         asset.setCategory(category1);
-        asset.setAdministrativeUnit("COAFI");
-        asset.setLocationUnit("CEGEA");
+        asset.setLocationUnit(locationUnit2);
         asset.setExtraProperties(new HashMap<>());
         asset.getExtraProperties().put("Propriedade", "Valor da Propriedade");
         asset.setOwnership(Ownership.LEASED);
@@ -106,8 +118,7 @@ public class ListAssetsController implements Initializable {
         Asset asset2 = new Asset();
         asset2.setAssetCode(654321L);
         asset2.setCategory(category2);
-        asset2.setAdministrativeUnit("CEGEA");
-        asset2.setLocationUnit("Almoxarifado");
+        asset2.setLocationUnit(locationUnit1);
         asset2.setExtraProperties(new HashMap<>());
         asset2.getExtraProperties().put("Propriedade", "Valor da Propriedade 2");
         asset2.setOwnership(Ownership.OWNED);
@@ -117,10 +128,9 @@ public class ListAssetsController implements Initializable {
         Asset asset3 = new Asset();
         asset3.setAssetCode(789012L);
         asset3.setCategory(category3);
-        asset3.setAdministrativeUnit("COPROJ");
-        asset3.setLocationUnit("Orçamentos");
+        asset3.setLocationUnit(locationUnit6);
         asset3.setExtraProperties(new HashMap<>());
-        asset3.getExtraProperties().put("Propriedade", "Valor da Propriedade 3");
+        asset3.getExtraProperties().put("Com portas", "sim");
         asset3.setOwnership(Ownership.OWNED);
         asset3.setImagePath("C:\\Users\\Denilson\\Pictures\\bleach-background.jpg");
         createAsset.execute(asset3);
