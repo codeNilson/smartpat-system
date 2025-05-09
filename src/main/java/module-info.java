@@ -7,6 +7,8 @@ module io.github.codenilson.smartpat {
     requires com.google.guice;
 
     opens io.github.codenilson.smartpat.controllers to javafx.fxml, com.google.guice;
+    opens io.github.codenilson.smartpat.controllers.scenes to javafx.fxml, com.google.guice;
+    opens io.github.codenilson.smartpat.controllers.components to javafx.fxml, com.google.guice;
     opens io.github.codenilson.smartpat.persistence.repositories to com.google.guice;
     opens io.github.codenilson.smartpat.application.usecase.category to com.google.guice;
     opens io.github.codenilson.smartpat.application.usecase.asset to com.google.guice;
