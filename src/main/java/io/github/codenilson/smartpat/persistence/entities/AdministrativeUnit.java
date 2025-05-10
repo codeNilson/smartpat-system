@@ -44,7 +44,7 @@ public class AdministrativeUnit {
         this.name = name;
     }
 
-    public List<LocationUnit> getAdministrativeUnit() {
+    public List<LocationUnit> geLocationUnits() {
         return locationUnits;
     }
 

@@ -9,8 +9,8 @@ public class CreateAdministrativeUnit {
     private final AdministrativeUnitRepository repository;
 
     @Inject
-    public CreateAdministrativeUnit(AdministrativeUnitRepository AdministrativeUnitRepository) {
-        this.repository = AdministrativeUnitRepository;
+    public CreateAdministrativeUnit(AdministrativeUnitRepository administrativeUnitRepository) {
+        this.repository = administrativeUnitRepository;
     }
 
     public void execute(AdministrativeUnit administrativeUnit) {
