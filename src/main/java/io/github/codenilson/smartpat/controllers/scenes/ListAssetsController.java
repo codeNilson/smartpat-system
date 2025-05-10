@@ -9,9 +9,11 @@ import java.util.ResourceBundle;
 
 import com.google.inject.Inject;
 
+import io.github.codenilson.smartpat.application.usecase.administrativeunit.CreateAdministrativeUnit;
 import io.github.codenilson.smartpat.application.usecase.asset.CreateAsset;
 import io.github.codenilson.smartpat.application.usecase.asset.GetAllAssets;
 import io.github.codenilson.smartpat.application.usecase.category.CreateCategory;
+import io.github.codenilson.smartpat.application.usecase.locationunit.CreateLocationUnit;
 import io.github.codenilson.smartpat.controllers.components.AssetCardController;
 import io.github.codenilson.smartpat.persistence.entities.AdministrativeUnit;
 import io.github.codenilson.smartpat.persistence.entities.Asset;
@@ -44,12 +46,20 @@ public class ListAssetsController implements Initializable {
     private final CreateCategory createCategory;
     private final CreateAsset createAsset;
     private final GetAllAssets getAllAssets;
+    private final CreateAdministrativeUnit createAdministrativeUnit;
+    private final CreateLocationUnit createLocationUnit;
 
     @Inject
-    public ListAssetsController(CreateCategory createCategory, CreateAsset createAsset, GetAllAssets getAllAssets) {
+    public ListAssetsController(CreateCategory createCategory,
+            CreateAsset createAsset,
+            GetAllAssets getAllAssets,
+            CreateAdministrativeUnit createAdministrativeUnit,
+            CreateLocationUnit createLocationUnit) {
         this.getAllAssets = getAllAssets;
         this.createAsset = createAsset;
         this.createCategory = createCategory;
+        this.createAdministrativeUnit = createAdministrativeUnit;
+        this.createLocationUnit = createLocationUnit;
     }
 
     @Override
@@ -98,12 +108,23 @@ public class ListAssetsController implements Initializable {
         AdministrativeUnit administrativeUnit2 = new AdministrativeUnit("CEGEA");
         AdministrativeUnit administrativeUnit3 = new AdministrativeUnit("COPROJ");
 
+        createAdministrativeUnit.execute(administrativeUnit1);
+        createAdministrativeUnit.execute(administrativeUnit2);
+        createAdministrativeUnit.execute(administrativeUnit3);
+
         LocationUnit locationUnit1 = new LocationUnit("Almoxarifado", administrativeUnit1);
         LocationUnit locationUnit2 = new LocationUnit("Orçamentos", administrativeUnit2);
         LocationUnit locationUnit3 = new LocationUnit("Copa", administrativeUnit3);
         LocationUnit locationUnit4 = new LocationUnit("Sala de Reunião", administrativeUnit1);
-        LocationUnit locationUnit5 = new LocationUnit("Sala de Reunião", administrativeUnit2);
-        LocationUnit locationUnit6 = new LocationUnit("Sala de Reunião", administrativeUnit3);
+        LocationUnit locationUnit5 = new LocationUnit("Desapropriação", administrativeUnit2);
+        LocationUnit locationUnit6 = new LocationUnit("Qualifor", administrativeUnit3);
+
+        createLocationUnit.execute(locationUnit1);
+        createLocationUnit.execute(locationUnit2);
+        createLocationUnit.execute(locationUnit3);
+        createLocationUnit.execute(locationUnit4);
+        createLocationUnit.execute(locationUnit5);
+        createLocationUnit.execute(locationUnit6);
 
         Asset asset = new Asset();
         asset.setAssetCode(123456L);

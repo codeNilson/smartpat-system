@@ -48,4 +48,8 @@ public class AdministrativeUnit {
         return locationUnits;
     }
 
+    public String toString() {
+        return getName();
+    }
+
 }

@@ -124,6 +124,7 @@ public class DetailItemController implements Initializable {
     }
 
     private void setAssetInformation() {
+
         categoryList.setValue(asset.getCategory());
         admnistrativeUnitList.setValue(asset.getLocationUnit().getAdministrativeUnit());
         locationUnitList.setValue(asset.getLocationUnit());

@@ -68,7 +68,8 @@ public class AssetCardController implements Initializable {
 
         // Location
         locationLabel
-                .setText(asset.getLocationUnit().getAdministrativeUnit().getName() + " - " + asset.getLocationUnit());
+                .setText(asset.getLocationUnit().getAdministrativeUnit().getName() + " - "
+                        + asset.getLocationUnit().getName());
     }
 
     public void onCardRootClicked(Event event) {

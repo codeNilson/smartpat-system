@@ -58,4 +58,9 @@ public class LocationUnit {
         this.administrativeUnit = administrativeUnit;
     }
 
+    @Override
+    public String toString() {
+        return getName();
+    }
+
 }
