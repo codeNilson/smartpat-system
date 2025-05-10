@@ -13,6 +13,8 @@ module io.github.codenilson.smartpat {
     opens io.github.codenilson.smartpat.application.usecase.category to com.google.guice;
     opens io.github.codenilson.smartpat.application.usecase.asset to com.google.guice;
     opens io.github.codenilson.smartpat.application.usecase.categoryschema to com.google.guice;
+    opens io.github.codenilson.smartpat.application.usecase.administrativeunit to com.google.guice;
+    opens io.github.codenilson.smartpat.application.usecase.locationunit to com.google.guice;
 
     opens io.github.codenilson.smartpat.persistence.entities to org.hibernate.orm.core;
 

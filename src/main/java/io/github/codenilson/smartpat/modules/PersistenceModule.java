@@ -9,7 +9,8 @@ public class PersistenceModule extends AbstractModule {
         install(new AssetModule());
         install(new CategoryModule());
         install(new CategorySchemaModule());
-
+        install(new AdministrativeUnitModule());
+        install(new LocationUnitModule());
     }
 
 }

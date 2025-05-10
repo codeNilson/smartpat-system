@@ -37,10 +37,9 @@ public class Asset {
     @Column(name = "extra_properties")
     private Map<String, Object> extraProperties;
 
-    @Column(name = "administrative_unit")
-    private String administrativeUnit;
-
-    private String locationUnit;
+    @ManyToOne
+    @JoinColumn(name = "location_unit_id")
+    private LocationUnit locationUnit;
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
@@ -58,14 +57,12 @@ public class Asset {
     public Asset(Long assetCode,
             Category category,
             Map<String, Object> extraProperties,
-            String administrativeUnit,
-            String locationUnit,
+            LocationUnit locationUnit,
             Ownership ownership,
             String imagePath) {
         this.assetCode = assetCode;
         this.category = category;
         this.extraProperties = extraProperties;
-        this.administrativeUnit = administrativeUnit;
         this.locationUnit = locationUnit;
         this.ownership = ownership;
         this.imagePath = imagePath;
@@ -99,19 +96,11 @@ public class Asset {
         this.extraProperties = extraProperties;
     }
 
-    public String getAdministrativeUnit() {
-        return administrativeUnit;
-    }
-
-    public void setAdministrativeUnit(String administrativeUnit) {
-        this.administrativeUnit = administrativeUnit;
-    }
-
-    public String getLocationUnit() {
+    public LocationUnit getLocationUnit() {
         return locationUnit;
     }
 
-    public void setLocationUnit(String locationUnit) {
+    public void setLocationUnit(LocationUnit locationUnit) {
         this.locationUnit = locationUnit;
     }
 
@@ -153,10 +142,10 @@ public class Asset {
                 ", assetCode=" + assetCode +
                 ", category=" + category +
                 ", extraProperties=" + extraProperties +
-                ", administrativeUnit='" + administrativeUnit + '\'' +
-                ", locationUnit='" + locationUnit + '\'' +
-                ", createdAt=" + createdAt +
+                ", locationUnit=" + locationUnit +
                 ", ownership=" + ownership +
+                ", imagePath='" + imagePath + '\'' +
+                ", createdAt=" + createdAt +
                 '}';
     }
 }

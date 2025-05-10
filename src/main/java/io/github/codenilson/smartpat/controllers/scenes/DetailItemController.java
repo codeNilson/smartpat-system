@@ -6,11 +6,16 @@ import java.util.ResourceBundle;
 
 import com.google.inject.Inject;
 
+import io.github.codenilson.smartpat.application.usecase.administrativeunit.GetAllAdministrativeUnits;
 import io.github.codenilson.smartpat.application.usecase.asset.UpdateAsset;
 import io.github.codenilson.smartpat.application.usecase.category.GetAllCategories;
 import io.github.codenilson.smartpat.application.usecase.category.GetCategoryByName;
+import io.github.codenilson.smartpat.application.usecase.locationunit.GetAllLocationUnits;
+import io.github.codenilson.smartpat.application.usecase.locationunit.GetLocationUnitByName;
+import io.github.codenilson.smartpat.persistence.entities.AdministrativeUnit;
 import io.github.codenilson.smartpat.persistence.entities.Asset;
 import io.github.codenilson.smartpat.persistence.entities.Category;
+import io.github.codenilson.smartpat.persistence.entities.LocationUnit;
 import io.github.codenilson.smartpat.persistence.valueobjects.Ownership;
 import io.github.codenilson.smartpat.utils.AlertConfirmation;
 import io.github.codenilson.smartpat.utils.Util;
@@ -47,10 +52,10 @@ public class DetailItemController implements Initializable {
     private ComboBox<Category> categoryList;
 
     @FXML
-    private ComboBox<String> admnistrativeUnitList;
+    private ComboBox<AdministrativeUnit> admnistrativeUnitList;
 
     @FXML
-    private ComboBox<String> locationUnitList;
+    private ComboBox<LocationUnit> locationUnitList;
 
     @FXML
     private TextField assetCodeTextField;
@@ -64,15 +69,25 @@ public class DetailItemController implements Initializable {
     private final UpdateAsset updateAsset;
     private final GetCategoryByName getCategoryByName;
     private final GetAllCategories getAllCategories;
+    private final GetLocationUnitByName getLocationUnitByName;
+    private final GetAllAdministrativeUnits getAllAdministrativeUnits;
+    private final GetAllLocationUnits getAllLocationUnits;
 
     private BooleanProperty valueHasChanged = new SimpleBooleanProperty(false);
 
     @Inject
-    public DetailItemController(UpdateAsset updateAsset, GetCategoryByName getCategoryByName,
-            GetAllCategories getAllCategories) {
+    public DetailItemController(UpdateAsset updateAsset,
+            GetCategoryByName getCategoryByName,
+            GetAllCategories getAllCategories,
+            GetLocationUnitByName getLocationUnitByName,
+            GetAllAdministrativeUnits getAllAdministrativeUnits,
+            GetAllLocationUnits getAllLocationUnits) {
         this.updateAsset = updateAsset;
         this.getCategoryByName = getCategoryByName;
         this.getAllCategories = getAllCategories;
+        this.getLocationUnitByName = getLocationUnitByName;
+        this.getAllAdministrativeUnits = getAllAdministrativeUnits;
+        this.getAllLocationUnits = getAllLocationUnits;
     }
 
     @Override
@@ -103,14 +118,15 @@ public class DetailItemController implements Initializable {
     private void loadAssetOptions() {
 
         categoryList.getItems().addAll(getAllCategories.execute());
-        admnistrativeUnitList.getItems().addAll("COAFI", "CEGEA", "COPROJ");
-        locationUnitList.getItems().addAll("CEGEA", "Almoxarifado", "Orçamentos");
+        admnistrativeUnitList.getItems().addAll(getAllAdministrativeUnits.execute());
+        locationUnitList.getItems().addAll(getAllLocationUnits.execute());
         ownershipList.getItems().addAll(Ownership.values());
     }
 
     private void setAssetInformation() {
+
         categoryList.setValue(asset.getCategory());
-        admnistrativeUnitList.setValue(asset.getAdministrativeUnit());
+        admnistrativeUnitList.setValue(asset.getLocationUnit().getAdministrativeUnit());
         locationUnitList.setValue(asset.getLocationUnit());
         assetCodeTextField.setText(asset.getAssetCode().toString());
         ownershipList.setValue(asset.getOwnership());
@@ -126,9 +142,9 @@ public class DetailItemController implements Initializable {
 
         currentAsset.setCategory(category);
 
-        currentAsset.setAdministrativeUnit(admnistrativeUnitList.getValue());
+        LocationUnit locationUnit = getLocationUnitByName.execute(locationUnitList.getValue().getName());
 
-        currentAsset.setLocationUnit(locationUnitList.getValue());
+        currentAsset.setLocationUnit(locationUnit);
 
         currentAsset.setOwnership(ownershipList.getValue());
 
@@ -259,7 +275,8 @@ public class DetailItemController implements Initializable {
     private void verifyChanges() {
 
         boolean isCategoryChanged = !categoryList.getValue().equals(asset.getCategory());
-        boolean isAdmnistrativeUnitChanged = !admnistrativeUnitList.getValue().equals(asset.getAdministrativeUnit());
+        boolean isAdmnistrativeUnitChanged = !admnistrativeUnitList.getValue()
+                .equals(asset.getLocationUnit().getAdministrativeUnit());
         boolean isLocationUnitChanged = !locationUnitList.getValue().equals(asset.getLocationUnit());
         boolean isOwnershipChanged = !ownershipList.getValue().equals(asset.getOwnership());
         boolean isAssetCodeChanged = !assetCodeTextField.getText().equals(asset.getAssetCode().toString());
