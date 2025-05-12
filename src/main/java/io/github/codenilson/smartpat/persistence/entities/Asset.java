@@ -1,6 +1,8 @@
 package io.github.codenilson.smartpat.persistence.entities;
 
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -14,6 +16,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 
@@ -45,6 +48,9 @@ public class Asset {
     @Enumerated(EnumType.STRING)
     private Ownership ownership;
 
+    @OneToMany(mappedBy = "asset")
+    private List<AttributeValue> attributeValue = new ArrayList<>();
+
     @Column(name = "image_path")
     private String imagePath;
 
@@ -54,12 +60,8 @@ public class Asset {
     public Asset() {
     }
 
-    public Asset(Long assetCode,
-            Category category,
-            Map<String, Object> extraProperties,
-            LocationUnit locationUnit,
-            Ownership ownership,
-            String imagePath) {
+    public Asset(Long assetCode, Category category, Map<String, Object> extraProperties, LocationUnit locationUnit,
+            Ownership ownership, String imagePath) {
         this.assetCode = assetCode;
         this.category = category;
         this.extraProperties = extraProperties;
@@ -114,6 +116,10 @@ public class Asset {
 
     public void setOwnership(Ownership ownership) {
         this.ownership = ownership;
+    }
+
+    public List<AttributeValue> getAttributeValue() {
+        return attributeValue;
     }
 
     public String getImagePath() {

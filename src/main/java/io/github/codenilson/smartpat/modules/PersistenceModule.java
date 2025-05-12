@@ -8,7 +8,6 @@ public class PersistenceModule extends AbstractModule {
     protected void configure() {
         install(new AssetModule());
         install(new CategoryModule());
-        install(new CategorySchemaModule());
         install(new AdministrativeUnitModule());
         install(new LocationUnitModule());
     }

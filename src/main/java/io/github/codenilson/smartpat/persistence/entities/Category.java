@@ -1,10 +1,14 @@
 package io.github.codenilson.smartpat.persistence.entities;
 
-import io.github.codenilson.smartpat.persistence.entities.Category;
+import java.util.ArrayList;
+import java.util.List;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -15,8 +19,12 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // @Column(unique = true)
+    @Column(unique = true)
     private String name;
+
+    // fetch = FetchType.LAZY
+    @OneToMany(mappedBy = "category")
+    private List<Attribute> attributes = new ArrayList<>();
 
     public Category() {
     }
@@ -35,6 +43,10 @@ public class Category {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<Attribute> getAttributes() {
+        return attributes;
     }
 
     @Override
